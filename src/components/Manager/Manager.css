@@ -4,6 +4,7 @@
   --panelwidth: 300px;
   --small-padding: 8px;
   --muted-color: #a6a6a6;
+  --topbar-height: 36px;
   --admin-font: 400 14px/1 Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
 }
 
@@ -19,7 +20,12 @@
 }
 
 .topbar {
-  padding: var(--small-padding);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: var(--small-padding);
+  padding-right: 10px;
+  height: var(--topbar-height);
   background-color: var(--topbar);
   color: #ccc;
   background: -moz-linear-gradient(top, #333333 0%, #272727 100%); /* FF3.6-15 */
