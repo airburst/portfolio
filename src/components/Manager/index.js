@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Body from '../Body';
 import Library from './Library';
 import MediaViewer from './MediaViewer';
 import Inspector from './Inspector';
@@ -11,11 +12,13 @@ class Manager extends Component {
 
   render() {
     return (
-      <div className="admin-container">
-        <Library />
-        <MediaViewer />
-        <Inspector />
-      </div>
+      <Body isDark>
+        <div className="admin-container">
+          <Library />
+          <MediaViewer />
+          <Inspector />
+        </div>
+      </Body>
     );
   }
 }
