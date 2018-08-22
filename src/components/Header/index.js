@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css';
+import './HeaderDark.css';
 
-const Header = props => {
+const Header = ({ style }) => {
+  const headerClass = `header ${(style && style === 'dark') ? 'dark' : ''}`;
+
   return (
-    <div className="header">
+    <div className={headerClass}>
       <ul className="nav">
-        <li className="logo">Fairhurst Photos</li>
+        <li className="logo">
+          <Link className="logo-item" to="/" title="home">Fairhurst Photos</Link>
+        </li>
         <li className="photos">
-          <a className="menu-item" href="#" title="View photo galleries">View Site</a>
+          <Link className="menu-item" to="/" title="View photo galleries">View Site</Link>
         </li>
         <li className="login">
-          <a className="menu-item" href="#" title="Sign in to manage site">Mark</a>
+          <Link className="menu-item" to="/" title="Sign in to manage site">Mark</Link>
         </li>
       </ul>
     </div>
