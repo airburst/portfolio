@@ -4,13 +4,19 @@ import Dropzone from 'react-dropzone';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-const FileUpload = ({ children, disableClick, mutate, style = {} }) => (
+const FileUpload = ({
+  children,
+  disableClick,
+  mutate,
+  style = {},
+  handleUploadResponse,
+}) => (
   <Dropzone
     style={style}
     className="ignore"
     onDrop={([file]) => {
       mutate({ variables: { file } })
-        .then(response => console.log(response))
+        .then(response => handleUploadResponse(response))
         .catch(err => console.log('Error', err.message));
     }}
     disableClick={disableClick}
@@ -23,6 +29,7 @@ FileUpload.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
   disableClick: PropTypes.bool,
   mutate: PropTypes.func.isRequired,
+  handleUploadResponse: PropTypes.func.isRequired,
   style: PropTypes.object,
 };
 
@@ -33,7 +40,12 @@ FileUpload.defaultProps = {
 
 const uploadPhotoMutation = gql`
   mutation uploadPhoto($file: Upload!) {
-    uploadPhoto(file: $file)
+    uploadPhoto(file: $file) {
+      success
+      exif
+      error
+      files
+    }
   }
 `;
 

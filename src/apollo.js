@@ -6,7 +6,7 @@ const uri = process.env.REACT_APP_SERVER_URL || 'http://localhost:3001/graphql';
 
 const httpLink = createUploadLink({
   uri,
-  credentials: 'include',
+  // credentials: 'include',
 });
 
 export default new ApolloClient({
