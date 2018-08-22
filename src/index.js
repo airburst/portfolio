@@ -6,9 +6,6 @@ import Routes from './routes';
 import { version } from '../package.json';
 import './index.css';
 
-// const history = createBrowserHistory();
-// const store = configureStore(history);
-
 ReactDOM.render(
   <BrowserRouter>
     {/* <Provider store={store}> */}
