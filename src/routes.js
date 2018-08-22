@@ -3,7 +3,6 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import Home from './components/Home';
 import Header from './components/Header';
 import Manager from './components/Manager';
-// import PropTypes from 'prop-types';
 import './index.css';
 
 const Routes = () => (
@@ -13,11 +12,9 @@ const Routes = () => (
   </Switch>
 );
 
-// TODO: header isDark is derived from state.authenticated user
-
 const App = () => (
   <div className="wrapper">
-    <Header isDark />
+    <Header />
     <Routes />
   </div>
 );

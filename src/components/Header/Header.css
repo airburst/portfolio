@@ -50,8 +50,9 @@
 
 .nav a.logo-item {
   justify-content: flex-start;
+  text-decoration: none;
+  color: var(--black);
 }
-
 
 .nav a.menu-item {
   position: relative;
