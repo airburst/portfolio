@@ -6,16 +6,16 @@ import './Manager.css';
 
 class Manager extends Component {
   state = {
-    selectedPhoto: null,
+    // selectedPhoto: null,
   };
 
   render() {
     return (
       <div className="admin-container">
-      <Library />
-      <MediaViewer />
-      <Inspector />
-    </div>
+        <Library />
+        <MediaViewer />
+        <Inspector />
+      </div>
     );
   }
 }

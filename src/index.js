@@ -12,7 +12,7 @@ import './index.css';
 ReactDOM.render(
   <BrowserRouter>
     {/* <Provider store={store}> */}
-      <Routes />
+    <Routes />
     {/* </Provider> */}
   </BrowserRouter>,
   document.getElementById('app')

@@ -12,15 +12,11 @@ const Routes = () => (
   </Switch>
 );
 
-class App extends React.Component {
-  render() {
-    return (
-      <div className="wrapper">
-        <Header type="dark"/>
-        <Routes />
-      </div>
-    );
-  }
-}
+const App = () => (
+  <div className="wrapper">
+    <Header type="dark" />
+    <Routes />
+  </div>
+);
 
 export default withRouter(App);
