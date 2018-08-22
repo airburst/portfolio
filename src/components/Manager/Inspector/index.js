@@ -20,7 +20,7 @@ const Inspector = props => {
             </div>
             <div className="heading">Caption</div>
             <div className="property">
-              <textarea className="dark" rows="8" value="Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae quas ipsa numquam molestias tempore." readOnly></textarea>
+              <textarea className="dark" rows="6" value="Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae quas ipsa numquam molestias tempore." readOnly></textarea>
             </div>
           </div>
         </div>

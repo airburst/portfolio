@@ -1,15 +1,17 @@
 import React from 'react';
+import FolderTree from './FolderTree';
 
-const Library = props => {
-  return (
-    <div>
-      <div className="topbar">Library</div>
-      <div className="content">
-        <div className="title">Albums</div>
-        <div className="tree">(File tree)</div>
+class Library extends React.Component {
+  render() {
+    return (
+      <div>
+        <div className="topbar">Library</div>
+        <div className="content">
+          <FolderTree />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default Library;
