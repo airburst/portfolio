@@ -1,7 +1,7 @@
 import React from 'react';
 import './MediaViewer.css';
 
-const MediaViewer = props => {
+const MediaViewer = () => {
   return (
     <div>
       <div className="topbar">&nbsp;</div>
