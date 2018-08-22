@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 import './HeaderDark.css';
 
-const Header = ({ style }) => {
-  const headerClass = `header ${(style && style === 'dark') ? 'dark' : ''}`;
+const Header = ({ type }) => {
+  const headerClass = `header ${(type && type === 'dark') ? 'dark' : ''}`;
 
   return (
     <div className={headerClass}>

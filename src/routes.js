@@ -16,7 +16,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="wrapper">
-        <Header style="dark"/>
+        <Header type="dark"/>
         <Routes />
       </div>
     );

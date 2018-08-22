@@ -36,6 +36,12 @@ body {
   font-size: 16px;
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 /* Core changes for admin dark theme */
 body.dark {
   height: 100%;

@@ -1,0 +1,25 @@
+.properties {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  grid-gap: var(--small-padding);
+  align-items: center;
+}
+
+.heading {
+  justify-self: flex-end;
+}
+
+.property {
+  color: var(--muted-color);
+}
+
+.dark {
+  background-color: #111;
+  border: 1px solid #0f0f0f;
+  color: var(--muted);
+  padding: 4px 0 4px 8px;
+  font: var(--admin-font);
+  line-height: 16px;
+  height: 100%;
+  width: calc(100% - 16px);
+}

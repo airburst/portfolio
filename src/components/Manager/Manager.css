@@ -8,21 +8,15 @@
   --admin-font: 400 14px/1 Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
 }
 
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  font: var(--admin-font);
-}
-
 .admin-container {
   flex-grow: 1;
   height: 100%;
   display: grid;
   grid-template-columns: var(--panelwidth) 1fr var(--panelwidth);
-  grid-template-rows: 32px 1fr;
+  grid-template-rows: 1fr;
   grid-gap: 1px;
   margin-top: var(--topmargin);
+  font: var(--admin-font);
 }
 
 .topbar {
@@ -40,86 +34,4 @@
   padding: var(--small-padding);
   overflow-y: scroll;
   color: white;
-}
-
-.media-container {
-  display: grid;
-  grid-template-columns: var(--padding) 1fr var(--padding);
-  grid-template-rows: 150px;
-  height: 100%;
-  background-color: var(--media-bgcolor);
-  overflow-y: scroll;
-}
-
-.media {
-  margin: var(--small-padding);
-  margin-top: var(--padding);
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  grid-gap: var(--small-padding);
-  grid-column-start: 2;
-  /* grid-auto-flow: row dense; */
-  justify-content: center;
-  background-color: var(--media-bgcolor);
-}
-
-.thumbnail {
-  height: 150px;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  color: white;
-}
-
-.thumbnail>img {
-  line-height: 150px;
-  text-align: center;
-  border: 2px solid transparent;
-}
-.thumbnail>img:hover {
-  border: 2px solid #e74c3c;
-}
-
-.title {
-  text-transform: uppercase;
-  color: var(--muted-color);
-  margin-bottom: var(--padding);
-}
-
-.selected-photo {
-  border-bottom: 1px solid var(--admin-header-bg);
-  padding: 8px;
-  background-color: #1c1c1c;
-}
-.selected-photo>img {
-  display: block;
-  max-width: 100%;
-}
-
-.properties {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  grid-gap: var(--small-padding);
-  align-items: center;
-}
-
-.heading {
-  justify-self: flex-end;
-}
-
-.property {
-  color: var(--muted-color);
-}
-
-.dark {
-  background-color: #111;
-  border: 1px solid #0f0f0f;
-  color: var(--muted);
-  padding: 4px 0 4px 8px;
-  font: var(--admin-font);
-  line-height: 16px;
-  height: 100%;
-  width: calc(100% - 16px);
 }
