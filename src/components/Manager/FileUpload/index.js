@@ -1,9 +1,13 @@
 import React from 'react';
-import FileUpload from './FileUpload';
+import Dropzone from './Dropzone';
 import './FileUpload.css';
 
 const Pictures = ({ files }) =>
-  files.map(file => <img key={file} src={file} alt="" />);
+  files.filter(f => f.indexOf('200h') > -1).map(file => (
+    <div className="small-photo" key={file}>
+      <img src={file} alt="" />
+    </div>
+  ));
 
 class FileUploadZone extends React.Component {
   state = {
@@ -22,8 +26,9 @@ class FileUploadZone extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
-        <FileUpload
+      <div className="upload-container">
+        <Dropzone handleUploadResponse={this.handleUploadResponse} />
+        {/* <FileUpload
           style={{
             display: 'flex',
             flexDirection: 'column',
@@ -33,9 +38,9 @@ class FileUploadZone extends React.Component {
           handleUploadResponse={this.handleUploadResponse}
         >
           <div className="upload-zone" />
-        </FileUpload>
+        </FileUpload> */}
         <Pictures files={this.state.files} />
-      </React.Fragment>
+      </div>
     );
   }
 }
