@@ -14,8 +14,8 @@
   z-index: 5;
   border: 0;
   padding: 0;
-  background-color: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 2px 5px rgba(39, 39, 39, 0.1);
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 5px rgba(39, 39, 39, 0.2);
   text-transform: uppercase;
 }
 
@@ -67,7 +67,7 @@
 }
 
 a.menu-item:hover {
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
 a.menu-item:hover:after {
@@ -80,7 +80,7 @@ a.menu-item:hover:after {
   left: 0;
   bottom: 0;
   z-index: 4;
-  box-shadow: 0 1px 10px rgba(39, 39, 39, 0.3);
+  /* box-shadow: 0 1px 10px rgba(39, 39, 39, 0.1); */
 }
 
 /* Dark theme */
