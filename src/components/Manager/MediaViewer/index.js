@@ -1,14 +1,15 @@
 import React from 'react';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 import Toolbar from './Toolbar';
 import FileUpload from './FileUpload';
-import Thumbnail from './Thumbnail';
+import Thumbnails from './Thumbnails';
 import './MediaViewer.css';
 
 class MediaViewer extends React.Component {
   state = {
     // search: '', // TODO: use search
     showUploads: false,
-    thumbnail: null,
   };
 
   onChange = (name, value) => {
@@ -20,18 +21,21 @@ class MediaViewer extends React.Component {
   };
 
   handleUploadResponse = ({ data }) => {
-    console.log({ data }); // TODO: remove
     const {
       uploadPhoto: { success, thumbnail },
     } = data;
     if (success) {
-      this.setState({ thumbnail });
+      console.log({ thumbnail });
     }
   };
 
   render() {
-    const { showUploads, thumbnail } = this.state;
-    console.log('​render -> thumbnail', thumbnail);
+    const {
+      data: { allPhotos }, // loading
+    } = this.props;
+    const { showUploads } = this.state;
+
+    console.log(allPhotos);
 
     return (
       <div className="media-section">
@@ -46,7 +50,7 @@ class MediaViewer extends React.Component {
 
         <div className="media-container">
           <div className="media">
-            <Thumbnail src="https://source.unsplash.com/random/150x100" />
+            <Thumbnails photos={allPhotos} />
           </div>
         </div>
       </div>
@@ -54,4 +58,32 @@ class MediaViewer extends React.Component {
   }
 }
 
-export default MediaViewer;
+const allPhotosQuery = gql`
+  {
+    allPhotos {
+      data {
+        id
+        urls
+        thumbnail
+        title
+        caption
+        width
+        height
+        exposure
+        shutter
+        aperture
+        iso
+        focalLength
+        dateTaken
+        isPublic
+        createdAt
+      }
+      errors {
+        path
+        message
+      }
+    }
+  }
+`;
+
+export default graphql(allPhotosQuery)(MediaViewer);
