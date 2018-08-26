@@ -44,7 +44,7 @@ const uploadPhotoMutation = gql`
       success
       exif
       error
-      files
+      url
     }
   }
 `;
