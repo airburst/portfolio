@@ -1,12 +1,14 @@
 import React from 'react';
 import Toolbar from './Toolbar';
 import FileUpload from './FileUpload';
+import Thumbnail from './Thumbnail';
 import './MediaViewer.css';
 
 class MediaViewer extends React.Component {
   state = {
     // search: '', // TODO: use search
     showUploads: false,
+    thumbnail: null,
   };
 
   onChange = (name, value) => {
@@ -17,8 +19,19 @@ class MediaViewer extends React.Component {
     this.setState({ showUploads: true });
   };
 
+  handleUploadResponse = ({ data }) => {
+    console.log({ data }); // TODO: remove
+    const {
+      uploadPhoto: { success, thumbnail },
+    } = data;
+    if (success) {
+      this.setState({ thumbnail });
+    }
+  };
+
   render() {
-    const { showUploads } = this.state;
+    const { showUploads, thumbnail } = this.state;
+    console.log('​render -> thumbnail', thumbnail);
 
     return (
       <div className="media-section">
@@ -27,88 +40,13 @@ class MediaViewer extends React.Component {
           uploadClickHandler={this.uploadClickHandler}
         />
 
-        {showUploads && <FileUpload />}
+        {showUploads && (
+          <FileUpload handleUploadResponse={this.handleUploadResponse} />
+        )}
 
         <div className="media-container">
           <div className="media">
-            <div className="thumbnail">
-              <img
-                src="https://source.unsplash.com/random/150x100"
-                alt="Placeholder"
-              />
-            </div>
-            <div className="thumbnail">
-              <img
-                src="https://source.unsplash.com/random/150x100"
-                alt="Placeholder"
-              />
-            </div>
-            <div className="thumbnail">
-              <img
-                src="https://source.unsplash.com/random/150x100"
-                alt="Placeholder"
-              />
-            </div>
-            <div className="thumbnail">
-              <img
-                src="https://source.unsplash.com/random/100x150"
-                alt="Placeholder"
-              />
-            </div>
-            <div className="thumbnail">
-              <img
-                src="https://source.unsplash.com/random/150x100"
-                alt="Placeholder"
-              />
-            </div>
-            <div className="thumbnail">
-              <img
-                src="https://source.unsplash.com/random/150x100"
-                alt="Placeholder"
-              />
-            </div>
-            <div className="thumbnail">
-              <img
-                src="https://source.unsplash.com/random/150x100"
-                alt="Placeholder"
-              />
-            </div>
-            <div className="thumbnail">
-              <img
-                src="https://source.unsplash.com/random/150x100"
-                alt="Placeholder"
-              />
-            </div>
-            <div className="thumbnail">
-              <img
-                src="https://source.unsplash.com/random/150x100"
-                alt="Placeholder"
-              />
-            </div>
-            <div className="thumbnail">
-              <img
-                src="https://source.unsplash.com/random/150x100"
-                alt="Placeholder"
-              />
-            </div>
-            <div className="thumbnail">
-              <img
-                src="https://source.unsplash.com/random/150x100"
-                alt="Placeholder"
-              />
-            </div>
-            <div className="thumbnail">
-              <img
-                src="https://source.unsplash.com/random/100x150"
-                alt="Placeholder"
-              />
-            </div>
-            <div className="thumbnail">
-              <img
-                src="https://source.unsplash.com/random/150x100"
-                alt="Placeholder"
-              />
-            </div>
+            <Thumbnail src="https://source.unsplash.com/random/150x100" />
           </div>
         </div>
       </div>
