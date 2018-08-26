@@ -3,7 +3,7 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import Home from './components/Home';
 import Header from './components/Header';
 import Manager from './components/Manager';
-import FileUpload from './components/Manager/FileUpload';
+import FileUpload from './components/Manager/MediaViewer/FileUpload';
 import './index.css';
 
 const Routes = () => (

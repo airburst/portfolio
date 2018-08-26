@@ -1,36 +1,34 @@
 import React from 'react';
-import { Button } from 'semantic-ui-react';
-import Search from './Search';
+import Toolbar from './Toolbar';
+import FileUpload from './FileUpload';
 import './MediaViewer.css';
 
 class MediaViewer extends React.Component {
   state = {
-    search: '',
+    // search: '', // TODO: use search
+    showUploads: false,
   };
 
   onChange = (name, value) => {
     this.setState({ [name]: value });
   };
 
+  uploadClickHandler = () => {
+    this.setState({ showUploads: true });
+  };
+
   render() {
-    const { search } = this.state;
-    console.log('​MediaViewer -> render -> search', search);
+    const { showUploads } = this.state;
 
     return (
-      <div>
-        <div className="topbar">
-          <div className="left">
-            <Button
-              secondary
-              size="mini"
-              onClick={() => console.log('add photos')}
-              content="Upload"
-            />
-          </div>
-          <div className="right">
-            <Search action={v => this.onChange('search', v)} />
-          </div>
-        </div>
+      <div className="media-section">
+        <Toolbar
+          onSearchChange={v => this.onChange('search', v)}
+          uploadClickHandler={this.uploadClickHandler}
+        />
+
+        {showUploads && <FileUpload />}
+
         <div className="media-container">
           <div className="media">
             <div className="thumbnail">

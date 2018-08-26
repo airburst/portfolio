@@ -36,7 +36,7 @@ const UploadDropzone = props => {
       onDrop={onDrop}
     >
       <p className="dropzone-text">Drop image files to upload</p>
-      <Button onClick={buttonHandler} content="Or Click to Select File" />
+      <Button onClick={buttonHandler} content="Or Click to Select Files" />
     </Dropzone>
   );
 };

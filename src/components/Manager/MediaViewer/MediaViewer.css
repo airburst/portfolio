@@ -1,10 +1,14 @@
+.media-section {
+  background-color: var(--media-bgcolor);
+  overflow-y: scroll;
+}
+
 .media-container {
   display: grid;
   grid-template-columns: var(--padding) 1fr var(--padding);
   grid-template-rows: 150px;
   height: 100%;
   background-color: var(--media-bgcolor);
-  overflow-y: scroll;
 }
 
 .media {
@@ -73,6 +77,7 @@
 
 .search-input-new {
   width: 300px;
+  color: var(--muted) !important;
 }
 
 .search-input-new > input {
