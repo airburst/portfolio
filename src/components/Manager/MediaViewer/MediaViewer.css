@@ -63,10 +63,19 @@
   width: 308px;
 }
 
-.search-input {
+/* .search-input {
   background-color: #111;
   border: 1px solid #0f0f0f;
   color: var(--muted);
   padding: 4px 0 4px 8px;
   width: 300px;
+} */
+
+.search-input-new {
+  width: 300px;
+}
+
+.search-input-new > input {
+  background-color: #111 !important;
+  color: var(--muted) !important;
 }

@@ -1,10 +1,10 @@
 :root {
   --topbar: #333;
+  --topbar-height: 48px;
   --media-bgcolor: #161616;
   --panelwidth: 300px;
   --small-padding: 8px;
   --muted-color: #a6a6a6;
-  --topbar-height: 36px;
   --admin-font: 400 14px/1 Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
 }
 
@@ -24,7 +24,6 @@
   flex-direction: row;
   align-items: center;
   padding-left: var(--small-padding);
-  padding-right: 10px;
   height: var(--topbar-height);
   background-color: var(--topbar);
   color: #ccc;

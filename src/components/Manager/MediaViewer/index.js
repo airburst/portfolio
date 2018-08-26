@@ -1,4 +1,6 @@
 import React from 'react';
+import { Button } from 'semantic-ui-react';
+import Search from './Search';
 import './MediaViewer.css';
 
 class MediaViewer extends React.Component {
@@ -6,26 +8,27 @@ class MediaViewer extends React.Component {
     search: '',
   };
 
-  onChange = (name, e) => {
-    this.setState({ [name]: e.target.value });
+  onChange = (name, value) => {
+    this.setState({ [name]: value });
   };
 
   render() {
     const { search } = this.state;
+    console.log('​MediaViewer -> render -> search', search);
 
     return (
       <div>
         <div className="topbar">
-          <div className="left" />
-          <div className="right">
-            <input
-              className="search-input"
-              type="text"
-              value={search}
-              name="search"
-              placeholder="Search"
-              onChange={this.onChange.bind(null, 'search')}
+          <div className="left">
+            <Button
+              secondary
+              size="mini"
+              onClick={() => console.log('add photos')}
+              content="Upload"
             />
+          </div>
+          <div className="right">
+            <Search action={v => this.onChange('search', v)} />
           </div>
         </div>
         <div className="media-container">

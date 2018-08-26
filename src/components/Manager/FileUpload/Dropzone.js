@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Icon } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 import Dropzone from 'react-dropzone';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -35,7 +35,6 @@ const UploadDropzone = props => {
       // accept="image/jpg"
       onDrop={onDrop}
     >
-      <Icon name="upload" size="huge" />
       <p className="dropzone-text">Drop image files to upload</p>
       <Button onClick={buttonHandler} content="Or Click to Select File" />
     </Dropzone>
@@ -51,9 +50,7 @@ const uploadPhotoMutation = gql`
   mutation uploadPhoto($file: Upload!) {
     uploadPhoto(file: $file) {
       success
-      exif
       error
-      urls
       thumbnail
     }
   }

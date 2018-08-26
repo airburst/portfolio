@@ -23,7 +23,7 @@ class FileUploadZone extends React.Component {
   };
 
   handleUploadResponse = ({ data }) => {
-    console.log({ data });
+    console.log({ data }); // TODO: remove
     const {
       uploadPhoto: { success, thumbnail },
     } = data;
