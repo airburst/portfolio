@@ -1,14 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Dropzone from './Dropzone';
 import './FileUpload.css';
 
-const Picture = ({ thumbnail }) => {
-  console.log(thumbnail);
-  return (
-    <div className="small-photo">
-      <img src={thumbnail} alt="" />
-    </div>
-  );
+const Picture = ({ thumbnail }) => (
+  <div className="small-photo">
+    <img src={thumbnail} alt="" />
+  </div>
+);
+
+Picture.propTypes = {
+  thumbnail: PropTypes.string,
+};
+
+Picture.defaultProps = {
+  thumbnail: null,
 };
 
 class FileUploadZone extends React.Component {
@@ -27,21 +33,11 @@ class FileUploadZone extends React.Component {
   };
 
   render() {
+    const { thumbnail } = this.state;
     return (
       <div className="upload-container">
         <Dropzone handleUploadResponse={this.handleUploadResponse} />
-        {/* <FileUpload
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            flexGrow: 1,
-          }}
-          disableClick
-          handleUploadResponse={this.handleUploadResponse}
-        >
-          <div className="upload-zone" />
-        </FileUpload> */}
-        <Picture thumbnail={this.state.thumbnail} />
+        {thumbnail && <Picture thumbnail={thumbnail} />}
       </div>
     );
   }
