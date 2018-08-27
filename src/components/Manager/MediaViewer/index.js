@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Toolbar from './Toolbar';
@@ -7,6 +8,10 @@ import Thumbnails from './Thumbnails';
 import './MediaViewer.css';
 
 class MediaViewer extends React.Component {
+  static propTypes = {
+    data: PropTypes.object.isRequired,
+  };
+
   state = {
     // search: '', // TODO: use search
     showUploads: false,
@@ -21,11 +26,9 @@ class MediaViewer extends React.Component {
   };
 
   handleUploadResponse = ({ data }) => {
-    const {
-      uploadPhoto: { success, thumbnail },
-    } = data;
-    if (success) {
-      console.log({ thumbnail });
+    const { uploadPhotos } = data;
+    if (uploadPhotos && uploadPhotos.length) {
+      console.log(uploadPhotos.filter(u => u.success).map(p => p.thumbnail));
     }
   };
 

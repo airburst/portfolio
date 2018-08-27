@@ -18,11 +18,13 @@ const FileUpload = props => {
 
   const onDrop = files => {
     if (files.length) {
-      files.forEach(file => {
-        mutate({ variables: { file } })
-          .then(response => handleUploadResponse(response))
-          .catch(err => console.log('Error', err.message));
-      });
+      // files.forEach(file => {
+      //   mutate({ variables: { file } })
+      //     .then(response => handleUploadResponse(response))
+      //     .catch(err => console.log('Error', err.message));
+      mutate({ variables: { files } })
+        .then(response => handleUploadResponse(response))
+        .catch(err => console.log('Error', err.message));
     }
   };
 
@@ -48,9 +50,9 @@ FileUpload.propTypes = {
   mutate: PropTypes.func.isRequired,
 };
 
-const uploadPhotoMutation = gql`
-  mutation uploadPhoto($file: Upload!) {
-    uploadPhoto(file: $file) {
+const uploadPhotosMutation = gql`
+  mutation uploadPhotos($files: [Upload!]!) {
+    uploadPhotos(files: $files) {
       success
       error
       thumbnail
@@ -58,4 +60,4 @@ const uploadPhotoMutation = gql`
   }
 `;
 
-export default graphql(uploadPhotoMutation)(FileUpload);
+export default graphql(uploadPhotosMutation)(FileUpload);
