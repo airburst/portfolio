@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Button } from 'semantic-ui-react';
 import Search from './Search';
 
+// TODO: Add sort by dropdown
 const Toolbar = ({ onSearchChange, uploadClickHandler }) => (
   <div>
     <div className="topbar">

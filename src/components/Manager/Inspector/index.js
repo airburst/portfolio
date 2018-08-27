@@ -20,7 +20,7 @@ class Inspector extends React.Component {
         <div className="right">
           <div className="selected-photo">
             <img
-              src="https://source.unsplash.com/random/300x200"
+              src="/../../assets/images/lakes.png"
               alt="Selected Placeholder"
             />
           </div>
