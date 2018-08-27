@@ -32,7 +32,7 @@ const FileUpload = props => {
           dropzoneRef = node;
         }}
         className="dropzone"
-        // accept="image/jpg" //TODO: restrict type
+        accept="image/jpeg, image/png"
         onDrop={onDrop}
       >
         <p className="dropzone-text">Drop image files to upload</p>
