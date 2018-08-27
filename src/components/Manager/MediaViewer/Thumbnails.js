@@ -13,8 +13,6 @@ Thumbnail.propTypes = {
 };
 
 const Thumbnails = ({ photos }) => {
-  console.log('​Thumbnails -> photos', photos);
-
   if (!photos || !photos.data || !photos.data.length) {
     return <div />;
   }

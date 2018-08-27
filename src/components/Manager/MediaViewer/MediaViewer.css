@@ -39,7 +39,7 @@
   border: 2px solid transparent;
 }
 .thumbnail>img:hover {
-  border: 2px solid #e74c3c;
+  border: 2px solid var(--selected-color);
 }
 
 .title {

@@ -25,20 +25,20 @@ class MediaViewer extends React.Component {
     this.setState({ showUploads: true });
   };
 
-  handleUploadResponse = ({ data }) => {
+  uploadResponseHandler = ({ data }) => {
     const { uploadPhotos } = data;
     if (uploadPhotos && uploadPhotos.length) {
       console.log(uploadPhotos.filter(u => u.success).map(p => p.thumbnail));
     }
   };
 
+  hideUploads = () => this.setState({ showUploads: false });
+
   render() {
     const {
       data: { allPhotos }, // loading
     } = this.props;
     const { showUploads } = this.state;
-
-    console.log(allPhotos);
 
     return (
       <div className="media-section">
@@ -48,7 +48,10 @@ class MediaViewer extends React.Component {
         />
 
         {showUploads && (
-          <FileUpload handleUploadResponse={this.handleUploadResponse} />
+          <FileUpload
+            uploadResponseHandler={this.uploadResponseHandler}
+            closeHandler={this.hideUploads}
+          />
         )}
 
         <div className="media-container">

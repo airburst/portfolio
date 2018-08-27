@@ -6,6 +6,7 @@
   --small-padding: 8px;
   --muted-color: #a6a6a6;
   --admin-font: 400 14px/1 Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  --selected-color: #e74c3c;
 }
 
 .admin-container {

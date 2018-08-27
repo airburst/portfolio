@@ -4,6 +4,7 @@
 } */
 
 .upload-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   margin: var(--small-padding);
@@ -28,12 +29,17 @@
   margin: 40px 0;
 }
 
-.small-photo {
-  height: 200px;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  color: white;
+.close {
+  position: absolute;
+  top: var(--small-padding);
+  right: 4px;
+  color: var(--muted-color);
+  z-index: 9;
+  margin: 8px;
+  /* border: 2px solid transparent; */
+}
+
+.close:hover {
+  cursor: pointer;
+  /* border: 2px solid var(--selected-color); */
 }

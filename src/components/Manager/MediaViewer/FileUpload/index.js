@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 import Dropzone from 'react-dropzone';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -8,7 +8,7 @@ import './FileUpload.css';
 
 const FileUpload = props => {
   let dropzoneRef;
-  const { handleUploadResponse, mutate } = props;
+  const { uploadResponseHandler, closeHandler, mutate } = props;
 
   const buttonHandler = e => {
     e.preventDefault();
@@ -18,18 +18,15 @@ const FileUpload = props => {
 
   const onDrop = files => {
     if (files.length) {
-      // files.forEach(file => {
-      //   mutate({ variables: { file } })
-      //     .then(response => handleUploadResponse(response))
-      //     .catch(err => console.log('Error', err.message));
       mutate({ variables: { files } })
-        .then(response => handleUploadResponse(response))
+        .then(response => uploadResponseHandler(response))
         .catch(err => console.log('Error', err.message));
     }
   };
 
   return (
     <div className="upload-container">
+      <Icon name="close" size="big" className="close" onClick={closeHandler} />
       <Dropzone
         ref={node => {
           dropzoneRef = node;
@@ -46,10 +43,12 @@ const FileUpload = props => {
 };
 
 FileUpload.propTypes = {
-  handleUploadResponse: PropTypes.func.isRequired,
   mutate: PropTypes.func.isRequired,
+  uploadResponseHandler: PropTypes.func.isRequired,
+  closeHandler: PropTypes.func.isRequired,
 };
 
+// GQL Mutation
 const uploadPhotosMutation = gql`
   mutation uploadPhotos($files: [Upload!]!) {
     uploadPhotos(files: $files) {
