@@ -5,10 +5,16 @@ import Dropzone from 'react-dropzone';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import './FileUpload.css';
+import allPhotosQuery from '../allPhotosQuery';
 
 const FileUpload = props => {
   let dropzoneRef;
-  const { uploadResponseHandler, closeHandler, mutate } = props;
+  const {
+    uploadResponseHandler,
+    closeHandler,
+    setUploadPreviews,
+    mutate,
+  } = props;
 
   const buttonHandler = e => {
     e.preventDefault();
@@ -18,7 +24,15 @@ const FileUpload = props => {
 
   const onDrop = files => {
     if (files.length) {
-      mutate({ variables: { files } })
+      setUploadPreviews(files.map(f => f.preview));
+      mutate({
+        variables: { files },
+        refetchQueries: [
+          {
+            query: allPhotosQuery,
+          },
+        ],
+      })
         .then(response => uploadResponseHandler(response))
         .catch(err => console.log('Error', err.message));
     }
@@ -45,6 +59,7 @@ const FileUpload = props => {
 FileUpload.propTypes = {
   mutate: PropTypes.func.isRequired,
   uploadResponseHandler: PropTypes.func.isRequired,
+  setUploadPreviews: PropTypes.func.isRequired,
   closeHandler: PropTypes.func.isRequired,
 };
 

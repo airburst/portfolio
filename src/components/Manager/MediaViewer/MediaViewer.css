@@ -33,6 +33,12 @@
   color: white;
 }
 
+.thumbnail.preview {
+  background-color: #333;
+  /* background: url('/static/assets/images/preview.jpg') no-repeat;
+  background-size: cover; */
+}
+
 .thumbnail>img {
   line-height: 150px;
   text-align: center;

@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
 import Toolbar from './Toolbar';
 import FileUpload from './FileUpload';
-import Thumbnails from './Thumbnails';
+import Thumbnails, { Previews } from './Thumbnails';
+import allPhotosQuery from './allPhotosQuery';
 import './MediaViewer.css';
 
 class MediaViewer extends React.Component {
@@ -15,6 +15,7 @@ class MediaViewer extends React.Component {
   state = {
     // search: '', // TODO: use search
     showUploads: false,
+    uploadPreviews: null,
   };
 
   onChange = (name, value) => {
@@ -28,17 +29,21 @@ class MediaViewer extends React.Component {
   uploadResponseHandler = ({ data }) => {
     const { uploadPhotos } = data;
     if (uploadPhotos && uploadPhotos.length) {
-      console.log(uploadPhotos.filter(u => u.success).map(p => p.thumbnail));
+      this.setState({ uploadPreviews: null });
     }
   };
 
   hideUploads = () => this.setState({ showUploads: false });
 
+  setUploadPreviews = previews => {
+    this.setState({ uploadPreviews: previews });
+  };
+
   render() {
     const {
-      data: { allPhotos }, // loading
+      data: { allPhotos },
     } = this.props;
-    const { showUploads } = this.state;
+    const { showUploads, uploadPreviews } = this.state;
 
     return (
       <div className="media-section">
@@ -49,13 +54,16 @@ class MediaViewer extends React.Component {
 
         {showUploads && (
           <FileUpload
-            uploadResponseHandler={this.uploadResponseHandler}
             closeHandler={this.hideUploads}
+            setUploadPreviews={this.setUploadPreviews}
+            uploadResponseHandler={this.uploadResponseHandler}
           />
         )}
 
         <div className="media-container">
           <div className="media">
+            {uploadPreviews &&
+              uploadPreviews.length && <Previews photos={uploadPreviews} />}
             <Thumbnails photos={allPhotos} />
           </div>
         </div>
@@ -63,33 +71,5 @@ class MediaViewer extends React.Component {
     );
   }
 }
-
-const allPhotosQuery = gql`
-  {
-    allPhotos {
-      data {
-        id
-        urls
-        thumbnail
-        title
-        caption
-        width
-        height
-        exposure
-        shutter
-        aperture
-        iso
-        focalLength
-        dateTaken
-        isPublic
-        createdAt
-      }
-      errors {
-        path
-        message
-      }
-    }
-  }
-`;
 
 export default graphql(allPhotosQuery)(MediaViewer);
