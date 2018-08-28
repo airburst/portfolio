@@ -36,10 +36,10 @@
   color: var(--muted-color);
   z-index: 9;
   margin: 8px;
-  /* border: 2px solid transparent; */
+  transition: all 0.25s;
 }
 
 .close:hover {
   cursor: pointer;
-  /* border: 2px solid var(--selected-color); */
+  color: white;
 }
