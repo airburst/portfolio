@@ -13,9 +13,9 @@ class MediaViewer extends React.Component {
   };
 
   state = {
-    // search: '', // TODO: use search
     showUploads: false,
-    uploadPreviews: null,
+    uploadSizes: null,
+    // search: '', // TODO: use search
   };
 
   onChange = (name, value) => {
@@ -29,21 +29,21 @@ class MediaViewer extends React.Component {
   uploadResponseHandler = ({ data }) => {
     const { uploadPhotos } = data;
     if (uploadPhotos && uploadPhotos.length) {
-      this.setState({ uploadPreviews: null });
+      this.setState({ uploadSizes: null });
     }
   };
 
   hideUploads = () => this.setState({ showUploads: false });
 
-  setUploadPreviews = previews => {
-    this.setState({ uploadPreviews: previews });
+  setUploadSizes = sizes => {
+    this.setState({ uploadSizes: sizes });
   };
 
   render() {
     const {
       data: { allPhotos },
     } = this.props;
-    const { showUploads, uploadPreviews } = this.state;
+    const { showUploads, uploadSizes } = this.state;
 
     return (
       <div className="media-section">
@@ -55,15 +55,15 @@ class MediaViewer extends React.Component {
         {showUploads && (
           <FileUpload
             closeHandler={this.hideUploads}
-            setUploadPreviews={this.setUploadPreviews}
+            setUploadSizes={this.setUploadSizes}
             uploadResponseHandler={this.uploadResponseHandler}
           />
         )}
 
         <div className="media-container">
           <div className="media">
-            {uploadPreviews &&
-              uploadPreviews.length && <Previews photos={uploadPreviews} />}
+            {uploadSizes &&
+              uploadSizes.length && <Previews sizes={uploadSizes} />}
             <Thumbnails photos={allPhotos} />
           </div>
         </div>

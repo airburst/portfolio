@@ -29,12 +29,10 @@ const Thumbnails = ({ photos }) => {
   return data.map(p => <Thumbnail key={p.id} src={p.thumbnail} />);
 };
 
-export const Previews = ({ photos }) =>
-  photos.map(url => (
-    <div className="thumbnail preview" key={url}>
-      <Loader active inverted inline>
-        {/* <Icon name="image outline" size="huge" /> */}
-      </Loader>
+export const Previews = ({ sizes }) =>
+  sizes.map((k, i) => (
+    <div className="thumbnail preview" key={i}>
+      <Loader active inverted inline />
     </div>
   ));
 

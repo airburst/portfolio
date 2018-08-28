@@ -9,12 +9,7 @@ import allPhotosQuery from '../allPhotosQuery';
 
 const FileUpload = props => {
   let dropzoneRef;
-  const {
-    uploadResponseHandler,
-    closeHandler,
-    setUploadPreviews,
-    mutate,
-  } = props;
+  const { uploadResponseHandler, closeHandler, setUploadSizes, mutate } = props;
 
   const buttonHandler = e => {
     e.preventDefault();
@@ -24,9 +19,10 @@ const FileUpload = props => {
 
   const onDrop = files => {
     if (files.length) {
-      setUploadPreviews(files.map(f => f.preview));
+      const sizes = files.map(f => f.size);
+      setUploadSizes(sizes);
       mutate({
-        variables: { files },
+        variables: { files, sizes },
         refetchQueries: [
           {
             query: allPhotosQuery,
@@ -59,14 +55,14 @@ const FileUpload = props => {
 FileUpload.propTypes = {
   mutate: PropTypes.func.isRequired,
   uploadResponseHandler: PropTypes.func.isRequired,
-  setUploadPreviews: PropTypes.func.isRequired,
+  setUploadSizes: PropTypes.func.isRequired,
   closeHandler: PropTypes.func.isRequired,
 };
 
 // GQL Mutation
 const uploadPhotosMutation = gql`
-  mutation uploadPhotos($files: [Upload!]!) {
-    uploadPhotos(files: $files) {
+  mutation uploadPhotos($files: [Upload!]!, $sizes: [Int!]) {
+    uploadPhotos(files: $files, sizes: $sizes) {
       success
       error
       thumbnail

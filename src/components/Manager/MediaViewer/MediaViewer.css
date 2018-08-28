@@ -35,8 +35,8 @@
 
 .thumbnail.preview {
   background-color: #333;
-  /* background: url('/static/assets/images/preview.png') no-repeat;
-  background-size: cover; */
+  background: url('/../../assets/images/preview.png') no-repeat;
+  background-size: contain;
 }
 
 .thumbnail>img {
