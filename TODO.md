@@ -3,8 +3,9 @@
 ## File Inspector (Manager)
 * [x] Clicking a thumbnail populates the Inspector panel
 * [x] Changing details updates the photo metadata
+* [ ] Escape text before sending; debounce
 * [ ] Clicking same photo clings on to old state (refresh query needed)
-* [ ] Ability to delete a photo
+* [ ] Delete a photo
 
 ## Photo Galleries (Manager)
 * [ ] Model for gallery object

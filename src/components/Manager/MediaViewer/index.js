@@ -53,7 +53,6 @@ class MediaViewer extends React.Component {
           onSearchChange={v => this.onChange('search', v)}
           uploadClickHandler={this.uploadClickHandler}
         />
-
         {showUploads && (
           <FileUpload
             closeHandler={this.hideUploads}
@@ -61,7 +60,6 @@ class MediaViewer extends React.Component {
             uploadResponseHandler={this.uploadResponseHandler}
           />
         )}
-
         <div className="media-container">
           <div className="media">
             {uploadSizes &&
