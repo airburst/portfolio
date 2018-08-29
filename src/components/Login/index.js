@@ -1,4 +1,3 @@
-// https://github.com/benawad/slack-clone-client/blob/cookies/src/routes/Login.js
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withFormik } from 'formik';
@@ -31,16 +30,10 @@ const enhance = withFormik({
     const response = await mutate({
       variables: { username, password },
     });
-
-    console.log(response);
-
     const { success, token, refreshToken, errors } = response.data.login;
-
     if (success) {
       localStorage.setItem('token', token);
       localStorage.setItem('refreshToken', refreshToken);
-      console.log('token from login: ', token);
-      console.log('rtoken from login: ', refreshToken);
       props.history.push('/manager');
     } else {
       const err = {};
@@ -48,8 +41,8 @@ const enhance = withFormik({
         err[`${path}Error`] = message;
       });
       console.log('ERRORS:', err);
+      setSubmitting(false);
     }
-    // setSubmitting(false);
   },
   displayName: 'Sign in',
 });
