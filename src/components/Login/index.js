@@ -25,25 +25,36 @@ const enhance = withFormik({
     username: yup.string().required('User name is required.'),
     password: yup.string().required('Password is required.'),
   }),
-  handleSubmit: (values, { props, setSubmitting }) => {
+  handleSubmit: async (values, { props, setSubmitting }) => {
     const { username, password } = trimFields(values);
     const { mutate } = props;
-    mutate({
+    const response = await mutate({
       variables: { username, password },
-      // refetchQueries: [
-      //   {
-      //     query: allPhotosQuery,
-      //   },
-      // ],
-    })
-      .then(response => console.log(response))
-      .catch(err => console.log('Error', err.message));
+    });
 
-    setSubmitting(false);
+    console.log(response);
+
+    const { success, token, refreshToken, errors } = response.data.login;
+
+    if (success) {
+      localStorage.setItem('token', token);
+      localStorage.setItem('refreshToken', refreshToken);
+      console.log('token from login: ', token);
+      console.log('rtoken from login: ', refreshToken);
+      props.history.push('/manager');
+    } else {
+      const err = {};
+      errors.forEach(({ path, message }) => {
+        err[`${path}Error`] = message;
+      });
+      console.log('ERRORS:', err);
+    }
+    // setSubmitting(false);
   },
   displayName: 'Sign in',
 });
 
+// The form component
 const LoginForm = props => {
   const {
     values,
