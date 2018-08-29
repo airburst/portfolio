@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 import { Loader } from 'semantic-ui-react';
 import './MediaViewer.css';
 
-const Thumbnail = ({ src, preview }) => {
+const Thumbnail = ({ src, preview, clickHandler }) => {
   const thumbClass = `thumbnail${preview ? ' preview' : ''}`;
   return (
-    <div className={thumbClass}>
+    <div
+      className={thumbClass}
+      onClick={clickHandler}
+      onKeyPress={clickHandler}
+    >
       {!preview && <img src={src} alt="Placeholder" />}
     </div>
   );
@@ -14,19 +18,12 @@ const Thumbnail = ({ src, preview }) => {
 
 Thumbnail.propTypes = {
   src: PropTypes.string.isRequired,
+  clickHandler: PropTypes.func.isRequired,
   preview: PropTypes.bool,
 };
 
 Thumbnail.defaultProps = {
   preview: false,
-};
-
-const Thumbnails = ({ photos }) => {
-  if (!photos || !photos.data || !photos.data.length) {
-    return <div />;
-  }
-  const { data } = photos;
-  return data.map(p => <Thumbnail key={p.id} src={p.thumbnail} />);
 };
 
 export const Previews = ({ sizes }) =>
@@ -36,7 +33,18 @@ export const Previews = ({ sizes }) =>
     </div>
   ));
 
-// export const Previews = ({ photos }) =>
-//   photos.map(url => <Thumbnail preview key={url} src={url} />);
+const Thumbnails = ({ photos, clickHandler }) => {
+  if (!photos || !photos.data || !photos.data.length) {
+    return <div />;
+  }
+  const { data } = photos;
+  return data.map(p => (
+    <Thumbnail
+      key={p.id}
+      src={p.thumbnail}
+      clickHandler={() => clickHandler(p)}
+    />
+  ));
+};
 
 export default Thumbnails;

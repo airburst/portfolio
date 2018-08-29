@@ -68,7 +68,10 @@ class MediaViewer extends React.Component {
           <div className="media">
             {uploadSizes &&
               uploadSizes.length && <Previews sizes={uploadSizes} />}
-            <Thumbnails photos={allPhotos} />
+            <Thumbnails
+              photos={allPhotos}
+              clickHandler={this.thumbnailClickHandler}
+            />
           </div>
         </div>
       </div>
