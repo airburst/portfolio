@@ -39,6 +39,10 @@ class MediaViewer extends React.Component {
     this.setState({ uploadSizes: sizes });
   };
 
+  thumbnailClickHandler = photo => {
+    console.log('clicked', photo);
+  };
+
   render() {
     const {
       data: { allPhotos },

@@ -15,16 +15,16 @@ class Inspector extends React.Component {
     const { title, caption } = this.state;
 
     return (
-      <div>
+      <div className="inspector-section">
         <div className="topbar">Inspector</div>
-        <div className="right">
+        <div className="content">
           <div className="selected-photo">
             <img
               src="/../../assets/images/lakes.png"
               alt="Selected Placeholder"
             />
           </div>
-          <div className="content">
+          <div className="inspector-content">
             <div className="title">Properties</div>
             <div className="properties">
               <div className="heading">File</div>

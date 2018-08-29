@@ -1,0 +1,13 @@
+.library-section {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.library-content {
+  flex-grow: 1;
+  width: 100%;
+  padding: var(--small-padding);
+  /* overflow-y: scroll; */
+  color: white;
+}

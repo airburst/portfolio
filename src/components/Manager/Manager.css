@@ -34,13 +34,6 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333333', endColorstr='#272727',GradientType=0 ); /* IE6-9 */
 }
 
-.content {
-  width: 100%;
-  padding: var(--small-padding);
-  overflow-y: scroll;
-  color: white;
-}
-
 /* Dark scrollbars: NOT SUPPORTED BY FIREFOX */
 ::-webkit-scrollbar {
   width: 0.6em;

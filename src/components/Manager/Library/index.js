@@ -1,10 +1,11 @@
 import React from 'react';
 import FolderTree from './FolderTree';
+import './Library.css';
 
 const Library = () => (
-  <div>
+  <div className="library-section">
     <div className="topbar">Library</div>
-    <div className="content">
+    <div className="library-content">
       <FolderTree />
     </div>
   </div>

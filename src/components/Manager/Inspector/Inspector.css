@@ -1,3 +1,23 @@
+.inspector-section {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.inspector-content {
+  flex-grow: 1;
+  width: 100%;
+  padding: var(--small-padding);
+  overflow-y: scroll;
+  color: white;
+}
+
 .properties {
   display: grid;
   grid-template-columns: 60px 1fr;
@@ -21,5 +41,5 @@
   font: var(--admin-font);
   line-height: 16px;
   height: 100%;
-  width: calc(100% - 16px);
+  width: 100%;
 }
