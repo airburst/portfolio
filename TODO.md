@@ -1,8 +1,9 @@
 # Portfolio Website: TODOs
 
 ## File Inspector (Manager)
-* [ ] Clicking a thumbnail populates the Inspector panel
-* [ ] Changing details updates the photo metadata
+* [x] Clicking a thumbnail populates the Inspector panel
+* [x] Changing details updates the photo metadata
+* [ ] Clicking same photo clings on to old state (refresh query needed)
 * [ ] Ability to delete a photo
 
 ## Photo Galleries (Manager)
@@ -11,6 +12,7 @@
 * [ ] Multi-selection on photos and ability to assign to gallery (drag and drop)
 * [ ] Remove photo(s) from gallery
 * [ ] Assign cover photo
+* [ ] Delete uploaded file once photos created
 * [ ] Add a progress bar for uploads
 
 ## Galleries View

@@ -1,11 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+import { Checkbox } from 'semantic-ui-react';
 import './Inspector.css';
 
 const removeNulls = (photo = {}) => {
   const cleaned = {};
   Object.entries(photo).forEach(([key, value]) => {
-    cleaned[key] = value || '';
+    if (key !== 'isPublic') {
+      cleaned[key] = value || '';
+    }
   });
   return cleaned;
 };
@@ -19,6 +24,7 @@ const getInspectorPhoto = urls => {
 
 class Inspector extends React.Component {
   static propTypes = {
+    mutate: PropTypes.func.isRequired,
     selected: PropTypes.object,
   };
 
@@ -27,19 +33,20 @@ class Inspector extends React.Component {
   };
 
   state = {
+    id: null,
     name: '',
     title: '',
     caption: '',
     urls: null,
     width: '',
     height: '',
+    isPublic: false,
+    dateTaken: '',
+    // exposure
+    // shutter
+    // focalLength
+    // iso
   };
-  // dateTaken
-  // exposure
-  // focalLength
-  // isPublic
-  // iso
-  // shutter
 
   componentWillReceiveProps(nextProps) {
     const { selected } = nextProps;
@@ -48,13 +55,27 @@ class Inspector extends React.Component {
     }
   }
 
-  onChange = (name, e) => {
-    this.setState({ [name]: e.target.value });
+  onChange = (name, e, control) => {
+    const { id } = this.state;
+    const change = control
+      ? { [name]: control.checked }
+      : { [name]: e.target.value };
+    const photo = { id, ...change };
+    this.setState(change, () => this.props.mutate({ variables: { photo } }));
   };
 
   render() {
     const { selected } = this.props;
-    const { name, title, caption, width, height, urls } = this.state;
+    const {
+      name,
+      title,
+      caption,
+      width,
+      height,
+      urls,
+      isPublic,
+      dateTaken,
+    } = this.state;
 
     return (
       <div className="inspector-section">
@@ -98,6 +119,19 @@ class Inspector extends React.Component {
 
                   <div className="heading">Height</div>
                   <div className="property">{height}</div>
+
+                  <div className="heading">Date Taken</div>
+                  <div className="property">{dateTaken}</div>
+
+                  <div className="heading">Public</div>
+                  <div className="property">
+                    <Checkbox
+                      name="isPublic"
+                      checked={isPublic}
+                      value="isPublic"
+                      onChange={this.onChange.bind(null, 'isPublic')}
+                    />
+                  </div>
                 </div>
               </div>
             </React.Fragment>
@@ -108,4 +142,10 @@ class Inspector extends React.Component {
   }
 }
 
-export default Inspector;
+const updatePhotoMutation = gql`
+  mutation updatePhoto($photo: PhotoInput!) {
+    updatePhoto(photo: $photo)
+  }
+`;
+
+export default graphql(updatePhotoMutation)(Inspector);

@@ -3,6 +3,7 @@
   --topbar-height: 48px;
   --media-bgcolor: #161616;
   --panelwidth: 300px;
+  --wide-panelwidth: 500px;
   --small-padding: 8px;
   --muted-color: #a6a6a6;
   --admin-font: 400 14px/1 Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
@@ -18,6 +19,11 @@
   grid-gap: 1px;
   margin-top: var(--topmargin);
   font: var(--admin-font);
+}
+@media only screen and (min-width: 1900px) {
+  .admin-container {
+    grid-template-columns: var(--panelwidth) 1fr var(--wide-panelwidth);
+  }
 }
 
 .topbar {

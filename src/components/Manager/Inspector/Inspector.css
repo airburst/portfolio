@@ -20,9 +20,15 @@
 
 .properties {
   display: grid;
-  grid-template-columns: 60px 1fr;
+  grid-template-columns: 80px 1fr;
   grid-gap: var(--small-padding);
   align-items: center;
+}
+@media only screen and (min-width: 1900px) {
+  .properties {
+    grid-template-columns: 120px 1fr;
+    grid-gap: var(--padding);
+  }
 }
 
 .heading {
