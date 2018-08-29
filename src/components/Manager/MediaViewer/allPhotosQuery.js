@@ -5,6 +5,7 @@ export default gql`
     allPhotos {
       data {
         id
+        name
         urls
         thumbnail
         title

@@ -10,6 +10,7 @@ import './MediaViewer.css';
 class MediaViewer extends React.Component {
   static propTypes = {
     data: PropTypes.object.isRequired,
+    thumbnailClickHandler: PropTypes.func.isRequired,
   };
 
   state = {
@@ -39,13 +40,10 @@ class MediaViewer extends React.Component {
     this.setState({ uploadSizes: sizes });
   };
 
-  thumbnailClickHandler = photo => {
-    console.log('clicked', photo);
-  };
-
   render() {
     const {
       data: { allPhotos },
+      thumbnailClickHandler,
     } = this.props;
     const { showUploads, uploadSizes } = this.state;
 
@@ -70,7 +68,7 @@ class MediaViewer extends React.Component {
               uploadSizes.length && <Previews sizes={uploadSizes} />}
             <Thumbnails
               photos={allPhotos}
-              clickHandler={this.thumbnailClickHandler}
+              clickHandler={thumbnailClickHandler}
             />
           </div>
         </div>

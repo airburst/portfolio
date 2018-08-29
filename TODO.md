@@ -37,5 +37,5 @@
 * [ ] Create short urls to share photo links (TBC)
 
 ## Snagging / Bugs
-* [ ] Don't scroll media section topbar off screen (CSS)
+* [x] Don't scroll media section topbar off screen (CSS)
 * [ ] Enable a light theme for Manager

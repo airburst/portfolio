@@ -7,16 +7,21 @@ import './Manager.css';
 
 class Manager extends Component {
   state = {
-    // selectedPhoto: null,
+    selectedPhoto: null,
+  };
+
+  thumbnailClickHandler = photo => {
+    this.setState({ selectedPhoto: photo });
   };
 
   render() {
+    const { selectedPhoto } = this.state;
     return (
       <Body isDark>
         <div className="admin-container">
           <Library />
-          <MediaViewer />
-          <Inspector />
+          <MediaViewer thumbnailClickHandler={this.thumbnailClickHandler} />
+          <Inspector selected={selectedPhoto} />
         </div>
       </Body>
     );
