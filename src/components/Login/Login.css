@@ -1,0 +1,8 @@
+.form-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: var(--small-padding);
+  margin-top: var(--topmargin);
+  padding: 48px;
+}
