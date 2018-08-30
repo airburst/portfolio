@@ -1,39 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Input } from 'semantic-ui-react';
+import { debounce } from 'throttle-debounce';
 
 class Search extends React.Component {
   static propTypes = {
     action: PropTypes.func.isRequired,
   };
 
+  constructor() {
+    super();
+    this.emitValue = debounce(500, this.emitValue);
+  }
+
   state = {
     text: '',
   };
 
   handleChange = (e, target) => {
-    e.preventDefault();
+    e.persist();
     const { value } = target;
-    this.setState({ text: value }, () =>
-      this.deBounce(() => this.props.action(value), 300)()
-    );
+    this.setState({ text: value });
+    this.emitValue(value);
   };
 
-  // TODO: debounce not really working
-  deBounce(func, wait, immediate) {
-    let timeout;
-    return () => {
-      // eslint-disable-next-line prefer-rest-params
-      const args = arguments;
-      const later = () => {
-        timeout = null;
-        if (!immediate) func.apply(this, args);
-      };
-      const callNow = immediate && !timeout;
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-      if (callNow) func.apply(this, args);
-    };
+  emitValue(value) {
+    this.props.action(value);
   }
 
   render() {

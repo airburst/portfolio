@@ -23,6 +23,7 @@
     "react-treebeard": "^2.1.0",
     "semantic-ui-css": "^2.3.3",
     "semantic-ui-react": "^0.82.3",
+    "throttle-debounce": "^2.0.1",
     "yup": "^0.26.3"
   },
   "scripts": {

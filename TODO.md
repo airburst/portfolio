@@ -1,10 +1,14 @@
 # Portfolio Website: TODOs
 
+## Priority
+* [ ] Fix refreshTokens
+
 ## File Inspector (Manager)
 * [x] Clicking a thumbnail populates the Inspector panel
 * [x] Changing details updates the photo metadata
-* [ ] Escape text before sending; debounce
-* [ ] Clicking same photo clings on to old state (refresh query needed)
+* [x] debounce
+* [ ] Highlight selected photo in Media viewer
+* [ ] Clicking same photo clings on to old state
 * [ ] Delete a photo
 
 ## Photo Galleries (Manager)

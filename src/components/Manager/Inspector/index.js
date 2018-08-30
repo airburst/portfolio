@@ -2,18 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+import { debounce } from 'throttle-debounce';
 import { Checkbox } from 'semantic-ui-react';
 import './Inspector.css';
-
-const removeNulls = (photo = {}) => {
-  const cleaned = {};
-  Object.entries(photo).forEach(([key, value]) => {
-    if (key !== 'isPublic') {
-      cleaned[key] = value || '';
-    }
-  });
-  return cleaned;
-};
 
 const getInspectorPhoto = urls => {
   if (!urls) {
@@ -32,16 +23,21 @@ class Inspector extends React.Component {
     selected: null,
   };
 
+  constructor() {
+    super();
+    this.emitValue = debounce(500, this.emitValue);
+  }
+
   state = {
     id: null,
-    name: '',
-    title: '',
-    caption: '',
+    name: null,
+    title: null,
+    caption: null,
     urls: null,
-    width: '',
-    height: '',
+    width: null,
+    height: null,
     isPublic: false,
-    dateTaken: '',
+    dateTaken: null,
     // exposure
     // shutter
     // focalLength
@@ -51,18 +47,22 @@ class Inspector extends React.Component {
   componentWillReceiveProps(nextProps) {
     const { selected } = nextProps;
     if (selected) {
-      this.setState({ ...removeNulls(selected) });
+      this.setState({ ...selected });
     }
   }
 
-  onChange = (name, e, control) => {
+  onChange = (e, control) => {
+    const { name, value } = e.target;
     const { id } = this.state;
-    const change = control
-      ? { [name]: control.checked }
-      : { [name]: e.target.value };
+    const change = control ? { [name]: control.checked } : { [name]: value };
     const photo = { id, ...change };
-    this.setState(change, () => this.props.mutate({ variables: { photo } }));
+    this.setState(change);
+    this.emitValue(photo);
   };
+
+  emitValue(photo) {
+    this.props.mutate({ variables: { photo } });
+  }
 
   render() {
     const { selected } = this.props;
@@ -97,9 +97,9 @@ class Inspector extends React.Component {
                     <input
                       className="dark"
                       type="text"
-                      value={title}
+                      value={title || ''}
                       name="title"
-                      onChange={this.onChange.bind(null, 'title')}
+                      onChange={this.onChange}
                     />
                   </div>
 
@@ -109,8 +109,8 @@ class Inspector extends React.Component {
                       className="dark"
                       rows="6"
                       name="caption"
-                      value={caption}
-                      onChange={this.onChange.bind(null, 'caption')}
+                      value={caption || ''}
+                      onChange={this.onChange}
                     />
                   </div>
 
@@ -129,7 +129,7 @@ class Inspector extends React.Component {
                       name="isPublic"
                       checked={isPublic}
                       value="isPublic"
-                      onChange={this.onChange.bind(null, 'isPublic')}
+                      onChange={this.onChange}
                     />
                   </div>
                 </div>
