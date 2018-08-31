@@ -49,3 +49,10 @@
   height: 100%;
   width: 100%;
 }
+
+.action-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: var(--small-padding);
+}

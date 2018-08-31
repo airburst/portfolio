@@ -14,6 +14,8 @@ class Manager extends Component {
     this.setState({ selectedPhoto: photo });
   };
 
+  clearInspector = () => this.setState({ selectedPhoto: null });
+
   render() {
     const { selectedPhoto } = this.state;
     const selectedId = selectedPhoto ? selectedPhoto.id : null;
@@ -26,7 +28,10 @@ class Manager extends Component {
             thumbnailClickHandler={this.thumbnailClickHandler}
             selected={selectedId}
           />
-          <Inspector selected={selectedPhoto} />
+          <Inspector
+            selected={selectedPhoto}
+            clearInspector={this.clearInspector}
+          />
         </div>
       </Body>
     );

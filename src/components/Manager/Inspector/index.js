@@ -4,8 +4,25 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { debounce } from 'throttle-debounce';
 import { Checkbox } from 'semantic-ui-react';
+import DeletePhotoButton from './DeletePhotoButton';
 import allPhotosQuery from '../MediaViewer/allPhotosQuery';
 import './Inspector.css';
+
+const initialState = {
+  id: null,
+  name: null,
+  title: null,
+  caption: null,
+  urls: null,
+  width: null,
+  height: null,
+  isPublic: false,
+  dateTaken: null,
+  // exposure
+  // shutter
+  // focalLength
+  // iso
+};
 
 const getInspectorPhoto = urls => {
   if (!urls) {
@@ -17,6 +34,7 @@ const getInspectorPhoto = urls => {
 class Inspector extends React.Component {
   static propTypes = {
     mutate: PropTypes.func.isRequired,
+    clearInspector: PropTypes.func.isRequired,
     selected: PropTypes.object,
   };
 
@@ -29,21 +47,7 @@ class Inspector extends React.Component {
     this.emitValue = debounce(500, this.emitValue);
   }
 
-  state = {
-    id: null,
-    name: null,
-    title: null,
-    caption: null,
-    urls: null,
-    width: null,
-    height: null,
-    isPublic: false,
-    dateTaken: null,
-    // exposure
-    // shutter
-    // focalLength
-    // iso
-  };
+  state = initialState;
 
   componentWillReceiveProps(nextProps) {
     const { selected } = nextProps;
@@ -73,8 +77,9 @@ class Inspector extends React.Component {
   }
 
   render() {
-    const { selected } = this.props;
+    const { selected, clearInspector } = this.props;
     const {
+      id,
       name,
       title,
       caption,
@@ -141,6 +146,9 @@ class Inspector extends React.Component {
                     />
                   </div>
                 </div>
+              </div>
+              <div className="action-buttons">
+                <DeletePhotoButton id={id} clear={clearInspector} />
               </div>
             </React.Fragment>
           )}
