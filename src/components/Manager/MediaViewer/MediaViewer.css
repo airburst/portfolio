@@ -44,8 +44,13 @@
   text-align: center;
   border: 2px solid transparent;
 }
+
 .thumbnail>img:hover {
   border: 2px solid var(--selected-color);
+}
+
+.thumbnail.selected {
+  background-color: #e2e2e2;
 }
 
 .title {

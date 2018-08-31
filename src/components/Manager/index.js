@@ -16,11 +16,16 @@ class Manager extends Component {
 
   render() {
     const { selectedPhoto } = this.state;
+    const selectedId = selectedPhoto ? selectedPhoto.id : null;
+
     return (
       <Body isDark>
         <div className="admin-container">
           <Library />
-          <MediaViewer thumbnailClickHandler={this.thumbnailClickHandler} />
+          <MediaViewer
+            thumbnailClickHandler={this.thumbnailClickHandler}
+            selected={selectedId}
+          />
           <Inspector selected={selectedPhoto} />
         </div>
       </Body>
