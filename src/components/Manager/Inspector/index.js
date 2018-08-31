@@ -4,6 +4,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { debounce } from 'throttle-debounce';
 import { Checkbox } from 'semantic-ui-react';
+import allPhotosQuery from '../MediaViewer/allPhotosQuery';
 import './Inspector.css';
 
 const getInspectorPhoto = urls => {
@@ -61,7 +62,14 @@ class Inspector extends React.Component {
   };
 
   emitValue(photo) {
-    this.props.mutate({ variables: { photo } });
+    this.props.mutate({
+      variables: { photo },
+      refetchQueries: [
+        {
+          query: allPhotosQuery,
+        },
+      ],
+    });
   }
 
   render() {
