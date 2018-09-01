@@ -57,9 +57,10 @@ class Inspector extends React.Component {
   }
 
   onChange = (e, control) => {
-    const { name, value } = e.target;
+    const name = control ? control.name : e.target.name;
+    const value = control ? control.checked : e.target.value;
     const { id } = this.state;
-    const change = control ? { [name]: control.checked } : { [name]: value };
+    const change = { [name]: value };
     const photo = { id, ...change };
     this.setState(change);
     this.emitValue(photo);
