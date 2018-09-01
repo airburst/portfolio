@@ -1,15 +1,12 @@
 # Portfolio Website: TODOs
 
-## Priority
-* [ ] BUG: Fix refreshTokens
-
 ## File Inspector (Manager)
 * [x] Clicking a thumbnail populates the Inspector panel
 * [x] Changing details updates the photo metadata
 * [x] debounce
 * [x] Highlight selected photo in Media viewer
 * [x] BUG: Clicking same photo clings on to old state
-* [ ] Delete a photo
+* [x] Delete a photo
 
 ## Photo Galleries (Manager)
 * [ ] Model for gallery object
