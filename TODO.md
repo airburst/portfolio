@@ -9,13 +9,18 @@
 * [x] Delete a photo
 * [x] Delete uploaded file once photos created
 * [ ] Handle captions from exif
+* [ ] Use larger image in 500px mode
+* [ ] Format date
 
 ## Photo Galleries (Manager)
 * [x] Model for gallery object
 * [x] API resolvers for create, get, update and delete gallery
+* [ ] UI to create a gallery (set name)
+* [ ] Update gallery name (and other settings, e.g. public?)
+* [ ] Assign cover photo
 * [ ] Multi-selection on photos and ability to assign to gallery (drag and drop)
 * [ ] Remove photo(s) from gallery
-* [ ] Assign cover photo
+* [ ] Remove gallery
 * [ ] Add a progress bar for uploads
 
 ## Galleries View
@@ -47,17 +52,7 @@
 
 # Queries
 
-List of albums (id, name)
-{
-  allAlbums {
-    data {
-      id
-      name
-    }
-  }
-}
-
-
+Get photos for an album..
 ```
 {
   allAlbums{
