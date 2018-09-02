@@ -7,14 +7,15 @@
 * [x] Highlight selected photo in Media viewer
 * [x] BUG: Clicking same photo clings on to old state
 * [x] Delete a photo
+* [x] Delete uploaded file once photos created
+* [ ] Handle captions from exif
 
 ## Photo Galleries (Manager)
-* [ ] Model for gallery object
-* [ ] API resolvers for create, get, update and delete gallery
+* [x] Model for gallery object
+* [x] API resolvers for create, get, update and delete gallery
 * [ ] Multi-selection on photos and ability to assign to gallery (drag and drop)
 * [ ] Remove photo(s) from gallery
 * [ ] Assign cover photo
-* [ ] Delete uploaded file once photos created
 * [ ] Add a progress bar for uploads
 
 ## Galleries View
@@ -37,9 +38,84 @@
 ## General
 * [ ] Performance testing in Chrome devtools
 * [ ] Add a logout feature
-* [ ] Verify that refresh tokens is working
 * [ ] Create short urls to share photo links (TBC)
 
 ## Snagging / Bugs
 * [x] Don't scroll media section topbar off screen (CSS)
 * [ ] Enable a light theme for Manager
+
+
+# Queries
+
+List of albums (id, name)
+{
+  allAlbums {
+    data {
+      id
+      name
+    }
+  }
+}
+
+
+```
+{
+  allAlbums{
+    data {
+      id
+      name
+      cover
+      views
+      photos {
+        id
+        title
+        thumbnail
+        etc...
+      }
+    }
+  }
+}
+```
+same for getPublicAlbums()
+
+```
+mutation {
+  addAlbum(album: { name:"New Album", cover: "http://cover.me", isPublic:false})
+}
+```
+
+```
+mutation {
+  updateAlbum(album: { id: 2, name:"Awesome Photos", cover: "http://cover2.me", isPublic:false})
+}
+```
+
+```
+mutation {
+  addPhotosToAlbum(albumId: 2, photoIds:[1,2]) {
+    data
+    errors {
+      message
+    }
+  }
+}
+```
+
+```
+mutation {
+  removePhotosFromAlbum(albumId: 2, photoIds:[1]) {
+    data
+    errors {
+      message
+    }
+  }
+}
+```
+
+mutation {
+  addView(albumId:1)
+}
+
+mutation {
+  deleteAlbum(albumId:1)
+}

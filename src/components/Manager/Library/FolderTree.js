@@ -1,97 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 import { Treebeard } from 'react-treebeard';
+import treeStyles from './FolderTreeStyles';
 
-const treeStyles = {
-  tree: {
-    base: {
-      listStyle: 'none',
-      backgroundColor: 'transparent',
-      margin: 0,
-      padding: 0,
-      color: '#a6a6a6',
-    },
-    node: {
-      base: {
-        position: 'relative',
-      },
-      link: {
-        cursor: 'pointer',
-        position: 'relative',
-        padding: '0px 5px',
-        display: 'flex',
-      },
-      activeLink: {
-        background: '#333',
-      },
-      toggle: {
-        base: {
-          position: 'relative',
-          display: 'inline-block',
-          verticalAlign: 'top',
-          marginLeft: '-5px',
-          height: '24px',
-          width: '24px',
-        },
-        wrapper: {
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          margin: '-7px 0 0 -7px',
-          height: '14px',
-        },
-        height: 14,
-        width: 14,
-        arrow: {
-          fill: '#a6a6a6',
-          strokeWidth: 0,
-        },
-      },
-      header: {
-        base: {
-          display: 'inline-block',
-          verticalAlign: 'top',
-          color: '#a6a6a6',
-        },
-        connector: {
-          width: '2px',
-          height: '12px',
-          borderLeft: 'solid 2px black',
-          borderBottom: 'solid 2px black',
-          position: 'absolute',
-          top: '0px',
-          left: '-21px',
-        },
-        title: {
-          lineHeight: '24px',
-          verticalAlign: 'middle',
-        },
-      },
-      subtree: {
-        listStyle: 'none',
-        paddingLeft: '19px',
-      },
-      loading: {
-        color: '#E2C089',
-      },
-    },
-  },
-};
-
-// TODO: Get this data from a server method getAlbums()
-const data = {
+const albumTree = {
   name: 'ALBUMS',
   toggled: true,
-  children: [
-    {
-      name: 'Lakes 2012',
-    },
-    {
-      name: 'Alps 2015',
-    },
-  ],
+  children: [],
 };
 
 class FolderTree extends React.Component {
+  static propTypes = {
+    data: PropTypes.object.isRequired,
+  };
+
   state = {};
 
   onToggle = (node, toggled) => {
@@ -110,10 +34,36 @@ class FolderTree extends React.Component {
   };
 
   render() {
+    const {
+      data: { allAlbums },
+    } = this.props;
+    const children = allAlbums ? allAlbums.data : [];
+    const albumTreeData = { ...albumTree, children };
+
     return (
-      <Treebeard data={data} style={treeStyles} onToggle={this.onToggle} />
+      <Treebeard
+        data={albumTreeData}
+        style={treeStyles}
+        onToggle={this.onToggle}
+      />
     );
   }
 }
 
-export default FolderTree;
+// List of albums (id, name)
+const albumsQuery = gql`
+  {
+    allAlbums {
+      data {
+        id
+        name
+      }
+      errors {
+        path
+        message
+      }
+    }
+  }
+`;
+
+export default graphql(albumsQuery)(FolderTree);
