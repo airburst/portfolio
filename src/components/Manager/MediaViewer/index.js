@@ -12,6 +12,7 @@ class MediaViewer extends React.Component {
     data: PropTypes.object.isRequired,
     thumbnailClickHandler: PropTypes.func.isRequired,
     selected: PropTypes.number,
+    selectedAlbum: PropTypes.number,
   };
 
   static defaultProps = {
@@ -49,6 +50,7 @@ class MediaViewer extends React.Component {
     const {
       data: { allPhotos },
       selected,
+      selectedAlbum,
       thumbnailClickHandler,
     } = this.props;
     const { showUploads, uploadSizes } = this.state;
@@ -81,5 +83,7 @@ class MediaViewer extends React.Component {
     );
   }
 }
+
+// TODO: apply filter for selected album
 
 export default graphql(allPhotosQuery)(MediaViewer);

@@ -13,13 +13,14 @@ class Library extends React.Component {
 
   render() {
     const { open } = this.state;
+    const { albumClickHandler } = this.props;
 
     return (
       <div className="library-section">
         <div className="topbar">Library</div>
         <div className="library-content">
           <div className="collections">
-            <FolderTree />
+            <FolderTree albumClickHandler={albumClickHandler} />
           </div>
         </div>
         <div className="library-action-buttons">

@@ -11,41 +11,76 @@ const albumTree = {
   children: [],
 };
 
+const getChildren = (data, cursor) => {
+  if (!data) {
+    return [];
+  }
+  const activeChild = cursor && cursor.id;
+  const children = [];
+  data.forEach(d => {
+    const child = { ...d };
+    if (activeChild && activeChild === d.id) {
+      child.active = true;
+    }
+    children.push(child);
+  });
+  return children;
+};
+
+const getTree = (data, cursor) => {
+  const children = getChildren(data, cursor);
+  let { toggled } = albumTree;
+  // handle toggle state
+  if (cursor && cursor.children) {
+    toggled = cursor.toggled;
+  }
+  return { ...albumTree, toggled, children };
+};
+
 class FolderTree extends React.Component {
   static propTypes = {
     data: PropTypes.object.isRequired,
+    albumClickHandler: PropTypes.func.isRequired,
   };
 
   state = {};
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.data !== this.props.data) {
+      const { data } = nextProps.data.allAlbums;
+      this.setState({ data });
+    }
+  }
+
   onToggle = (node, toggled) => {
     const { cursor } = this.state;
+    const newNode = { ...node };
+
     if (cursor) {
       cursor.active = false;
     }
-    node.active = true;
+    newNode.active = true;
     if (node.children) {
-      node.toggled = toggled;
+      newNode.toggled = toggled;
     } else {
-      // TODO: Emit node.name to state
-      console.log(node.name);
+      // Emit album id
+      this.props.albumClickHandler(newNode.id);
     }
-    this.setState({ cursor: node });
+    this.setState({ cursor: newNode });
   };
 
   render() {
-    const {
-      data: { allAlbums },
-    } = this.props;
-    const children = allAlbums ? allAlbums.data : [];
-    const albumTreeData = { ...albumTree, children };
+    const { data, cursor } = this.state;
+    const albumTreeData = getTree(data, cursor);
 
     return (
-      <Treebeard
-        data={albumTreeData}
-        style={treeStyles}
-        onToggle={this.onToggle}
-      />
+      <div className="collection-tree">
+        <Treebeard
+          data={albumTreeData}
+          style={treeStyles}
+          onToggle={this.onToggle}
+        />
+      </div>
     );
   }
 }

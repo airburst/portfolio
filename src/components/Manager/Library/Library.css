@@ -25,3 +25,7 @@
   padding: var(--small-padding);
   border-top: 1px solid var(--media-bgcolor);
 }
+
+.collection-tree li li:hover {
+  background-color: #333;
+}

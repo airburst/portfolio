@@ -15,10 +15,11 @@
 ## Photo Galleries (Manager)
 * [x] Model for gallery object
 * [x] API resolvers for create, get, update and delete gallery
-* [ ] UI to create a gallery (set name)
-* [ ] Update gallery name (and other settings, e.g. public?)
-* [ ] Assign cover photo
+* [x] UI to create a gallery (set name)
 * [ ] Multi-selection on photos and ability to assign to gallery (drag and drop)
+* [ ] Assign cover photo
+* [ ] Clicking an album filters photos view
+* [ ] Update gallery name (and other settings, e.g. public?)
 * [ ] Remove photo(s) from gallery
 * [ ] Remove gallery
 * [ ] Add a progress bar for uploads
@@ -27,6 +28,7 @@
 
 ## Galleries View
 * [ ] Grid layout of gallery cards with cover photos
+* [ ] Increment view counter for albums
 * [ ] MUST be mobile-first
 
 ## Gallery/Photos View
@@ -54,32 +56,9 @@
 
 # Queries
 
-Get photos for an album..
-```
-{
-  allAlbums{
-    data {
-      id
-      name
-      cover
-      views
-      photos {
-        id
-        title
-        thumbnail
-        etc...
-      }
-    }
-  }
-}
-```
-same for getPublicAlbums()
+getAlbum(albumId) {
 
-```
-mutation {
-  addAlbum(album: { name:"New Album", cover: "http://cover.me", isPublic:false})
 }
-```
 
 ```
 mutation {
@@ -108,10 +87,6 @@ mutation {
   }
 }
 ```
-
-mutation {
-  addView(albumId:1)
-}
 
 mutation {
   deleteAlbum(albumId:1)
