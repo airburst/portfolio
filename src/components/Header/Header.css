@@ -5,7 +5,7 @@
 }
 
 /* Header and main navigation */
-.header {
+.page-header {
   position: absolute;
   top: 0;
   width: 100%;
@@ -84,20 +84,20 @@ a.menu-item:hover:after {
 }
 
 /* Dark theme */
-.header.dark {
+.page-header.dark {
   background-color: var(--dark-header-bg);
   color: var(--dark-header-color);
 }
 
-.header.dark > .nav a,
-.header.dark > .nav a.menu-item {
+.page-header.dark > .nav a,
+.page-header.dark > .nav a.menu-item {
   color: var(--dark-header-color);
 }
 
-.header.dark > a.menu-item:hover {
+.page-header.dark > a.menu-item:hover {
   background-color: var(--dark-hover);
 }
-.header.dark > a.menu-item:hover:after {
+.page-header.dark > a.menu-item:hover:after {
   background: var(--dark-header-color);
 }
 /* End Dark theme */

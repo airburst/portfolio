@@ -22,6 +22,8 @@
 * [ ] Remove photo(s) from gallery
 * [ ] Remove gallery
 * [ ] Add a progress bar for uploads
+* [ ] Index tables for search and sort
+* [ ] Implement search/sort
 
 ## Galleries View
 * [ ] Grid layout of gallery cards with cover photos

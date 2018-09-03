@@ -94,7 +94,7 @@ class Inspector extends React.Component {
     return (
       <div className="inspector-section">
         <div className="topbar">Inspector</div>
-        <div className="content">
+        <div className="properties-content">
           {selected && (
             <React.Fragment>
               <div className="selected-photo">

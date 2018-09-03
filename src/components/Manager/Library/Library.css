@@ -6,8 +6,22 @@
 
 .library-content {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   padding: var(--small-padding);
   /* overflow-y: scroll; */
   color: white;
+}
+
+.collections {
+  flex-grow: 1;
+}
+
+.library-action-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: var(--small-padding);
+  border-top: 1px solid var(--media-bgcolor);
 }

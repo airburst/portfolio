@@ -1,0 +1,16 @@
+.ui.modal.dark-modal > .header,
+.ui.modal.dark-modal > .content,
+.ui.modal.dark-modal > .actions {
+  background-color: #333;
+  color: white;
+}
+
+.ui.modal.dark-modal>.icon:first-child+*, .ui.modal>:first-child:not(.icon) {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.ui.modal.dark-modal>:last-child {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
