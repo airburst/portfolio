@@ -42,15 +42,15 @@
 .thumbnail>img {
   line-height: 150px;
   text-align: center;
-  border: 2px solid transparent;
+  border: 3px solid transparent;
 }
 
 .thumbnail>img:hover {
-  border: 2px solid var(--selected-color);
+  cursor: pointer;
 }
 
-.thumbnail.selected {
-  background-color: #e2e2e2;
+.thumbnail.selected > img {
+  border: 3px solid var(--selected-color);
 }
 
 .title {

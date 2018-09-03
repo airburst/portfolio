@@ -5,25 +5,50 @@ import MediaViewer from './MediaViewer';
 import Inspector from './Inspector';
 import './Manager.css';
 
+const getSelectionState = (state, e) => {
+  const id = parseInt(e.target.id, 10);
+  if (e.ctrlKey) {
+    // If state already contains entry, remove it. Else add it
+    const index = state.indexOf(id);
+    if (index > -1) {
+      const newState = [...state];
+      newState.splice(index, 1);
+      return newState;
+    }
+    return [...state, id];
+  }
+  if (e.shiftKey) {
+    const last = state[state.length - 1];
+    // NOTE: Only works in id sort order
+    const idRange = [];
+    for (let i = id; i < last; i++) {
+      idRange.push(i);
+    }
+    return [...state, ...idRange];
+  }
+  return [id];
+};
+
 class Manager extends Component {
   state = {
-    selectedPhoto: null,
+    selectedPhotos: [],
     selectedAlbum: null,
   };
 
-  thumbnailClickHandler = photo => {
-    this.setState({ selectedPhoto: photo });
+  thumbnailClickHandler = e => {
+    const { selectedPhotos } = this.state;
+    const newSelection = getSelectionState(selectedPhotos, e);
+    this.setState({ selectedPhotos: newSelection });
   };
 
   albumClickHandler = albumId => {
     this.setState({ selectedAlbum: albumId });
   };
 
-  clearInspector = () => this.setState({ selectedPhoto: null });
+  clearInspector = () => this.setState({ selectedPhotos: [] });
 
   render() {
-    const { selectedPhoto, selectedAlbum } = this.state;
-    const selectedId = selectedPhoto ? selectedPhoto.id : null;
+    const { selectedPhotos, selectedAlbum } = this.state;
 
     return (
       <Body isDark>
@@ -31,11 +56,11 @@ class Manager extends Component {
           <Library albumClickHandler={this.albumClickHandler} />
           <MediaViewer
             thumbnailClickHandler={this.thumbnailClickHandler}
-            selected={selectedId}
+            selected={selectedPhotos}
             selectedAlbum={selectedAlbum}
           />
           <Inspector
-            selected={selectedPhoto}
+            selected={selectedPhotos}
             clearInspector={this.clearInspector}
           />
         </div>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Loader } from 'semantic-ui-react';
 import './MediaViewer.css';
 
-const Thumbnail = ({ src, preview, selected, clickHandler }) => {
+const Thumbnail = ({ id, src, preview, selected, clickHandler }) => {
   const thumbClass = `thumbnail${preview ? ' preview' : ''}${
     selected ? ' selected' : ''
   }`;
@@ -13,12 +13,13 @@ const Thumbnail = ({ src, preview, selected, clickHandler }) => {
       onClick={clickHandler}
       onKeyPress={clickHandler}
     >
-      {!preview && <img src={src} alt="Placeholder" />}
+      {!preview && <img id={id} src={src} alt="Placeholder" />}
     </div>
   );
 };
 
 Thumbnail.propTypes = {
+  id: PropTypes.number.isRequired,
   src: PropTypes.string.isRequired,
   clickHandler: PropTypes.func.isRequired,
   preview: PropTypes.bool,
@@ -46,9 +47,10 @@ const Thumbnails = ({ photos, selected, clickHandler }) => {
   return data.map(p => (
     <Thumbnail
       key={p.id}
+      id={p.id}
       src={p.thumbnail}
-      selected={selected && selected === p.id}
-      clickHandler={() => clickHandler(p)}
+      selected={selected.includes(p.id)}
+      clickHandler={clickHandler}
     />
   ));
 };
@@ -56,12 +58,11 @@ const Thumbnails = ({ photos, selected, clickHandler }) => {
 Thumbnails.propTypes = {
   photos: PropTypes.object,
   clickHandler: PropTypes.func.isRequired,
-  selected: PropTypes.number,
+  selected: PropTypes.array.isRequired,
 };
 
 Thumbnails.defaultProps = {
   photos: null,
-  selected: null,
 };
 
 export default Thumbnails;

@@ -35,11 +35,11 @@ class Inspector extends React.Component {
   static propTypes = {
     mutate: PropTypes.func.isRequired,
     clearInspector: PropTypes.func.isRequired,
-    selected: PropTypes.object,
+    selected: PropTypes.array,
   };
 
   static defaultProps = {
-    selected: null,
+    selected: [],
   };
 
   constructor() {
@@ -51,8 +51,8 @@ class Inspector extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const { selected } = nextProps;
-    if (selected) {
-      this.setState({ ...selected });
+    if (selected.length) {
+      this.setState({ ...selected[0] });
     }
   }
 
@@ -95,7 +95,7 @@ class Inspector extends React.Component {
       <div className="inspector-section">
         <div className="topbar">Inspector</div>
         <div className="properties-content">
-          {selected && (
+          {selected.length && (
             <React.Fragment>
               <div className="selected-photo">
                 <img src={getInspectorPhoto(urls)} alt="Selected Placeholder" />
@@ -128,11 +128,8 @@ class Inspector extends React.Component {
                     />
                   </div>
 
-                  <div className="heading">Width</div>
-                  <div className="property">{width}</div>
-
-                  <div className="heading">Height</div>
-                  <div className="property">{height}</div>
+                  <div className="heading">Dimensions</div>
+                  <div className="property">{`${width} x ${height}`}</div>
 
                   <div className="heading">Date Taken</div>
                   <div className="property">{dateTaken}</div>
