@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Modal } from 'semantic-ui-react';
+import { Modal } from 'semantic-ui-react';
+import NewCollectionForm from './NewCollectionForm';
 import './Modal.css';
 
 class CollectionModal extends Component {
@@ -20,13 +21,10 @@ class CollectionModal extends Component {
           open={open}
           onClose={this.close}
         >
-          <Modal.Header>Delete Your Account</Modal.Header>
+          <Modal.Header>Create New Collection</Modal.Header>
           <Modal.Content>
-            <p>Are you sure you want to delete your account</p>
+            <NewCollectionForm cancelHandler={closeHandler} />
           </Modal.Content>
-          <Modal.Actions>
-            <Button positive icon="checkmark" onClick={closeHandler} />
-          </Modal.Actions>
         </Modal>
       </div>
     );

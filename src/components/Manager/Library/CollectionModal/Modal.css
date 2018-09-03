@@ -1,13 +1,16 @@
 .ui.modal.dark-modal > .header,
 .ui.modal.dark-modal > .content,
-.ui.modal.dark-modal > .actions {
+.ui.modal.dark-modal > .actions,
+.ui.modal.dark-modal label {
   background-color: #333;
-  color: white;
+  color: white !important;
 }
 
+
+
 .ui.modal.dark-modal>.icon:first-child+*, .ui.modal>:first-child:not(.icon) {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
 }
 
 .ui.modal.dark-modal>:last-child {

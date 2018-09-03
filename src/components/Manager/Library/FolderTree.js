@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
 import { Treebeard } from 'react-treebeard';
+import albumsQuery from './albumsQuery';
 import treeStyles from './FolderTreeStyles';
 
 const albumTree = {
@@ -49,21 +49,5 @@ class FolderTree extends React.Component {
     );
   }
 }
-
-// List of albums (id, name)
-const albumsQuery = gql`
-  {
-    allAlbums {
-      data {
-        id
-        name
-      }
-      errors {
-        path
-        message
-      }
-    }
-  }
-`;
 
 export default graphql(albumsQuery)(FolderTree);
