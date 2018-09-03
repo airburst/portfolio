@@ -25,21 +25,22 @@ const initialState = {
 };
 
 const getInspectorPhoto = urls => {
-  if (!urls) {
+  if (!urls || !urls.json) {
     return null;
   }
-  return urls[5] ? urls[5] : urls[6];
+  const u = urls.json;
+  return u[5] ? u[5] : u[6];
 };
 
 class Inspector extends React.Component {
   static propTypes = {
     mutate: PropTypes.func.isRequired,
     clearInspector: PropTypes.func.isRequired,
-    selected: PropTypes.array,
+    selected: PropTypes.object,
   };
 
   static defaultProps = {
-    selected: [],
+    selected: null,
   };
 
   constructor() {
@@ -48,13 +49,6 @@ class Inspector extends React.Component {
   }
 
   state = initialState;
-
-  componentWillReceiveProps(nextProps) {
-    const { selected } = nextProps;
-    if (selected.length) {
-      this.setState({ ...selected[0] });
-    }
-  }
 
   onChange = (e, control) => {
     const name = control ? control.name : e.target.name;
@@ -79,6 +73,7 @@ class Inspector extends React.Component {
 
   render() {
     const { selected, clearInspector } = this.props;
+
     const {
       id,
       name,
@@ -89,13 +84,13 @@ class Inspector extends React.Component {
       urls,
       isPublic,
       dateTaken,
-    } = this.state;
+    } = selected || initialState;
 
     return (
       <div className="inspector-section">
         <div className="topbar">Inspector</div>
         <div className="properties-content">
-          {selected.length && (
+          {selected && (
             <React.Fragment>
               <div className="selected-photo">
                 <img src={getInspectorPhoto(urls)} alt="Selected Placeholder" />

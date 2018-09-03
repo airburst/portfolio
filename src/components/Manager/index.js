@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { withApollo } from 'react-apollo';
 import Body from '../Body';
 import Library from './Library';
 import MediaViewer from './MediaViewer';
@@ -30,6 +32,10 @@ const getSelectionState = (state, e) => {
 };
 
 class Manager extends Component {
+  static propTypes = {
+    client: PropTypes.object.isRequired,
+  };
+
   state = {
     selectedPhotos: [],
     selectedAlbum: null,
@@ -49,6 +55,15 @@ class Manager extends Component {
 
   render() {
     const { selectedPhotos, selectedAlbum } = this.state;
+    const { client } = this.props;
+
+    // Find photos by id from cache
+    const cache = client.cache.data.data;
+    const photos = Object.values(cache).filter(
+      c => c.__typename === 'Photo' && selectedPhotos.includes(c.id)
+    );
+
+    const photo = photos.length ? photos[0] : null;
 
     return (
       <Body isDark>
@@ -59,14 +74,11 @@ class Manager extends Component {
             selected={selectedPhotos}
             selectedAlbum={selectedAlbum}
           />
-          <Inspector
-            selected={selectedPhotos}
-            clearInspector={this.clearInspector}
-          />
+          <Inspector selected={photo} clearInspector={this.clearInspector} />
         </div>
       </Body>
     );
   }
 }
 
-export default Manager;
+export default withApollo(Manager);

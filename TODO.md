@@ -16,7 +16,8 @@
 * [x] Model for gallery object
 * [x] API resolvers for create, get, update and delete gallery
 * [x] UI to create a gallery (set name)
-* [ ] Multi-selection on photos and ability to assign to gallery (drag and drop)
+* [x] Multi-selection on photos
+* [ ] Ability to assign to gallery (drag and drop)
 * [ ] Assign cover photo
 * [ ] Clicking an album filters photos view
 * [ ] Update gallery name (and other settings, e.g. public?)
