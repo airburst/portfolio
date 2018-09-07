@@ -11,6 +11,7 @@ class MediaViewer extends React.Component {
   static propTypes = {
     data: PropTypes.object.isRequired,
     thumbnailClickHandler: PropTypes.func.isRequired,
+    thumbnailDragHandler: PropTypes.func.isRequired,
     selected: PropTypes.array.isRequired,
     // selectedAlbum: PropTypes.number,
   };
@@ -48,6 +49,7 @@ class MediaViewer extends React.Component {
       selected,
       // selectedAlbum,
       thumbnailClickHandler,
+      thumbnailDragHandler,
     } = this.props;
     const { showUploads, uploadSizes } = this.state;
 
@@ -72,6 +74,7 @@ class MediaViewer extends React.Component {
               photos={allPhotos}
               selected={selected}
               clickHandler={thumbnailClickHandler}
+              dragHandler={thumbnailDragHandler}
             />
           </div>
         </div>

@@ -47,6 +47,24 @@ class Manager extends Component {
     this.setState({ selectedPhotos: newSelection });
   };
 
+  thumbnailDragStart = e => {
+    console.log('dragstart', this.state.selectedPhotos);
+    e.dataTransfer.setData('photos', this.state.selectedPhotos);
+    // IE: e.dataTransfer.setData(“text/plain”,id)
+  };
+
+  onDragOver = (e, albumId) => {
+    e.preventDefault();
+    console.log('TCL: Manager -> onDragOver -> albumId', albumId);
+  };
+
+  onDrop = (e, cat) => {
+    const photos = e.dataTransfer.getData('photos');
+    // IE e.dataTransfer.getData('text');
+
+    // this.setState({ ...this.state, tasks });
+  };
+
   albumClickHandler = albumId => {
     this.setState({ selectedAlbum: albumId });
   };
@@ -71,6 +89,7 @@ class Manager extends Component {
           <Library albumClickHandler={this.albumClickHandler} />
           <MediaViewer
             thumbnailClickHandler={this.thumbnailClickHandler}
+            thumbnailDragHandler={this.thumbnailDragStart}
             selected={selectedPhotos}
             selectedAlbum={selectedAlbum}
           />

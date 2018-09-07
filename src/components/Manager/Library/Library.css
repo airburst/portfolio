@@ -26,6 +26,20 @@
   border-top: 1px solid var(--media-bgcolor);
 }
 
-.collection-tree li li:hover {
+.collection-tree>ul {
+  list-style: none;
+  padding: 0;
+}
+
+.collection-tree li:hover,
+.droppable {
   background-color: #333;
+  color: white;
+}
+
+.collection-item {
+  display: flex;
+  padding: 8px;
+  cursor: pointer;
+  color: var(--muted-color);
 }

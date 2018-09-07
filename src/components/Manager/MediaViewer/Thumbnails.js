@@ -3,17 +3,26 @@ import PropTypes from 'prop-types';
 import { Loader } from 'semantic-ui-react';
 import './MediaViewer.css';
 
-const Thumbnail = ({ id, src, preview, selected, clickHandler }) => {
+const Thumbnail = ({
+  id,
+  src,
+  preview,
+  selected,
+  clickHandler,
+  dragHandler,
+}) => {
   const thumbClass = `thumbnail${preview ? ' preview' : ''}${
     selected ? ' selected' : ''
   }`;
   return (
+    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div
       className={thumbClass}
       onClick={clickHandler}
       onKeyPress={clickHandler}
+      onDragStart={dragHandler}
     >
-      {!preview && <img id={id} src={src} alt="Placeholder" />}
+      {!preview && <img draggable id={id} src={src} alt="Placeholder" />}
     </div>
   );
 };
@@ -22,6 +31,7 @@ Thumbnail.propTypes = {
   id: PropTypes.number.isRequired,
   src: PropTypes.string.isRequired,
   clickHandler: PropTypes.func.isRequired,
+  dragHandler: PropTypes.func.isRequired,
   preview: PropTypes.bool,
   selected: PropTypes.bool,
 };
@@ -38,7 +48,7 @@ export const Previews = ({ sizes }) =>
     </div>
   ));
 
-const Thumbnails = ({ photos, selected, clickHandler }) => {
+const Thumbnails = ({ photos, selected, clickHandler, dragHandler }) => {
   if (!photos || !photos.data || !photos.data.length) {
     return <div />;
   }
@@ -51,6 +61,7 @@ const Thumbnails = ({ photos, selected, clickHandler }) => {
       src={p.thumbnail}
       selected={selected.includes(p.id)}
       clickHandler={clickHandler}
+      dragHandler={dragHandler}
     />
   ));
 };
@@ -58,6 +69,7 @@ const Thumbnails = ({ photos, selected, clickHandler }) => {
 Thumbnails.propTypes = {
   photos: PropTypes.object,
   clickHandler: PropTypes.func.isRequired,
+  dragHandler: PropTypes.func.isRequired,
   selected: PropTypes.array.isRequired,
 };
 
