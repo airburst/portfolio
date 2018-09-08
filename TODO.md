@@ -17,6 +17,7 @@
 * [x] API resolvers for create, get, update and delete gallery
 * [x] UI to create a gallery (set name)
 * [x] Multi-selection on photos
+* [ ] Add a collapsible folder tree for collections
 * [ ] Ability to assign to gallery (drag and drop)
 * [ ] Assign cover photo
 * [ ] Clicking an album filters photos view
@@ -26,6 +27,7 @@
 * [ ] Add a progress bar for uploads
 * [ ] Index tables for search and sort
 * [ ] Implement search/sort
+* [ ] Display count on dragging image when many are selected
 
 ## Galleries View
 * [ ] Grid layout of gallery cards with cover photos
