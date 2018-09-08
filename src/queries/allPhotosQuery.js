@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export default gql`
-  {
-    allPhotos {
+  query allPhotos($albumId: Int) {
+    allPhotos(albumId: $albumId) {
       data {
         id
         name

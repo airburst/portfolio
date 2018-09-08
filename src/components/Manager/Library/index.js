@@ -8,6 +8,11 @@ import './Library.css';
 class Library extends React.Component {
   static propTypes = {
     albumClickHandler: PropTypes.func.isRequired,
+    albumId: PropTypes.number,
+  };
+
+  static defaultProps = {
+    albumId: null,
   };
 
   state = { open: false };
@@ -18,14 +23,17 @@ class Library extends React.Component {
 
   render() {
     const { open } = this.state;
-    const { albumClickHandler } = this.props;
+    const { albumClickHandler, albumId } = this.props;
 
     return (
       <div className="library-section">
         <div className="topbar">Library</div>
         <div className="library-content">
           <div className="collections">
-            <FolderTree albumClickHandler={albumClickHandler} />
+            <FolderTree
+              albumClickHandler={albumClickHandler}
+              albumId={albumId}
+            />
           </div>
         </div>
         <div className="library-action-buttons">

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
-import albumsQuery from '../albumsQuery';
+import albumsQuery from '../../../../queries/albumsQuery';
 import TreeHeader from './TreeHeader';
 import TreeItem from './TreeItem';
 import './FolderTree.css';
@@ -10,6 +10,11 @@ class FolderTree extends React.Component {
   static propTypes = {
     data: PropTypes.object.isRequired,
     albumClickHandler: PropTypes.func.isRequired,
+    albumId: PropTypes.number,
+  };
+
+  static defaultProps = {
+    albumId: null,
   };
 
   state = {
@@ -27,7 +32,7 @@ class FolderTree extends React.Component {
   toggleHandler = () => this.setState(state => ({ open: !state.open }));
 
   render() {
-    const { albumClickHandler } = this.props;
+    const { albumClickHandler, albumId } = this.props;
     const { data, open } = this.state;
 
     return (
@@ -46,6 +51,7 @@ class FolderTree extends React.Component {
                 id={d.id}
                 name={d.name}
                 clickHandler={albumClickHandler}
+                albumId={albumId}
               />
             ))}
         </ul>

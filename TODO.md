@@ -19,7 +19,11 @@
 * [x] Multi-selection on photos
 * [x] Add a collapsible folder tree for collections
 * [x] Ability to assign to gallery (drag and drop)
-* [ ] Clicking an album filters photos view
+* [x] Clicking an album filters photos view
+* [x] Show filters in use and allow removal
+* [x] Copy photo between galleries (drag and drop)
+* [ ] BUG: Copy photo between galleries need refetchQuery in TreeItem.js
+* [ ] Display actions in toolbar when photos are selected
 * [ ] Assign cover photo
 * [ ] Update gallery name (and other settings, e.g. public?)
 * [ ] Remove photo(s) from gallery
@@ -59,11 +63,6 @@
 
 
 # Queries
-
-getAlbum(albumId) {
-
-}
-
 ```
 mutation {
   updateAlbum(album: { id: 2, name:"Awesome Photos", cover: "http://cover2.me", isPublic:false})

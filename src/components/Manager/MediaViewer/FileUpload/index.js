@@ -5,7 +5,7 @@ import Dropzone from 'react-dropzone';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import './FileUpload.css';
-import allPhotosQuery from '../allPhotosQuery';
+import allPhotosQuery from '../../../../queries/allPhotosQuery';
 
 const FileUpload = props => {
   let dropzoneRef;

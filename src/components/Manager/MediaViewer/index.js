@@ -4,7 +4,7 @@ import { graphql } from 'react-apollo';
 import Toolbar from './Toolbar';
 import FileUpload from './FileUpload';
 import Thumbnails, { Previews } from './Thumbnails';
-import allPhotosQuery from './allPhotosQuery';
+import allPhotosQuery from '../../../queries/allPhotosQuery';
 import './MediaViewer.css';
 
 class MediaViewer extends React.Component {
@@ -12,8 +12,15 @@ class MediaViewer extends React.Component {
     data: PropTypes.object.isRequired,
     thumbnailClickHandler: PropTypes.func.isRequired,
     thumbnailDragHandler: PropTypes.func.isRequired,
+    removeFilterHandler: PropTypes.func.isRequired,
     selected: PropTypes.array.isRequired,
-    // selectedAlbum: PropTypes.number,
+    albumId: PropTypes.number,
+    albumName: PropTypes.string,
+  };
+
+  static defaultProps = {
+    albumId: null,
+    albumName: null,
   };
 
   state = {
@@ -47,9 +54,10 @@ class MediaViewer extends React.Component {
     const {
       data: { allPhotos },
       selected,
-      // selectedAlbum,
       thumbnailClickHandler,
       thumbnailDragHandler,
+      removeFilterHandler,
+      albumName,
     } = this.props;
     const { showUploads, uploadSizes } = this.state;
 
@@ -58,6 +66,8 @@ class MediaViewer extends React.Component {
         <Toolbar
           onSearchChange={v => this.onChange('search', v)}
           uploadClickHandler={this.uploadClickHandler}
+          filter={albumName}
+          removeFilterHandler={removeFilterHandler}
         />
         {showUploads && (
           <FileUpload
@@ -83,6 +93,7 @@ class MediaViewer extends React.Component {
   }
 }
 
-// TODO: apply filter for selected album
-
-export default graphql(allPhotosQuery)(MediaViewer);
+// Apply filter for selected album
+export default graphql(allPhotosQuery, {
+  options: props => ({ variables: { albumId: props.albumId } }),
+})(MediaViewer);

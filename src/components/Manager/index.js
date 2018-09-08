@@ -7,6 +7,7 @@ import MediaViewer from './MediaViewer';
 import Inspector from './Inspector';
 import './Manager.css';
 
+// Manage array of selected thumbnails, including Ctrl and Shift clicks
 const getSelectionState = (state, e) => {
   const id = parseInt(e.target.id, 10);
   // If state already contains entry, remove it. Else add it
@@ -38,7 +39,8 @@ class Manager extends Component {
 
   state = {
     selectedPhotos: [],
-    selectedAlbum: null,
+    albumId: null,
+    albumName: null,
   };
 
   thumbnailClickHandler = e => {
@@ -74,28 +76,18 @@ class Manager extends Component {
     // e.dataTransfer.setDragImage(crt, 0, 0);
   };
 
-  onDragOver = (e, albumId) => {
-    e.preventDefault();
-    console.log('TCL: Manager -> onDragOver -> albumId', albumId);
+  albumClickHandler = (e, albumId, albumName) => {
+    this.setState({ albumId, albumName });
   };
 
-  onDrop = (e, cat) => {
-    const photos = e.dataTransfer.getData('photos');
-    console.log('TCL: Manager -> onDrop -> photos', photos);
-    // IE e.dataTransfer.getData('text');
-
-    // this.setState({ ...this.state, tasks });
-  };
-
-  albumClickHandler = (e, albumId) => {
-    console.log('TCL: Manager -> albumId', albumId);
-    this.setState({ selectedAlbum: albumId });
+  removeFilterHandler = () => {
+    this.setState({ albumId: null, albumName: null });
   };
 
   clearInspector = () => this.setState({ selectedPhotos: [] });
 
   render() {
-    const { selectedPhotos, selectedAlbum } = this.state;
+    const { selectedPhotos, albumId, albumName } = this.state;
     const { client } = this.props;
 
     // Find photos by id from cache
@@ -109,12 +101,17 @@ class Manager extends Component {
     return (
       <Body isDark>
         <div className="admin-container">
-          <Library albumClickHandler={this.albumClickHandler} />
+          <Library
+            albumClickHandler={this.albumClickHandler}
+            albumId={albumId}
+          />
           <MediaViewer
             thumbnailClickHandler={this.thumbnailClickHandler}
             thumbnailDragHandler={this.thumbnailDragStart}
+            removeFilterHandler={this.removeFilterHandler}
             selected={selectedPhotos}
-            selectedAlbum={selectedAlbum}
+            albumId={albumId}
+            albumName={albumName}
           />
           <Inspector selected={photo} clearInspector={this.clearInspector} />
         </div>

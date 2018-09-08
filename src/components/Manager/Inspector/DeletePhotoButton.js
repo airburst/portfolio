@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Button, Icon } from 'semantic-ui-react';
-import allPhotosQuery from '../MediaViewer/allPhotosQuery';
+import allPhotosQuery from '../../../queries/allPhotosQuery';
 
 class DeletePhotoButton extends React.Component {
   static propTypes = {
