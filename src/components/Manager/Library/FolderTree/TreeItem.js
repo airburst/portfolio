@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Library.css';
+import './FolderTree.css';
 
 class Tree extends React.Component {
   static propTypes = {
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
+    clickHandler: PropTypes.func.isRequired,
   };
 
   state = {
@@ -31,9 +32,9 @@ class Tree extends React.Component {
   };
 
   render() {
-    const { id, name } = this.props;
+    const { id, name, clickHandler } = this.props;
     const { hovering } = this.state;
-    const treeClass = `collection-item${hovering ? ' droppable' : ''}`;
+    const treeClass = `folder-item${hovering ? ' droppable' : ''}`;
 
     return (
       <li
@@ -44,6 +45,7 @@ class Tree extends React.Component {
         onDragOver={this.onDragOver}
         onDragLeave={this.onDragLeave}
         onDrop={e => this.onDrop(e, id)}
+        onClick={e => clickHandler(e, id)}
       >
         {name}
       </li>

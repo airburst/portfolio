@@ -1,10 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button, Icon } from 'semantic-ui-react';
 import FolderTree from './FolderTree';
 import CollectionModal from './CollectionModal';
 import './Library.css';
 
 class Library extends React.Component {
+  static propTypes = {
+    albumClickHandler: PropTypes.func.isRequired,
+  };
+
   state = { open: false };
 
   show = () => this.setState({ open: true });
