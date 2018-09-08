@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import albumsQuery from './albumsQuery';
-import Tree from './Tree';
+import TreeItem from './TreeItem';
 import './Library.css';
 
 class FolderTree extends React.Component {
@@ -25,7 +25,10 @@ class FolderTree extends React.Component {
 
     return (
       <div className="collection-tree">
-        <Tree data={data} />
+        <ul>
+          {data &&
+            data.map(d => <TreeItem key={d.id} id={d.id} name={d.name} />)}
+        </ul>
       </div>
     );
   }

@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import './Library.css';
 
 class Tree extends React.Component {
+  static propTypes = {
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+  };
+
   state = {
     hovering: false,
   };
@@ -10,9 +15,10 @@ class Tree extends React.Component {
   onDrop = (e, id) => {
     const photos = e.dataTransfer.getData('photos');
     console.log('dropped', id, photos);
+    this.setState({ hovering: false });
   };
 
-  onDragEnter = e => {
+  onDragEnter = () => {
     this.setState({ hovering: true });
   };
 
@@ -20,34 +26,27 @@ class Tree extends React.Component {
     e.preventDefault();
   };
 
-  onDragLeave = e => {
+  onDragLeave = () => {
     this.setState({ hovering: false });
   };
 
   render() {
-    const { data } = this.props;
+    const { id, name } = this.props;
     const { hovering } = this.state;
     const treeClass = `collection-item${hovering ? ' droppable' : ''}`;
 
-    return data ? (
-      <ul>
-        {data.map(d => (
-          <li
-            key={d.id}
-            id={d.id}
-            className={treeClass}
-            droppable="true"
-            onDragEnter={this.onDragEnter}
-            onDragOver={this.onDragOver}
-            onDragLeave={this.onDragLeave}
-            onDrop={e => this.onDrop(e, d.id)}
-          >
-            {d.name}
-          </li>
-        ))}
-      </ul>
-    ) : (
-      <div />
+    return (
+      <li
+        id={id}
+        className={treeClass}
+        droppable="true"
+        onDragEnter={this.onDragEnter}
+        onDragOver={this.onDragOver}
+        onDragLeave={this.onDragLeave}
+        onDrop={e => this.onDrop(e, id)}
+      >
+        {name}
+      </li>
     );
   }
 }

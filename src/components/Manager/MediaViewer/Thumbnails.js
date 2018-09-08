@@ -1,7 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Loader } from 'semantic-ui-react';
+import { Loader, Label } from 'semantic-ui-react';
 import './MediaViewer.css';
+
+const Count = ({ count }) => (
+  <Label circular floating color="orange" className="thumbnail-drag-count">
+    {count}
+  </Label>
+);
+
+Count.propTypes = {
+  count: PropTypes.number.isRequired,
+};
 
 const Thumbnail = ({
   id,
@@ -22,7 +32,10 @@ const Thumbnail = ({
       onKeyPress={clickHandler}
       onDragStart={dragHandler}
     >
-      {!preview && <img draggable id={id} src={src} alt="Placeholder" />}
+      {!preview && (
+        <img draggable={selected} id={id} src={src} alt="Placeholder" />
+      )}
+      {/* <Count count={2} /> */}
     </div>
   );
 };

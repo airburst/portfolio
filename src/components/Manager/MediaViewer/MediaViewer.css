@@ -24,6 +24,7 @@
 }
 
 .thumbnail {
+  position: relative;
   height: 150px;
   width: 100%;
   display: flex;
@@ -40,6 +41,7 @@
 }
 
 .thumbnail>img {
+  position: relative;
   line-height: 150px;
   text-align: center;
   border: 3px solid transparent;
@@ -52,6 +54,10 @@
 .thumbnail.selected > img {
   border: 3px solid var(--selected-color);
 }
+
+/* .ui.label.thumbnail-drag-count {
+  top: 0 !important;
+} */
 
 .title {
   text-transform: uppercase;
