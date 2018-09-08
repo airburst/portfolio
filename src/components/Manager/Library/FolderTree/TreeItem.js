@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { graphql } from 'react-apollo';
+import addPhotosToAlbumMutation from '../addPhotosToAlbumMutation';
 import './FolderTree.css';
 
 class Tree extends React.Component {
@@ -7,6 +9,7 @@ class Tree extends React.Component {
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     clickHandler: PropTypes.func.isRequired,
+    mutate: PropTypes.func.isRequired,
   };
 
   state = {
@@ -15,8 +18,18 @@ class Tree extends React.Component {
 
   onDrop = (e, id) => {
     const photos = e.dataTransfer.getData('photos');
-    console.log('dropped', id, photos);
-    this.setState({ hovering: false });
+    const photoIds = photos.split(',').map(p => parseInt(p, 10));
+    this.props
+      .mutate({ variables: { albumId: id, photoIds } })
+      .then(({ data }) => {
+        if (data.addPhotosToAlbum && !data.addPhotosToAlbum.errors) {
+          this.setState({ hovering: false });
+        } else {
+          // TODO: bubble error
+          console.log('TreeItem error', data.addPhotosToAlbum.errors);
+        }
+      })
+      .catch(err => console.log('Error adding photos to album', err.message));
   };
 
   onDragEnter = () => {
@@ -53,4 +66,4 @@ class Tree extends React.Component {
   }
 }
 
-export default Tree;
+export default graphql(addPhotosToAlbumMutation)(Tree);

@@ -17,10 +17,10 @@
 * [x] API resolvers for create, get, update and delete gallery
 * [x] UI to create a gallery (set name)
 * [x] Multi-selection on photos
-* [ ] Add a collapsible folder tree for collections
-* [ ] Ability to assign to gallery (drag and drop)
-* [ ] Assign cover photo
+* [x] Add a collapsible folder tree for collections
+* [x] Ability to assign to gallery (drag and drop)
 * [ ] Clicking an album filters photos view
+* [ ] Assign cover photo
 * [ ] Update gallery name (and other settings, e.g. public?)
 * [ ] Remove photo(s) from gallery
 * [ ] Remove gallery
@@ -51,6 +51,7 @@
 * [ ] Performance testing in Chrome devtools
 * [ ] Add a logout feature
 * [ ] Create short urls to share photo links (TBC)
+* [ ] Bubble up GQL errors to a toast handler
 
 ## Snagging / Bugs
 * [x] Don't scroll media section topbar off screen (CSS)
@@ -66,17 +67,6 @@ getAlbum(albumId) {
 ```
 mutation {
   updateAlbum(album: { id: 2, name:"Awesome Photos", cover: "http://cover2.me", isPublic:false})
-}
-```
-
-```
-mutation {
-  addPhotosToAlbum(albumId: 2, photoIds:[1,2]) {
-    data
-    errors {
-      message
-    }
-  }
 }
 ```
 
