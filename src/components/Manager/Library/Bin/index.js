@@ -23,9 +23,22 @@ class Bin extends React.Component {
 
   onDrop = e => {
     const photos = e.dataTransfer.getData('photos');
-    const photoIds = photos.split(',').map(p => parseInt(p, 10));
-    console.log('TCL: Bin -> onDrop -> photos', photoIds);
-    this.setState(state => ({ photos: [...state.photos, ...photoIds] }));
+    const album = e.dataTransfer.getData('album');
+    if (album) {
+      // console.log('TCL: Bin -> albums', {
+      //   albums: [...this.state.albums, album],
+      // });
+      this.setState(state => ({
+        albums: [...state.albums, parseInt(album, 10)],
+      }));
+    }
+    if (photos) {
+      const photoIds = photos.split(',').map(p => parseInt(p, 10));
+      // console.log('TCL: Bin -> photos', {
+      //   photos: [...this.state.photos, ...photoIds],
+      // });
+      this.setState(state => ({ photos: [...state.photos, ...photoIds] }));
+    }
     // this.props
     //   .mutate({
     //     variables: { albumId: id, photoIds },

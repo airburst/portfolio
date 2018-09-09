@@ -2,6 +2,7 @@
   padding: 8px 0;
   cursor: pointer;
   color: var(--muted-color);
+  padding: var(--small-padding);
   text-transform: uppercase;
 }
 
@@ -14,9 +15,9 @@
 .folder-item {
   display: flex;
   flex-direction: row;
-  padding: 8px;
   cursor: pointer;
   color: var(--muted-color);
+  padding: var(--small-padding) var(--padding);
   transition: all 0.5s;
 }
 

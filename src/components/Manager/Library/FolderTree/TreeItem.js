@@ -22,6 +22,8 @@ class Tree extends React.Component {
     hovering: false,
   };
 
+  onDragStart = e => e.dataTransfer.setData('album', this.props.id);
+
   onDrop = (e, id) => {
     const photos = e.dataTransfer.getData('photos');
     const photoIds = photos.split(',').map(p => parseInt(p, 10));
@@ -64,6 +66,8 @@ class Tree extends React.Component {
       <li
         id={id}
         className={treeClass}
+        draggable="true"
+        onDragStart={this.onDragStart}
         droppable="true"
         onDragEnter={this.onDragEnter}
         onDragOver={this.onDragOver}

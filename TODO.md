@@ -23,11 +23,11 @@
 * [x] Show filters in use and allow removal
 * [x] Copy photo between galleries (drag and drop)
 * [x] BUG: make allPhotos query network-only policy
-* [ ] Display actions in toolbar when photos are selected
+* [-] Display actions in toolbar when photos are selected [NOT DOING]
+* [ ] Remove photo(s) from gallery, via Bin
+* [ ] Remove gallery, via Bin (make gallery item draggable, or have cog menu?)
+* [ ] Update gallery name, etc. in Inspector when gallery is selected
 * [ ] Assign cover photo
-* [ ] Update gallery name (and other settings, e.g. public?)
-* [ ] Remove photo(s) from gallery
-* [ ] Remove gallery
 * [ ] Add a progress bar for uploads
 * [ ] Index tables for search and sort
 * [ ] Implement search/sort
