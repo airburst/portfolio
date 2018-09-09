@@ -22,7 +22,7 @@
 * [x] Clicking an album filters photos view
 * [x] Show filters in use and allow removal
 * [x] Copy photo between galleries (drag and drop)
-* [ ] BUG: Copy photo between galleries need refetchQuery in TreeItem.js
+* [x] BUG: make allPhotos query network-only policy
 * [ ] Display actions in toolbar when photos are selected
 * [ ] Assign cover photo
 * [ ] Update gallery name (and other settings, e.g. public?)

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import addPhotosToAlbumMutation from '../../../../queries/addPhotosToAlbumMutation';
-import allPhotosQuery from '../../../../queries/allPhotosQuery';
 import './FolderTree.css';
 
 class Tree extends React.Component {
@@ -22,18 +21,12 @@ class Tree extends React.Component {
     hovering: false,
   };
 
-  // TODO: refetch is not correct!
   onDrop = (e, id) => {
     const photos = e.dataTransfer.getData('photos');
     const photoIds = photos.split(',').map(p => parseInt(p, 10));
     this.props
       .mutate({
         variables: { albumId: id, photoIds },
-        refetchQueries: [
-          {
-            query: allPhotosQuery,
-          },
-        ],
       })
       .then(({ data }) => {
         if (data.addPhotosToAlbum && !data.addPhotosToAlbum.errors) {
