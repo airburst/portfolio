@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Icon } from 'semantic-ui-react';
 import FolderTree from './FolderTree';
 import CollectionModal from './CollectionModal';
+import Bin from './Bin';
 import './Library.css';
 
 class Library extends React.Component {
@@ -28,6 +29,7 @@ class Library extends React.Component {
     return (
       <div className="library-section">
         <div className="topbar">Library</div>
+
         <div className="library-content">
           <div className="collections">
             <FolderTree
@@ -36,6 +38,9 @@ class Library extends React.Component {
             />
           </div>
         </div>
+
+        <Bin />
+
         <div className="library-action-buttons">
           <Button
             secondary

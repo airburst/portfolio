@@ -1,0 +1,44 @@
+.bin-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: var(--small-padding) var(--padding);
+  color: var(--muted-color);
+  border-top: 1px solid var(--media-bgcolor);
+  transition: all 0.5s;
+}
+
+.bin-container.not-empty {
+  cursor: pointer;
+}
+
+.bin-container.not-empty:hover,
+.bin-container.droppable {
+  background-color: #333;
+  color: white;
+}
+
+.bin-text {
+  flex-grow: 1;
+  padding: 12px;
+}
+
+.bin-label {
+  cursor: pointer;
+}
+
+.bin-overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 999;
+}
+
+.bin-menu {
+  position: absolute;
+  left: 308px; /* 300px panel + 8px margin */
+  bottom: 42px;
+  cursor: pointer;
+}

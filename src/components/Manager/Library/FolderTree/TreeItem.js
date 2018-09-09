@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Icon } from 'semantic-ui-react';
 import { graphql } from 'react-apollo';
 import addPhotosToAlbumMutation from '../../../../queries/addPhotosToAlbumMutation';
 import './FolderTree.css';
@@ -70,6 +71,7 @@ class Tree extends React.Component {
         onDrop={e => this.onDrop(e, id)}
         onClick={e => clickHandler(e, id, name)}
       >
+        <Icon name="clone outline" color={selected ? 'orange' : 'grey'} />
         {name}
       </li>
     );

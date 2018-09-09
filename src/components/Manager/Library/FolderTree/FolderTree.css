@@ -14,21 +14,23 @@
 .folder-item {
   display: flex;
   flex-direction: row;
-  padding: 8px 22px;
+  padding: 8px;
   cursor: pointer;
   color: var(--muted-color);
+  transition: all 0.5s;
 }
 
-.folder-tree li:hover {
+.folder-tree li:hover,
+.folder-item.droppable {
   background-color: #333;
   color: white;
 }
 
-.folder-item.droppable {
+/* .folder-item.droppable {
   background-color: #333;
   color: var(--selected-color);
-}
+} */
 
 .folder-item.selected {
-  color: var(--selected-color);
+  color: white;
 }

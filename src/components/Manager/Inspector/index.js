@@ -4,7 +4,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { debounce } from 'throttle-debounce';
 import { Checkbox } from 'semantic-ui-react';
-import DeletePhotoButton from './DeletePhotoButton';
+// import DeletePhotoButton from './DeletePhotoButton';
 import allPhotosQuery from '../../../queries/allPhotosQuery';
 import './Inspector.css';
 
@@ -35,7 +35,7 @@ const getInspectorPhoto = urls => {
 class Inspector extends React.Component {
   static propTypes = {
     mutate: PropTypes.func.isRequired,
-    clearInspector: PropTypes.func.isRequired,
+    // clearInspector: PropTypes.func.isRequired,
     selected: PropTypes.object,
   };
 
@@ -72,10 +72,10 @@ class Inspector extends React.Component {
   }
 
   render() {
-    const { selected, clearInspector } = this.props;
+    const { selected } = this.props;
 
     const {
-      id,
+      // id,
       name,
       title,
       caption,
@@ -140,9 +140,9 @@ class Inspector extends React.Component {
                   </div>
                 </div>
               </div>
-              <div className="action-buttons">
+              {/* <div className="action-buttons">
                 <DeletePhotoButton id={id} clear={clearInspector} />
-              </div>
+              </div> */}
             </React.Fragment>
           )}
         </div>
