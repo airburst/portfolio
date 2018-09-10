@@ -24,14 +24,16 @@
 * [x] Copy photo between galleries (drag and drop)
 * [x] BUG: make allPhotos query network-only policy
 * [-] Display actions in toolbar when photos are selected [NOT DOING]
-* [ ] Remove photo(s) from gallery, via Bin
-* [ ] Remove gallery, via Bin (make gallery item draggable, or have cog menu?)
+* [ ] Remove photo and albums when dropped onto Bin
+* [ ] Wire up restoreAll Mutation
+* [ ] Wire up empty Mutation
 * [ ] Update gallery name, etc. in Inspector when gallery is selected
 * [ ] Assign cover photo
 * [ ] Add a progress bar for uploads
 * [ ] Index tables for search and sort
 * [ ] Implement search/sort
 * [ ] Display count on dragging image when many are selected
+* [ ] View content of Bin and allow selective restore?
 
 ## Galleries View
 * [ ] Grid layout of gallery cards with cover photos
