@@ -99,7 +99,7 @@ export default graphql(allPhotosQuery, {
     const variables = props.albumId ? { albumId: props.albumId } : {};
     return {
       variables,
-      // fetchPolicy: 'network-only',
+      fetchPolicy: 'network-only',
     };
   },
 })(MediaViewer);
