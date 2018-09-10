@@ -1,22 +1,16 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import { graphql } from 'react-apollo';
+import PropTypes from 'prop-types';
 import { Icon, Label, Menu } from 'semantic-ui-react';
+import allBinItemsQuery from '../../../../queries/allBinItemsQuery';
 import './Bin.css';
 
 class Bin extends React.Component {
-  // static propTypes = {
-  //   albumClickHandler: PropTypes.func.isRequired,
-  //   albumId: PropTypes.number,
-  // };
-
-  // static defaultProps = {
-  //   photos: null,
-  //   albums: null,
-  // };
+  static propTypes = {
+    data: PropTypes.object.isRequired,
+  };
 
   state = {
-    photos: [],
-    albums: [],
     showMenu: false,
     hovering: false,
   };
@@ -25,18 +19,14 @@ class Bin extends React.Component {
     const photos = e.dataTransfer.getData('photos');
     const album = e.dataTransfer.getData('album');
     if (album) {
-      // console.log('TCL: Bin -> albums', {
-      //   albums: [...this.state.albums, album],
-      // });
+      // TODO: mutation
       this.setState(state => ({
         albums: [...state.albums, parseInt(album, 10)],
       }));
     }
     if (photos) {
+      // TODO: mutation
       const photoIds = photos.split(',').map(p => parseInt(p, 10));
-      // console.log('TCL: Bin -> photos', {
-      //   photos: [...this.state.photos, ...photoIds],
-      // });
       this.setState(state => ({ photos: [...state.photos, ...photoIds] }));
     }
     // this.props
@@ -54,26 +44,36 @@ class Bin extends React.Component {
     //   .catch(err => console.log('Error adding photos to album', err.message));
   };
 
-  onDragEnter = () => this.setState({ hovering: true });
+  // onDragEnter = () => this.setState({ hovering: true });
 
-  onDragOver = e => e.preventDefault();
+  // onDragOver = e => e.preventDefault();
 
-  onDragLeave = () => this.setState({ hovering: false });
+  // onDragLeave = () => this.setState({ hovering: false });
 
   binClickHandler = () => {
-    if (this.state.photos.length > 0 || this.state.albums.length > 0) {
+    const {
+      data: { allBinItems },
+    } = this.props;
+    const photos = (allBinItems && allBinItems.photos) || [];
+    const albums = (allBinItems && allBinItems.albums) || [];
+    if (photos.length > 0 || albums.length > 0) {
       this.setState(state => ({ showMenu: !state.showMenu }));
     }
   };
 
-  emptyHandler = () => this.setState({ photos: [], albums: [] });
+  emptyHandler = () => console.log('bin -> empty');
 
   restoreHandler = () => console.log('bin -> restore');
 
   overlayClickHandler = () => this.setState({ showMenu: false });
 
   render() {
-    const { photos, albums, showMenu } = this.state;
+    const {
+      data: { allBinItems },
+    } = this.props;
+    const photos = (allBinItems && allBinItems.photos) || [];
+    const albums = (allBinItems && allBinItems.albums) || [];
+    const { showMenu } = this.state;
     const count = photos.length + albums.length;
     const hasContent = count > 0;
     const binClass = `bin-container${hasContent ? ' not-empty' : ''}`;
@@ -83,9 +83,9 @@ class Bin extends React.Component {
         <div
           className={binClass}
           droppable="true"
-          onDragEnter={this.onDragEnter}
-          onDragOver={this.onDragOver}
-          onDragLeave={this.onDragLeave}
+          // onDragEnter={this.onDragEnter}
+          // onDragOver={this.onDragOver}
+          // onDragLeave={this.onDragLeave}
           onDrop={this.onDrop}
           onClick={this.binClickHandler}
         >
@@ -117,4 +117,6 @@ class Bin extends React.Component {
   }
 }
 
-export default Bin;
+export default graphql(allBinItemsQuery, {
+  options: props => ({ fetchPolicy: 'network-only' }),
+})(Bin);

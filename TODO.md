@@ -63,13 +63,15 @@
 
 
 # Queries
+
 ```
 mutation {
-  updateAlbum(album: { id: 2, name:"Awesome Photos", cover: "http://cover2.me", isPublic:false})
+  updateAlbum(album: { id: 2, name:"Awesome Photos", cover: "http://cover2.me", isPublic:false })
 }
 ```
 
 ```
+// This is destructive immediately.  Does not use the bin to restore?
 mutation {
   removePhotosFromAlbum(albumId: 2, photoIds:[1]) {
     data
