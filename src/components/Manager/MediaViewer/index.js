@@ -95,8 +95,11 @@ class MediaViewer extends React.Component {
 
 // Apply filter for selected album
 export default graphql(allPhotosQuery, {
-  options: props => ({
-    variables: { albumId: props.albumId },
-    fetchPolicy: 'network-only',
-  }),
+  options: props => {
+    const variables = props.albumId ? { albumId: props.albumId } : {};
+    return {
+      variables,
+      // fetchPolicy: 'network-only',
+    };
+  },
 })(MediaViewer);
