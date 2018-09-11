@@ -4,8 +4,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { debounce } from 'throttle-debounce';
 import { Checkbox } from 'semantic-ui-react';
-// import DeletePhotoButton from './DeletePhotoButton';
-import allPhotosQuery from '../../../queries/allPhotosQuery';
+import { allPhotosQuery } from '../../../queries';
 import './Inspector.css';
 
 const initialState = {

@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-const addPhotosToAlbumMutation = gql`
+export const addPhotosToAlbumMutation = gql`
   mutation addPhotosToAlbum($albumId: Int!, $photoIds: [Int!]!) {
     addPhotosToAlbum(albumId: $albumId, photoIds: $photoIds) {
       data
@@ -10,5 +10,3 @@ const addPhotosToAlbumMutation = gql`
     }
   }
 `;
-
-export default addPhotosToAlbumMutation;

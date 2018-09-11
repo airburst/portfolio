@@ -4,7 +4,7 @@ import { graphql } from 'react-apollo';
 import Toolbar from './Toolbar';
 import FileUpload from './FileUpload';
 import Thumbnails, { Previews } from './Thumbnails';
-import allPhotosQuery from '../../../queries/allPhotosQuery';
+import { allPhotosQuery } from '../../../queries';
 import './MediaViewer.css';
 
 class MediaViewer extends React.Component {

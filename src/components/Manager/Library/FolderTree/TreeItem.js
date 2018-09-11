@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Icon } from 'semantic-ui-react';
 import { graphql } from 'react-apollo';
-import addPhotosToAlbumMutation from '../../../../queries/addPhotosToAlbumMutation';
+import { addPhotosToAlbumMutation } from '../../../../queries';
 import './FolderTree.css';
 
 class Tree extends React.Component {

@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-const albumsQuery = gql`
+export const albumsQuery = gql`
   {
     allAlbums {
       data {
@@ -14,5 +14,3 @@ const albumsQuery = gql`
     }
   }
 `;
-
-export default albumsQuery;

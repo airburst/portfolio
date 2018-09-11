@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
-import albumsQuery from '../../../../queries/albumsQuery';
+import { albumsQuery } from '../../../../queries';
 import TreeHeader from './TreeHeader';
 import TreeItem from './TreeItem';
 import './FolderTree.css';

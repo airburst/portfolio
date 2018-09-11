@@ -5,7 +5,7 @@ import * as yup from 'yup';
 import { Form, Button } from 'semantic-ui-react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import albumsQuery from '../../../../queries/albumsQuery';
+import { albumsQuery } from '../../../../queries';
 import { TextInput } from '../../../Login/TextInput';
 
 const enhance = withFormik({

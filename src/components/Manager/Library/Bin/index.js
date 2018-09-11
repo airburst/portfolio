@@ -1,13 +1,14 @@
 import React from 'react';
-import { graphql } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 import PropTypes from 'prop-types';
 import { Icon, Label, Menu } from 'semantic-ui-react';
-import allBinItemsQuery from '../../../../queries/allBinItemsQuery';
+import { allBinItemsQuery, addToBinMutation } from '../../../../queries';
 import './Bin.css';
 
 class Bin extends React.Component {
   static propTypes = {
     data: PropTypes.object.isRequired,
+    // mutate: PropTypes.func.isRequired,
   };
 
   state = {
@@ -15,33 +16,29 @@ class Bin extends React.Component {
     hovering: false,
   };
 
+  // addToBin = (type, ids) =>
+  //   console.log(this.props.mutate) ||
+  //   this.props.mutate({
+  //     mutation: addToBinMutation,
+  //     variables: {
+  //       type,
+  //       ids,
+  //     },
+  //   });
+
   onDrop = e => {
+    console.log('TCL: Bin -> e', e);
     const photos = e.dataTransfer.getData('photos');
     const album = e.dataTransfer.getData('album');
     if (album) {
-      // TODO: mutation
-      this.setState(state => ({
-        albums: [...state.albums, parseInt(album, 10)],
-      }));
+      console.log('TCL: Bin -> album', album);
+      // this.addToBin('album', [parseInt(album, 10)]);
     }
     if (photos) {
-      // TODO: mutation
       const photoIds = photos.split(',').map(p => parseInt(p, 10));
-      this.setState(state => ({ photos: [...state.photos, ...photoIds] }));
+      console.log('TCL: Bin -> photoIds', photoIds);
+      // this.addToBin('photo', photoIds);
     }
-    // this.props
-    //   .mutate({
-    //     variables: { albumId: id, photoIds },
-    //   })
-    //   .then(({ data }) => {
-    //     if (data.addPhotosToAlbum && !data.addPhotosToAlbum.errors) {
-    //       this.setState({ hovering: false });
-    //     } else {
-    //       // TODO: bubble error
-    //       console.log('TreeItem error', data.addPhotosToAlbum.errors);
-    //     }
-    //   })
-    //   .catch(err => console.log('Error adding photos to album', err.message));
   };
 
   // onDragEnter = () => this.setState({ hovering: true });
@@ -68,6 +65,8 @@ class Bin extends React.Component {
   overlayClickHandler = () => this.setState({ showMenu: false });
 
   render() {
+    console.log('props', this.props);
+
     const {
       data: { allBinItems },
     } = this.props;
@@ -117,6 +116,9 @@ class Bin extends React.Component {
   }
 }
 
-export default graphql(allBinItemsQuery, {
-  options: props => ({ fetchPolicy: 'network-only' }),
-})(Bin);
+export default compose(
+  graphql(allBinItemsQuery, {
+    options: props => ({ fetchPolicy: 'network-only' }),
+  })
+  // graphql(addToBinMutation)
+)(Bin);

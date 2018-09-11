@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export default gql`
+export const allPhotosQuery = gql`
   query allPhotos($albumId: Int) {
     allPhotos(albumId: $albumId) {
       data {
