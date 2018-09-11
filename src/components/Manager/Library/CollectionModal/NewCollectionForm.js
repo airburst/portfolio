@@ -4,8 +4,7 @@ import { withFormik } from 'formik';
 import * as yup from 'yup';
 import { Form, Button } from 'semantic-ui-react';
 import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
-import { albumsQuery } from '../../../../queries';
+import { albumsQuery, addAlbumMutation } from '../../../../queries';
 import { TextInput } from '../../../Login/TextInput';
 
 const enhance = withFormik({
@@ -83,12 +82,5 @@ NewCollectionForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   cancelHandler: PropTypes.func.isRequired,
 };
-
-// GQL Mutation
-const addAlbumMutation = gql`
-  mutation addAlbum($album: AlbumInput!) {
-    addAlbum(album: $album)
-  }
-`;
 
 export default graphql(addAlbumMutation)(enhance(NewCollectionForm));

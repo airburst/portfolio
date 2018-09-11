@@ -60,4 +60,6 @@ class FolderTree extends React.Component {
   }
 }
 
-export default graphql(albumsQuery)(FolderTree);
+export default graphql(albumsQuery, {
+  options: props => ({ fetchPolicy: 'network-only' }),
+})(FolderTree);
