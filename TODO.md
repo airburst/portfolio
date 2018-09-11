@@ -24,7 +24,8 @@
 * [x] Copy photo between galleries (drag and drop)
 * [x] BUG: make allPhotos query network-only policy
 * [-] Display actions in toolbar when photos are selected [NOT DOING]
-* [ ] Remove photo and albums when dropped onto Bin
+* [x] Remove photo and albums when dropped onto Bin
+* [ ] Deselect album as active filter when binned
 * [ ] Wire up restoreAll Mutation
 * [ ] Wire up empty Mutation
 * [ ] Update gallery name, etc. in Inspector when gallery is selected

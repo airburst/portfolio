@@ -2,13 +2,18 @@ import React from 'react';
 import { graphql, compose } from 'react-apollo';
 import PropTypes from 'prop-types';
 import { Icon, Label, Menu } from 'semantic-ui-react';
-import { allBinItemsQuery, addToBinMutation } from '../../../../queries';
+import {
+  allBinItemsQuery,
+  addToBinMutation,
+  allPhotosQuery,
+  albumsQuery,
+} from '../../../../queries';
 import './Bin.css';
 
 class Bin extends React.Component {
   static propTypes = {
     data: PropTypes.object.isRequired,
-    // mutate: PropTypes.func.isRequired,
+    mutate: PropTypes.func.isRequired,
   };
 
   state = {
@@ -16,36 +21,34 @@ class Bin extends React.Component {
     hovering: false,
   };
 
-  // addToBin = (type, ids) =>
-  //   console.log(this.props.mutate) ||
-  //   this.props.mutate({
-  //     mutation: addToBinMutation,
-  //     variables: {
-  //       type,
-  //       ids,
-  //     },
-  //   });
+  addToBin = (type, ids) =>
+    this.props.mutate({
+      mutation: addToBinMutation,
+      variables: { type, ids },
+      refetchQueries: [
+        { query: allPhotosQuery },
+        { query: allBinItemsQuery },
+        { query: albumsQuery },
+      ],
+    });
 
   onDrop = e => {
-    console.log('TCL: Bin -> e', e);
     const photos = e.dataTransfer.getData('photos');
     const album = e.dataTransfer.getData('album');
     if (album) {
-      console.log('TCL: Bin -> album', album);
-      // this.addToBin('album', [parseInt(album, 10)]);
+      this.addToBin('album', [parseInt(album, 10)]);
     }
     if (photos) {
       const photoIds = photos.split(',').map(p => parseInt(p, 10));
-      console.log('TCL: Bin -> photoIds', photoIds);
-      // this.addToBin('photo', photoIds);
+      this.addToBin('photo', photoIds);
     }
   };
 
-  // onDragEnter = () => this.setState({ hovering: true });
+  onDragEnter = () => this.setState({ hovering: true });
 
-  // onDragOver = e => e.preventDefault();
+  onDragOver = e => e.preventDefault();
 
-  // onDragLeave = () => this.setState({ hovering: false });
+  onDragLeave = () => this.setState({ hovering: false });
 
   binClickHandler = () => {
     const {
@@ -65,8 +68,6 @@ class Bin extends React.Component {
   overlayClickHandler = () => this.setState({ showMenu: false });
 
   render() {
-    console.log('props', this.props);
-
     const {
       data: { allBinItems },
     } = this.props;
@@ -82,9 +83,9 @@ class Bin extends React.Component {
         <div
           className={binClass}
           droppable="true"
-          // onDragEnter={this.onDragEnter}
-          // onDragOver={this.onDragOver}
-          // onDragLeave={this.onDragLeave}
+          onDragEnter={this.onDragEnter}
+          onDragOver={this.onDragOver}
+          onDragLeave={this.onDragLeave}
           onDrop={this.onDrop}
           onClick={this.binClickHandler}
         >
@@ -119,6 +120,6 @@ class Bin extends React.Component {
 export default compose(
   graphql(allBinItemsQuery, {
     options: props => ({ fetchPolicy: 'network-only' }),
-  })
-  // graphql(addToBinMutation)
+  }),
+  graphql(addToBinMutation)
 )(Bin);
