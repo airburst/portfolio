@@ -22,6 +22,8 @@ class Library extends React.Component {
 
   close = () => this.setState({ open: false });
 
+  removeAlbumFilter = e => this.props.albumClickHandler(e, null, null);
+
   render() {
     const { open } = this.state;
     const { albumClickHandler, albumId } = this.props;
@@ -39,7 +41,7 @@ class Library extends React.Component {
           </div>
         </div>
 
-        <Bin />
+        <Bin removeAlbumFilter={this.removeAlbumFilter} />
 
         <div className="library-action-buttons">
           <Button

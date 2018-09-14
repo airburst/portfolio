@@ -14,6 +14,7 @@ class Bin extends React.Component {
   static propTypes = {
     data: PropTypes.object.isRequired,
     mutate: PropTypes.func.isRequired,
+    removeAlbumFilter: PropTypes.func.isRequired,
   };
 
   state = {
@@ -37,6 +38,7 @@ class Bin extends React.Component {
     const album = e.dataTransfer.getData('album');
     if (album) {
       this.addToBin('album', [parseInt(album, 10)]);
+      this.props.removeAlbumFilter();
     }
     if (photos) {
       const photoIds = photos.split(',').map(p => parseInt(p, 10));
