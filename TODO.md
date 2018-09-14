@@ -26,10 +26,12 @@
 * [-] Display actions in toolbar when photos are selected [NOT DOING]
 * [x] Remove photo and albums when dropped onto Bin
 * [x] Deselect album as active filter when binned
-* [ ] Wire up restoreAll Mutation
-* [ ] Wire up empty Mutation
+* [x] Wire up restoreAll Mutation
+* [x] Wire up empty Mutation
+* [ ] Deselect photos after binning
 * [ ] Update gallery name, etc. in Inspector when gallery is selected
 * [ ] Assign cover photo
+
 * [ ] Add a progress bar for uploads
 * [ ] Index tables for search and sort
 * [ ] Implement search/sort

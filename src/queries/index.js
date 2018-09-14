@@ -5,3 +5,4 @@ export { albumsQuery } from './albumsQuery';
 export { allPhotosQuery } from './allPhotosQuery';
 export { allBinItemsQuery } from './allBinItemsQuery';
 export { restoreMutation } from './restoreMutation';
+export { emptyBinMutation } from './emptyBinMutation';

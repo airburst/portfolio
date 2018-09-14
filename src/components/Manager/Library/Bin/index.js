@@ -5,10 +5,18 @@ import { Icon, Label, Menu } from 'semantic-ui-react';
 import {
   allBinItemsQuery,
   addToBinMutation,
+  restoreMutation,
+  emptyBinMutation,
   allPhotosQuery,
   albumsQuery,
 } from '../../../../queries';
 import './Bin.css';
+
+const refetchQueries = [
+  { query: allPhotosQuery },
+  { query: allBinItemsQuery },
+  { query: albumsQuery },
+];
 
 class Bin extends React.Component {
   static propTypes = {
@@ -26,11 +34,19 @@ class Bin extends React.Component {
     this.props.mutate({
       mutation: addToBinMutation,
       variables: { type, ids },
-      refetchQueries: [
-        { query: allPhotosQuery },
-        { query: allBinItemsQuery },
-        { query: albumsQuery },
-      ],
+      refetchQueries,
+    });
+
+  restore = () =>
+    this.props.mutate({
+      mutation: restoreMutation,
+      refetchQueries,
+    });
+
+  emptyBin = () =>
+    this.props.mutate({
+      mutation: emptyBinMutation,
+      refetchQueries,
     });
 
   onDrop = e => {
@@ -62,10 +78,6 @@ class Bin extends React.Component {
       this.setState(state => ({ showMenu: !state.showMenu }));
     }
   };
-
-  emptyHandler = () => console.log('bin -> empty');
-
-  restoreHandler = () => console.log('bin -> restore');
 
   overlayClickHandler = () => this.setState({ showMenu: false });
 
@@ -108,8 +120,8 @@ class Bin extends React.Component {
           <div className="bin-overlay" onClick={this.overlayClickHandler}>
             <div className="bin-menu">
               <Menu inverted pointing vertical>
-                <Menu.Item name="Restore" onClick={this.restoreHandler} />
-                <Menu.Item name="Empty Bin" onClick={this.emptyHandler} />
+                <Menu.Item name="Restore" onClick={this.restore} />
+                <Menu.Item name="Empty Bin" onClick={this.emptyBin} />
               </Menu>
             </div>
           </div>
