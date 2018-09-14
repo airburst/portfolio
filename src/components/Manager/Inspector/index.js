@@ -49,6 +49,10 @@ class Inspector extends React.Component {
 
   state = initialState;
 
+  componentWillReceiveProps(nextProps) {
+    this.setState(nextProps.selected);
+  }
+
   onChange = (e, control) => {
     const name = control ? control.name : e.target.name;
     const value = control ? control.checked : e.target.value;
@@ -71,25 +75,14 @@ class Inspector extends React.Component {
   }
 
   render() {
-    const { selected } = this.props;
-
-    const {
-      // id,
-      name,
-      title,
-      caption,
-      width,
-      height,
-      urls,
-      isPublic,
-      dateTaken,
-    } = selected || initialState;
+    const { name, title, caption, width, height, urls, isPublic, dateTaken } =
+      this.state || initialState;
 
     return (
       <div className="inspector-section">
         <div className="topbar">Inspector</div>
         <div className="properties-content">
-          {selected && (
+          {name && (
             <React.Fragment>
               <div className="selected-photo">
                 <img src={getInspectorPhoto(urls)} alt="Selected Placeholder" />
