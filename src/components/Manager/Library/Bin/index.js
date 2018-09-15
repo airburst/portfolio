@@ -23,6 +23,7 @@ class Bin extends React.Component {
     data: PropTypes.object.isRequired,
     mutate: PropTypes.func.isRequired,
     removeAlbumFilter: PropTypes.func.isRequired,
+    removePhotos: PropTypes.func.isRequired,
   };
 
   state = {
@@ -30,12 +31,16 @@ class Bin extends React.Component {
     hovering: false,
   };
 
-  addToBin = (type, ids) =>
+  addToBin = (type, ids) => {
     this.props.mutate({
       mutation: addToBinMutation,
       variables: { type, ids },
       refetchQueries,
     });
+    if (type === 'photo') {
+      this.props.removePhotos();
+    }
+  };
 
   restore = () =>
     this.props.mutate({

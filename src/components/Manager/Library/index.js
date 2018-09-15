@@ -9,6 +9,7 @@ import './Library.css';
 class Library extends React.Component {
   static propTypes = {
     albumClickHandler: PropTypes.func.isRequired,
+    deselectPhotos: PropTypes.func.isRequired,
     albumId: PropTypes.number,
   };
 
@@ -26,7 +27,7 @@ class Library extends React.Component {
 
   render() {
     const { open } = this.state;
-    const { albumClickHandler, albumId } = this.props;
+    const { albumClickHandler, albumId, deselectPhotos } = this.props;
 
     return (
       <div className="library-section">
@@ -41,7 +42,10 @@ class Library extends React.Component {
           </div>
         </div>
 
-        <Bin removeAlbumFilter={this.removeAlbumFilter} />
+        <Bin
+          removeAlbumFilter={this.removeAlbumFilter}
+          removePhotos={deselectPhotos}
+        />
 
         <div className="library-action-buttons">
           <Button

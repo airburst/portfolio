@@ -28,7 +28,7 @@
 * [x] Deselect album as active filter when binned
 * [x] Wire up restoreAll Mutation
 * [x] Wire up empty Mutation
-* [ ] Deselect photos after binning
+* [ ] Deselect photos after binning (should also empty Inspector)
 * [ ] Update gallery name, etc. in Inspector when gallery is selected
 * [ ] Assign cover photo
 

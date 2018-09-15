@@ -50,7 +50,11 @@ class Inspector extends React.Component {
   state = initialState;
 
   componentWillReceiveProps(nextProps) {
-    this.setState(nextProps.selected);
+    if (nextProps.selected) {
+      this.setState(nextProps.selected);
+    } else {
+      this.setState(initialState);
+    }
   }
 
   onChange = (e, control) => {

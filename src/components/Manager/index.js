@@ -49,6 +49,10 @@ class Manager extends Component {
     this.setState({ selectedPhotos: newSelection });
   };
 
+  deselectPhotos = () => {
+    this.setState({ selectedPhotos: [] });
+  };
+
   thumbnailDragStart = e => {
     e.dataTransfer.setData('photos', this.state.selectedPhotos);
     // IE: e.dataTransfer.setData(“text/plain”,id)
@@ -103,6 +107,7 @@ class Manager extends Component {
         <div className="admin-container">
           <Library
             albumClickHandler={this.albumClickHandler}
+            deselectPhotos={this.deselectPhotos}
             albumId={albumId}
           />
           <MediaViewer
