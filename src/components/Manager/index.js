@@ -118,7 +118,11 @@ class Manager extends Component {
             albumId={albumId}
             albumName={albumName}
           />
-          <Inspector selected={photo} clearInspector={this.clearInspector} />
+          <Inspector
+            selected={photo}
+            albumId={albumId}
+            clearInspector={this.clearInspector}
+          />
         </div>
       </Body>
     );
