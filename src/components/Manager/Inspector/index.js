@@ -7,23 +7,23 @@ import './Inspector.css';
 class Inspector extends React.Component {
   static propTypes = {
     selected: PropTypes.object,
-    albumId: PropTypes.number,
+    album: PropTypes.object,
   };
 
   static defaultProps = {
     selected: null,
-    albumId: null,
+    album: null,
   };
 
   render() {
-    const { selected, albumId } = this.props;
+    const { selected, album } = this.props;
 
     return (
       <div className="inspector-section">
         <div className="topbar">Inspector</div>
         <div className="properties-content">
-          {albumId ? (
-            <AlbumInspector albumId={albumId} />
+          {album ? (
+            <AlbumInspector album={album} />
           ) : (
             <PhotoInspector selected={selected} />
           )}

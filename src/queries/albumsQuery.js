@@ -6,6 +6,9 @@ export const albumsQuery = gql`
       data {
         id
         name
+        description
+        cover
+        isPublic
       }
       errors {
         path

@@ -7,3 +7,4 @@ export { allBinItemsQuery } from './allBinItemsQuery';
 export { restoreMutation } from './restoreMutation';
 export { emptyBinMutation } from './emptyBinMutation';
 export { updatePhotoMutation } from './updatePhotoMutation';
+export { updateAlbumMutation } from './updateAlbumMutation';

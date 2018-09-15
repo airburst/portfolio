@@ -98,11 +98,14 @@ class Manager extends Component {
     const { selectedPhotos, albumId, albumName } = this.state;
     const { client } = this.props;
 
-    // Find photos by id from cache
+    // Find photos and album details by id from cache
     const cache = client.cache.data.data;
     const photos = Object.values(cache).filter(
       c => c.__typename === 'Photo' && selectedPhotos.includes(c.id)
     );
+    const album = Object.values(cache).filter(
+      a => a.__typename === 'Album' && albumId === a.id
+    )[0];
 
     const photo = photos.length ? photos[0] : null;
 
@@ -124,7 +127,7 @@ class Manager extends Component {
           />
           <Inspector
             selected={photo}
-            albumId={albumId}
+            album={album}
             clearInspector={this.clearInspector}
           />
         </div>

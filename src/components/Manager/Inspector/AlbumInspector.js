@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import { debounce } from 'throttle-debounce';
 import { Checkbox } from 'semantic-ui-react';
-import { albumsQuery, updatePhotoMutation } from '../../../queries';
+import { albumsQuery, updateAlbumMutation } from '../../../queries';
 import './Inspector.css';
 
 const initialState = {
@@ -16,11 +16,11 @@ const initialState = {
 class AlbumInspector extends React.Component {
   static propTypes = {
     mutate: PropTypes.func.isRequired,
-    albumId: PropTypes.number,
+    album: PropTypes.object,
   };
 
   static defaultProps = {
-    albumId: null,
+    album: null,
   };
 
   constructor() {
@@ -31,8 +31,9 @@ class AlbumInspector extends React.Component {
   state = initialState;
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.albumId) {
-      this.setState({ id: nextProps.albumId });
+    if (nextProps.album) {
+      // Get album details from cache
+      this.setState(nextProps.album);
     } else {
       this.setState(initialState);
     }
@@ -46,12 +47,12 @@ class AlbumInspector extends React.Component {
     const album = { id, ...change };
     console.log('TCL: AlbumInspector -> onChange -> album', album);
     this.setState(change);
-    // this.emitValue(photo);
+    // this.emitValue(album);
   };
 
-  emitValue(photo) {
+  emitValue(album) {
     this.props.mutate({
-      variables: { photo },
+      variables: { album },
       refetchQueries: [
         {
           query: albumsQuery,
@@ -125,4 +126,4 @@ class AlbumInspector extends React.Component {
   }
 }
 
-export default graphql(updatePhotoMutation)(AlbumInspector);
+export default graphql(updateAlbumMutation)(AlbumInspector);
