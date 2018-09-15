@@ -81,7 +81,11 @@ class Manager extends Component {
   };
 
   albumClickHandler = (e, albumId, albumName) => {
-    this.setState({ albumId, albumName });
+    this.setState({
+      albumId,
+      albumName,
+      selectedPhotos: [],
+    });
   };
 
   removeFilterHandler = () => {

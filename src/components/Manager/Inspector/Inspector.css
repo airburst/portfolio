@@ -18,6 +18,14 @@
   color: white;
 }
 
+.inspector-divider {
+  padding: var(--small-padding);
+  margin-bottom: var(--small-padding);
+  margin-left: -8px;
+  margin-right: -8px;
+  border-bottom: 2px solid var(--media-bgcolor);
+}
+
 .properties {
   display: grid;
   grid-template-columns: 80px 1fr;
