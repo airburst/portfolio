@@ -9,6 +9,10 @@ export const albumsQuery = gql`
         description
         cover
         isPublic
+        photos {
+          id
+          thumbnail
+        }
       }
       errors {
         path

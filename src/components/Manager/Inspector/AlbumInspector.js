@@ -4,12 +4,14 @@ import { graphql } from 'react-apollo';
 import { debounce } from 'throttle-debounce';
 import { Checkbox } from 'semantic-ui-react';
 import { albumsQuery, updateAlbumMutation } from '../../../queries';
+import CoverPhoto from './CoverPhoto';
 import './Inspector.css';
 
 const initialState = {
   id: null,
   name: null,
   description: null,
+  cover: null,
   isPublic: null,
 };
 
@@ -32,7 +34,6 @@ class AlbumInspector extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.album) {
-      // Get album details from cache
       this.setState(nextProps.album);
     } else {
       this.setState(initialState);
@@ -45,9 +46,16 @@ class AlbumInspector extends React.Component {
     const { id } = this.state;
     const change = { [name]: value };
     const album = { id, ...change };
-    console.log('TCL: AlbumInspector -> onChange -> album', album);
     this.setState(change);
     // this.emitValue(album);
+  };
+
+  onDropCoverPhoto = id => {
+    const { album } = this.props;
+    const { photos } = album;
+    console.log('TCL: AlbumInspector -> onDropCoverPhoto -> id', id);
+    console.log('TCL: AlbumInspector -> photos', album);
+    // this.setState({ cover: thumbnail });
   };
 
   emitValue(album) {
@@ -62,65 +70,61 @@ class AlbumInspector extends React.Component {
   }
 
   render() {
-    const { id, name, description, isPublic } = this.state || initialState;
-    console.log('TCL: AlbumInspector -> render -> id', id);
+    const { id, name, description, isPublic } = this.state;
 
     return (
       <React.Fragment>
-        {/* {name && ( */}
-        <React.Fragment>
-          {/* <div className="selected-photo">
-              <img src={getInspectorPhoto(urls)} alt="Selected Placeholder" />
-            </div> */}
+        {name && (
+          <React.Fragment>
+            <div className="inspector-content">
+              <section>
+                <div className="title">Cover Photo</div>
+                <CoverPhoto onDropCoverPhoto={this.onDropCoverPhoto} />
+                <div className="inspector-divider" />
+              </section>
 
-          <div className="inspector-content">
-            <section>
-              <div className="title">Cover Photo</div>
-              <div className="inspector-divider" />
-            </section>
+              <section>
+                <div className="title">Properties</div>
+                <div className="properties">
+                  <div className="heading">Id</div>
+                  <div className="property">{id}</div>
 
-            <section>
-              <div className="title">Properties</div>
-              <div className="properties">
-                <div className="heading">Id</div>
-                <div className="property">{id}</div>
+                  <div className="heading">Name</div>
+                  <div className="property">
+                    <input
+                      className="dark"
+                      type="text"
+                      value={name || ''}
+                      name="name"
+                      onChange={this.onChange}
+                    />
+                  </div>
 
-                <div className="heading">Name</div>
-                <div className="property">
-                  <input
-                    className="dark"
-                    type="text"
-                    value={name || ''}
-                    name="name"
-                    onChange={this.onChange}
-                  />
+                  <div className="heading">Description</div>
+                  <div className="property">
+                    <textarea
+                      className="dark"
+                      rows="6"
+                      name="description"
+                      value={description || ''}
+                      onChange={this.onChange}
+                    />
+                  </div>
+
+                  <div className="heading">Public</div>
+                  <div className="property">
+                    <Checkbox
+                      name="isPublic"
+                      checked={isPublic}
+                      value="isPublic"
+                      onChange={this.onChange}
+                    />
+                  </div>
                 </div>
-
-                <div className="heading">Description</div>
-                <div className="property">
-                  <textarea
-                    className="dark"
-                    rows="6"
-                    name="description"
-                    value={description || ''}
-                    onChange={this.onChange}
-                  />
-                </div>
-
-                <div className="heading">Public</div>
-                <div className="property">
-                  <Checkbox
-                    name="isPublic"
-                    checked={isPublic}
-                    value="isPublic"
-                    onChange={this.onChange}
-                  />
-                </div>
-              </div>
-            </section>
-          </div>
-        </React.Fragment>
-        {/* )} */}
+              </section>
+            </div>
+          </React.Fragment>
+        )}
       </React.Fragment>
     );
   }
