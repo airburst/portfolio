@@ -14,6 +14,7 @@ const initialState = {
   cover: null,
   isPublic: null,
 };
+const COVER_URL_INDEX = 5; // urls[5]
 
 class AlbumInspector extends React.Component {
   static propTypes = {
@@ -54,22 +55,21 @@ class AlbumInspector extends React.Component {
     if (photoId) {
       const { album } = this.props;
       const { id, photos } = album;
-      const thumbnail = photos
+      const cover = photos
         .filter(p => p.id === parseInt(photoId, 10))
-        .map(photo => photo.thumbnail)[0];
-      this.setState({ cover: thumbnail });
-      this.emitValue({ id, cover: thumbnail });
+        .map(photo => photo.urls[COVER_URL_INDEX])[0];
+
+      console.log({ id, photos, cover });
+
+      this.setState({ cover });
+      this.emitValue({ id, cover });
     }
   };
 
   emitValue(album) {
     this.props.mutate({
       variables: { album },
-      refetchQueries: [
-        {
-          query: albumsQuery,
-        },
-      ],
+      refetchQueries: [{ query: albumsQuery }],
     });
   }
 

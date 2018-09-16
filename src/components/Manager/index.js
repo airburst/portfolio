@@ -63,29 +63,6 @@ class Manager extends Component {
 
   thumbnailDragStart = e => {
     e.dataTransfer.setData('photos', this.state.selectedPhotos);
-    // IE: e.dataTransfer.setData(“text/plain”,id)
-
-    // Works:
-    // const img = new Image();
-    // img.src = 'http://localhost:3001/photos/2018/9/2/alps-027-150w.jpg';
-    // e.dataTransfer.setDragImage(img, 75, 50);
-
-    //   componentDidMount() {
-    //     const img = new Image();
-    //     img.src = 'https://some-image.png';
-    //     img.onload = () => this.setState({ dragImg: img });
-    //  }
-    //  drag(e) {
-    //     e.dataTransfer.setDragImage(this.state.dragImg, 0, 0);
-    //  }
-
-    // const crt = this.cloneNode(true);
-    // crt.style.backgroundColor = 'red';
-    // crt.style.position = 'absolute';
-    // crt.style.top = '0px';
-    // crt.style.right = '0px';
-    // document.body.appendChild(crt);
-    // e.dataTransfer.setDragImage(crt, 0, 0);
   };
 
   albumClickHandler = (e, albumId, albumName) => {

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Icon } from 'semantic-ui-react';
 import { graphql } from 'react-apollo';
-import { addPhotosToAlbumMutation } from '../../../../queries';
+import { addPhotosToAlbumMutation, albumsQuery } from '../../../../queries';
 import './FolderTree.css';
 
 class Tree extends React.Component {
@@ -30,6 +30,7 @@ class Tree extends React.Component {
     this.props
       .mutate({
         variables: { albumId: id, photoIds },
+        refetchQueries: [{ query: albumsQuery }],
       })
       .then(({ data }) => {
         if (data.addPhotosToAlbum && !data.addPhotosToAlbum.errors) {

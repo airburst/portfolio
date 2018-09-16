@@ -35,6 +35,7 @@ class CoverPhoto extends React.Component {
     const coverStyle = {
       backgroundImage: `url(${cover})`,
       backgroundPosition: 'center',
+      backgroundSize: '50%',
       backgroundRepeat: 'no-repeat',
     };
 

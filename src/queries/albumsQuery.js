@@ -12,6 +12,7 @@ export const albumsQuery = gql`
         photos {
           id
           thumbnail
+          urls
         }
       }
       errors {

@@ -29,14 +29,14 @@
 * [x] Wire up restoreAll Mutation
 * [x] Wire up empty Mutation
 * [x] Deselect photos after binning (should also empty Inspector)
-* [ ] Update gallery name, etc. in Inspector when gallery is selected
-* [ ] Assign cover photo
+* [x] Update gallery name, etc. in Inspector when gallery is selected
+* [x] Assign cover photo
 
 * [ ] Handle large batches of uploads
 * [ ] Add a progress bar for uploads
 * [ ] Handle Cmd click / Shift click on Mac
+* [ ] Style: show droppble style on Bin
 * [ ] Implement search/sort
-* [ ] Display count on dragging image when many are selected
 * [ ] View content of Bin and allow selective restore?
 
 ## Galleries View
@@ -50,6 +50,7 @@
 
 ## Home page
 * [ ] Animate login form into page
+* [ ] Remove semantic ui to reduce bundle size
 * [ ] Static image or ken burns effect
 * [ ] Confirm Header actions and UI
 * [ ] MUST be mobile-first
@@ -65,29 +66,3 @@
 
 ## Snagging / Bugs
 * [x] Don't scroll media section topbar off screen (CSS)
-* [ ] Enable a light theme for Manager
-
-
-# Queries
-
-```
-mutation {
-  updateAlbum(album: { id: 2, name:"Awesome Photos", cover: "http://cover2.me", isPublic:false })
-}
-```
-
-```
-// This is destructive immediately.  Does not use the bin to restore?
-mutation {
-  removePhotosFromAlbum(albumId: 2, photoIds:[1]) {
-    data
-    errors {
-      message
-    }
-  }
-}
-```
-
-mutation {
-  deleteAlbum(albumId:1)
-}
