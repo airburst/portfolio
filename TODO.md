@@ -32,8 +32,9 @@
 * [ ] Update gallery name, etc. in Inspector when gallery is selected
 * [ ] Assign cover photo
 
+* [ ] Handle large batches of uploads
 * [ ] Add a progress bar for uploads
-* [ ] Index tables for search and sort
+* [ ] Handle Cmd click / Shift click on Mac
 * [ ] Implement search/sort
 * [ ] Display count on dragging image when many are selected
 * [ ] View content of Bin and allow selective restore?

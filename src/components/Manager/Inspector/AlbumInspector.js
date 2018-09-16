@@ -47,15 +47,19 @@ class AlbumInspector extends React.Component {
     const change = { [name]: value };
     const album = { id, ...change };
     this.setState(change);
-    // this.emitValue(album);
+    this.emitValue(album);
   };
 
-  onDropCoverPhoto = id => {
-    const { album } = this.props;
-    const { photos } = album;
-    console.log('TCL: AlbumInspector -> onDropCoverPhoto -> id', id);
-    console.log('TCL: AlbumInspector -> photos', album);
-    // this.setState({ cover: thumbnail });
+  onDropCoverPhoto = photoId => {
+    if (photoId) {
+      const { album } = this.props;
+      const { id, photos } = album;
+      const thumbnail = photos
+        .filter(p => p.id === parseInt(photoId, 10))
+        .map(photo => photo.thumbnail)[0];
+      this.setState({ cover: thumbnail });
+      this.emitValue({ id, cover: thumbnail });
+    }
   };
 
   emitValue(album) {
@@ -70,7 +74,7 @@ class AlbumInspector extends React.Component {
   }
 
   render() {
-    const { id, name, description, isPublic } = this.state;
+    const { id, name, description, cover, isPublic } = this.state;
 
     return (
       <React.Fragment>
@@ -79,7 +83,10 @@ class AlbumInspector extends React.Component {
             <div className="inspector-content">
               <section>
                 <div className="title">Cover Photo</div>
-                <CoverPhoto onDropCoverPhoto={this.onDropCoverPhoto} />
+                <CoverPhoto
+                  onDropCoverPhoto={this.onDropCoverPhoto}
+                  cover={cover}
+                />
                 <div className="inspector-divider" />
               </section>
 

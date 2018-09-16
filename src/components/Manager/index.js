@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withApollo } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 import Body from '../Body';
 import Library from './Library';
 import MediaViewer from './MediaViewer';
 import Inspector from './Inspector';
+import { allPhotosQuery, albumsQuery } from '../../queries';
 import './Manager.css';
 
 // TODO: handle Mac command keypress
@@ -15,7 +16,6 @@ import './Manager.css';
 
 // Manage array of selected thumbnails, including Ctrl and Shift clicks
 const getSelectionState = (state, e) => {
-  console.log('TCL: getSelectionState -> e', e.key);
   const id = parseInt(e.target.id, 10);
   // If state already contains entry, remove it. Else add it
   const index = state.indexOf(id);
@@ -41,7 +41,8 @@ const getSelectionState = (state, e) => {
 
 class Manager extends Component {
   static propTypes = {
-    client: PropTypes.object.isRequired,
+    albumsData: PropTypes.object.isRequired,
+    photosData: PropTypes.object.isRequired,
   };
 
   state = {
@@ -103,16 +104,21 @@ class Manager extends Component {
 
   render() {
     const { selectedPhotos, albumId, albumName } = this.state;
-    const { client } = this.props;
+    const { photosData, albumsData } = this.props;
+    const { allPhotos } = photosData;
+    const { allAlbums } = albumsData;
 
-    // Find photos and album details by id from cache
-    const cache = client.cache.data.data;
-    const photos = Object.values(cache).filter(
-      c => c.__typename === 'Photo' && selectedPhotos.includes(c.id)
-    );
-    const album = Object.values(cache).filter(
-      a => a.__typename === 'Album' && albumId === a.id
-    )[0];
+    // Find photos and album details by id
+    const photos =
+      allPhotos && allPhotos.data
+        ? Object.values(allPhotos.data).filter(c =>
+            selectedPhotos.includes(c.id)
+          )
+        : [];
+    const album =
+      allAlbums && allAlbums.data
+        ? Object.values(allAlbums.data).filter(a => albumId === a.id)[0]
+        : null;
 
     const photo = photos.length ? photos[0] : null;
 
@@ -143,4 +149,7 @@ class Manager extends Component {
   }
 }
 
-export default withApollo(Manager);
+export default compose(
+  graphql(albumsQuery, { name: 'albumsData' }),
+  graphql(allPhotosQuery, { name: 'photosData' })
+)(Manager);

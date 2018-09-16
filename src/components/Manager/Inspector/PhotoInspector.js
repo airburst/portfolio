@@ -23,11 +23,10 @@ const initialState = {
 };
 
 const getInspectorPhoto = urls => {
-  if (!urls || !urls.json) {
+  if (!urls) {
     return null;
   }
-  const u = urls.json;
-  return u[5] ? u[5] : u[6];
+  return urls[5] ? urls[5] : urls[6];
 };
 
 class PhotoInspector extends React.Component {
