@@ -77,8 +77,16 @@ class PhotoInspector extends React.Component {
   }
 
   render() {
-    const { name, title, caption, width, height, urls, isPublic, dateTaken } =
-      this.state || initialState;
+    const {
+      name,
+      title,
+      caption,
+      width,
+      height,
+      urls,
+      isPublic,
+      dateTaken,
+    } = this.state;
 
     return (
       <React.Fragment>

@@ -7,8 +7,15 @@ import MediaViewer from './MediaViewer';
 import Inspector from './Inspector';
 import './Manager.css';
 
+// TODO: handle Mac command keypress
+// Firefox: 224
+// Opera: 17
+// WebKit browsers (Safari/Chrome): 91 (Left Command) or 93 (Right Command)
+// https://github.com/MichaelZelensky/jsLibraries/blob/master/macKeys.js
+
 // Manage array of selected thumbnails, including Ctrl and Shift clicks
 const getSelectionState = (state, e) => {
+  console.log('TCL: getSelectionState -> e', e.key);
   const id = parseInt(e.target.id, 10);
   // If state already contains entry, remove it. Else add it
   const index = state.indexOf(id);

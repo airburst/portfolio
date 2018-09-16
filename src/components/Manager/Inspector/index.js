@@ -17,16 +17,14 @@ class Inspector extends React.Component {
 
   render() {
     const { selected, album } = this.props;
+    const displayAlbum = !!album && !!album.id;
 
     return (
       <div className="inspector-section">
         <div className="topbar">Inspector</div>
         <div className="properties-content">
-          {album ? (
-            <AlbumInspector album={album} />
-          ) : (
-            <PhotoInspector selected={selected} />
-          )}
+          <AlbumInspector album={album} />}
+          {!displayAlbum && <PhotoInspector selected={selected} />}
         </div>
       </div>
     );
