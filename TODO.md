@@ -31,6 +31,7 @@
 * [x] Deselect photos after binning (should also empty Inspector)
 * [x] Update gallery name, etc. in Inspector when gallery is selected
 * [x] Assign cover photo
+* [ ] BUG - don't drop an album on an album
 
 * [ ] Handle large batches of uploads
 * [ ] Add a progress bar for uploads

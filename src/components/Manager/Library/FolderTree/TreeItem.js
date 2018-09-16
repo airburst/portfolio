@@ -26,21 +26,23 @@ class Tree extends React.Component {
 
   onDrop = (e, id) => {
     const photos = e.dataTransfer.getData('photos');
-    const photoIds = photos.split(',').map(p => parseInt(p, 10));
-    this.props
-      .mutate({
-        variables: { albumId: id, photoIds },
-        refetchQueries: [{ query: albumsQuery }],
-      })
-      .then(({ data }) => {
-        if (data.addPhotosToAlbum && !data.addPhotosToAlbum.errors) {
-          this.setState({ hovering: false });
-        } else {
-          // TODO: bubble error
-          console.log('TreeItem error', data.addPhotosToAlbum.errors);
-        }
-      })
-      .catch(err => console.log('Error adding photos to album', err.message));
+    if (photos) {
+      const photoIds = photos.split(',').map(p => parseInt(p, 10));
+      this.props
+        .mutate({
+          variables: { albumId: id, photoIds },
+          refetchQueries: [{ query: albumsQuery }],
+        })
+        .then(({ data }) => {
+          if (data.addPhotosToAlbum && !data.addPhotosToAlbum.errors) {
+            this.setState({ hovering: false });
+          } else {
+            // TODO: bubble error
+            console.log('TreeItem error', data.addPhotosToAlbum.errors);
+          }
+        })
+        .catch(err => console.log('Error adding photos to album', err.message));
+    }
   };
 
   onDragEnter = () => {

@@ -18,7 +18,12 @@ const enhance = withFormik({
     const { mutate, cancelHandler } = props;
     const response = await mutate({
       variables: { album: { name: values.name.trim() } },
-      refetchQueries: [{ query: albumsQuery }],
+      refetchQueries: [
+        {
+          query: albumsQuery,
+          fetchPolicy: 'network-only',
+        },
+      ],
     });
     const success = response.data.addAlbum;
     if (success) {

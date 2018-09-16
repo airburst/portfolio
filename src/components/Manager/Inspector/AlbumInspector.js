@@ -58,9 +58,6 @@ class AlbumInspector extends React.Component {
       const cover = photos
         .filter(p => p.id === parseInt(photoId, 10))
         .map(photo => photo.urls[COVER_URL_INDEX])[0];
-
-      console.log({ id, photos, cover });
-
       this.setState({ cover });
       this.emitValue({ id, cover });
     }
