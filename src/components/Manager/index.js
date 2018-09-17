@@ -6,38 +6,8 @@ import Library from './Library';
 import MediaViewer from './MediaViewer';
 import Inspector from './Inspector';
 import { allPhotosQuery, albumsQuery } from '../../queries';
+import { selectionState } from './selectionState';
 import './Manager.css';
-
-// TODO: handle Mac command keypress
-// Firefox: 224
-// Opera: 17
-// WebKit browsers (Safari/Chrome): 91 (Left Command) or 93 (Right Command)
-// https://github.com/MichaelZelensky/jsLibraries/blob/master/macKeys.js
-
-// Manage array of selected thumbnails, including Ctrl and Shift clicks
-const getSelectionState = (state, e) => {
-  const id = parseInt(e.target.id, 10);
-  // If state already contains entry, remove it. Else add it
-  const index = state.indexOf(id);
-  if (index > -1) {
-    const newState = [...state];
-    newState.splice(index, 1);
-    return newState;
-  }
-  if (e.ctrlKey) {
-    return [...state, id];
-  }
-  // if (e.shiftKey) {
-  //   const last = state[state.length - 1];
-  //   // NOTE: Only works in id sort order
-  //   const idRange = [];
-  //   for (let i = id; i < last; i++) {
-  //     idRange.push(i);
-  //   }
-  //   return [...state, ...idRange];
-  // }
-  return [id];
-};
 
 class Manager extends Component {
   static propTypes = {
@@ -51,9 +21,17 @@ class Manager extends Component {
     albumName: null,
   };
 
-  thumbnailClickHandler = e => {
-    const { selectedPhotos } = this.state;
-    const newSelection = getSelectionState(selectedPhotos, e);
+  thumbnailClickHandler = (e, keyCode) => {
+    const { selectedPhotos, albumId } = this.state;
+    const { photosData } = this.props;
+    const { allPhotos } = photosData;
+    const newSelection = selectionState(
+      e,
+      keyCode,
+      selectedPhotos,
+      allPhotos,
+      albumId
+    ); // Pass sort order and filter
     this.setState({ selectedPhotos: newSelection });
   };
 
