@@ -26,8 +26,21 @@ class MediaViewer extends React.Component {
   state = {
     showUploads: false,
     uploadSizes: null,
+    height: 0,
     // search: '', // TODO: use search
   };
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions = () =>
+    this.setState({ height: window.innerHeight - 50 });
 
   onChange = (name, value) => {
     this.setState({ [name]: value });
@@ -61,9 +74,10 @@ class MediaViewer extends React.Component {
     } = this.props;
     const { showUploads, uploadSizes } = this.state;
     const photos = allPhotos ? allPhotos.data : [];
+    const styles = { height: this.state.height };
 
     return (
-      <div className="media-section">
+      <div className="media-section" style={styles}>
         <Toolbar
           onSearchChange={v => this.onChange('search', v)}
           uploadClickHandler={this.uploadClickHandler}

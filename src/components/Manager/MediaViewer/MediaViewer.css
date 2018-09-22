@@ -7,7 +7,7 @@
   display: grid;
   grid-template-columns: var(--padding) 1fr var(--padding);
   grid-template-rows: 150px;
-  height: 100%;
+  height: calc(100% - 48px);
   background-color: var(--media-bgcolor);
   overflow-y: scroll;
 }
