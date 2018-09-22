@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { Button, Icon } from 'semantic-ui-react';
 import Dropzone from 'react-dropzone';
 import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
 import './FileUpload.css';
-import { allPhotosQuery } from '../../../../queries';
+import { allPhotosQuery, uploadPhotoMutation } from '../../../../queries';
+import batch from '../../../../services/batch';
 
 const FileUpload = props => {
   let dropzoneRef;
@@ -17,20 +17,19 @@ const FileUpload = props => {
     dropzoneRef.open();
   };
 
+  const doUpload = file =>
+    mutate({
+      variables: { file },
+      refetchQueries: [{ query: allPhotosQuery }],
+    })
+      .then(response => uploadResponseHandler(response))
+      .catch(err => console.log('Error', err.message));
+
   const onDrop = files => {
     if (files.length) {
       const sizes = files.map(f => f.size);
       setUploadSizes(sizes);
-      mutate({
-        variables: { files, sizes },
-        refetchQueries: [
-          {
-            query: allPhotosQuery,
-          },
-        ],
-      })
-        .then(response => uploadResponseHandler(response))
-        .catch(err => console.log('Error', err.message));
+      batch()(files, doUpload);
     }
   };
 
@@ -59,15 +58,4 @@ FileUpload.propTypes = {
   closeHandler: PropTypes.func.isRequired,
 };
 
-// GQL Mutation
-const uploadPhotosMutation = gql`
-  mutation uploadPhotos($files: [Upload!]!, $sizes: [Int!]) {
-    uploadPhotos(files: $files, sizes: $sizes) {
-      success
-      error
-      thumbnail
-    }
-  }
-`;
-
-export default graphql(uploadPhotosMutation)(FileUpload);
+export default graphql(uploadPhotoMutation)(FileUpload);

@@ -51,10 +51,19 @@ class MediaViewer extends React.Component {
   };
 
   uploadResponseHandler = ({ data }) => {
-    const { uploadPhotos } = data;
-    if (uploadPhotos && uploadPhotos.length) {
-      this.setState({ uploadSizes: null });
-    }
+    const { uploadPhoto } = data;
+
+    // TODO: set the relevant preview to display thumbnail and not loader
+
+    console.log('TCL: MediaViewer -> uploadPhoto', uploadPhoto);
+    // if (uploadPhoto && uploadPhotos.length) {
+    //   this.setState({ uploadSizes: null });
+    // }
+
+    // const { uploadPhotos } = data;
+    // if (uploadPhotos && uploadPhotos.length) {
+    //   this.setState({ uploadSizes: null });
+    // }
   };
 
   hideUploads = () => this.setState({ showUploads: false });

@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { graphql } from 'react-apollo';
 import { Label } from 'semantic-ui-react';
-import { uploadProgressSubscription } from '../../../queries';
 import './MediaViewer.css';
 
 const Count = ({ count }) => (
