@@ -11,8 +11,9 @@
 }
 
 .admin-container {
+  position: relative;
   flex-grow: 1;
-  height: 100%;
+  height: calc(100% - 48px);
   display: grid;
   grid-template-columns: var(--panelwidth) 1fr var(--panelwidth);
   grid-template-rows: 1fr;
@@ -27,11 +28,12 @@
 }
 
 .topbar {
+  /* flex: 0 0 auto; */
   display: flex;
   flex-direction: row;
   align-items: center;
   padding-left: var(--small-padding);
-  height: var(--topbar-height);
+  min-height: var(--topbar-height);
   background-color: var(--topbar);
   color: #ccc;
   background: -moz-linear-gradient(top, #333333 0%, #272727 100%); /* FF3.6-15 */

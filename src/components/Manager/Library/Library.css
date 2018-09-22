@@ -1,21 +1,16 @@
 .library-section {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  /* height: calc(100% - 48px); Done in JS */
 }
 
 .library-content {
-  flex-grow: 1;
+  flex: 1;
   display: flex;
   flex-direction: column;
   width: 100%;
-  /* padding: var(--small-padding); */
-  /* overflow-y: scroll; */
+  overflow-y: auto;
   color: white;
-}
-
-.collections {
-  flex-grow: 1;
 }
 
 .library-action-buttons {
@@ -24,4 +19,5 @@
   justify-content: flex-start;
   padding: var(--small-padding);
   border-top: 1px solid var(--media-bgcolor);
+  min-height: 56px;
 }

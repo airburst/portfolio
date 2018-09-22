@@ -17,7 +17,19 @@ class Library extends React.Component {
     albumId: null,
   };
 
-  state = { open: false };
+  state = {
+    open: false,
+    height: 0,
+  };
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
 
   show = () => this.setState({ open: true });
 
@@ -25,12 +37,16 @@ class Library extends React.Component {
 
   removeAlbumFilter = e => this.props.albumClickHandler(e, null, null);
 
+  updateWindowDimensions = () =>
+    this.setState({ height: window.innerHeight - 50 });
+
   render() {
     const { open } = this.state;
     const { albumClickHandler, albumId, deselectPhotos } = this.props;
+    const styles = { height: this.state.height };
 
     return (
-      <div className="library-section">
+      <div className="library-section" style={styles}>
         <div className="topbar">Library</div>
 
         <div className="library-content">

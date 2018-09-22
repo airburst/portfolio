@@ -1,5 +1,6 @@
 .media-section {
   background-color: var(--media-bgcolor);
+  /* height: calc(100% - 48px); */
 }
 
 .media-container {

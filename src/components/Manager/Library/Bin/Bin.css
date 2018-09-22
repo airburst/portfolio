@@ -1,6 +1,7 @@
 .bin-container {
   display: flex;
   flex-direction: row;
+  min-height: 56px;
   align-items: center;
   padding: var(--small-padding) var(--padding);
   color: var(--muted-color);
