@@ -62,6 +62,7 @@ class Bin extends React.Component {
   onDrop = e => {
     const photos = e.dataTransfer.getData('photos');
     const album = e.dataTransfer.getData('album');
+    this.setState({ hovering: false });
     if (album) {
       this.addToBin('album', [parseInt(album, 10)]);
       this.props.removeAlbumFilter();
@@ -97,22 +98,27 @@ class Bin extends React.Component {
     } = this.props;
     const photos = (allBinItems && allBinItems.photos) || [];
     const albums = (allBinItems && allBinItems.albums) || [];
-    const { showMenu } = this.state;
+    const { showMenu, hovering } = this.state;
     const count = photos.length + albums.length;
     const hasContent = count > 0;
-    const binClass = `bin-container${hasContent ? ' not-empty' : ''}`;
+    const binClass = `bin-container${hasContent ? ' not-empty' : ''}${
+      hovering ? ' droppable' : ''
+    }`;
 
     return (
       <React.Fragment>
         <div
-          className={binClass}
+          className="bin-dropzone"
           droppable="true"
           onDragEnter={this.onDragEnter}
+          onMouseOver={this.onDragEnter}
           onDragOver={this.onDragOver}
+          onMouseOut={this.onDragLeave}
           onDragLeave={this.onDragLeave}
           onDrop={this.onDrop}
           onClick={this.binClickHandler}
-        >
+        />
+        <div className={binClass}>
           <div className="icon">
             <Icon name="trash alternate" size="large" />
           </div>

@@ -13,10 +13,18 @@
   cursor: pointer;
 }
 
-.bin-container.not-empty:hover,
 .bin-container.droppable {
   background-color: #333;
   color: white;
+}
+
+.bin-dropzone {
+  position: absolute;
+  bottom: 56px;
+  width: 300px;
+  height: 56px;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .bin-text {
