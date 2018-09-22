@@ -8,9 +8,9 @@
 * [x] BUG: Clicking same photo clings on to old state
 * [x] Delete a photo
 * [x] Delete uploaded file once photos created
-* [ ] Handle captions from exif
+* [x] Handle captions from exif
+* [ ] Format date in Inspector
 * [ ] Use larger image in 500px mode
-* [ ] Format date
 
 ## Photo Galleries (Manager)
 * [x] Model for gallery object
@@ -31,14 +31,11 @@
 * [x] Deselect photos after binning (should also empty Inspector)
 * [x] Update gallery name, etc. in Inspector when gallery is selected
 * [x] Assign cover photo
-
-* [ ] Handle Cmd click / Shift click on Mac
-* [ ] Format date in Inspector
+* [x] Handle Cmd click / Shift click on Mac
 * [ ] Handle large batches of uploads
 * [ ] Add a progress bar for uploads
 * [ ] Style: show droppble style on Bin
 * [ ] Implement search/sort
-* [ ] View content of Bin and allow selective restore?
 
 ## Galleries View
 * [ ] Grid layout of gallery cards with cover photos

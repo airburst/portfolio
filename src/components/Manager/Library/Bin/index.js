@@ -36,10 +36,10 @@ class Bin extends React.Component {
     hovering: false,
   };
 
-  addToBin = (type, ids) => {
+  addToBin = (type, ids, albumId) => {
     this.props.mutate({
       mutation: addToBinMutation,
-      variables: { type, ids },
+      variables: { type, ids, albumId },
       refetchQueries: refetchQueries(this.props.albumId),
     });
     if (type === 'photo') {
@@ -68,7 +68,7 @@ class Bin extends React.Component {
     }
     if (photos) {
       const photoIds = photos.split(',').map(p => parseInt(p, 10));
-      this.addToBin('photo', photoIds);
+      this.addToBin('photo', photoIds, this.props.albumId);
     }
   };
 

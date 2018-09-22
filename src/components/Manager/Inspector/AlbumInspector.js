@@ -51,15 +51,15 @@ class AlbumInspector extends React.Component {
     this.emitValue(album);
   };
 
-  onDropCoverPhoto = photoId => {
-    if (photoId) {
+  onDropCoverPhoto = coverId => {
+    if (coverId) {
       const { album } = this.props;
       const { id, photos } = album;
       const cover = photos
-        .filter(p => p.id === parseInt(photoId, 10))
+        .filter(p => p.id === parseInt(coverId, 10))
         .map(photo => photo.urls[COVER_URL_INDEX])[0];
       this.setState({ cover });
-      this.emitValue({ id, cover });
+      this.emitValue({ id, cover, coverId });
     }
   };
 

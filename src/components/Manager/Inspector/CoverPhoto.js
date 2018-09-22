@@ -18,8 +18,9 @@ class CoverPhoto extends React.Component {
 
   onDrop = e => {
     const photos = e.dataTransfer.getData('photos');
+    const photoIds = photos.split(',').map(p => parseInt(p, 10));
     this.setState({ hovering: false });
-    this.props.onDropCoverPhoto(photos[0]);
+    this.props.onDropCoverPhoto(photoIds[0]);
   };
 
   onDragEnter = () => this.setState({ hovering: true });
