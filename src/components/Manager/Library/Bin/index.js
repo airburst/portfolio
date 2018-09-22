@@ -12,8 +12,8 @@ import {
 } from '../../../../queries';
 import './Bin.css';
 
-const refetchQueries = [
-  { query: allPhotosQuery },
+const refetchQueries = albumId => [
+  { query: allPhotosQuery, variables: { albumId } },
   { query: allBinItemsQuery },
   { query: albumsQuery },
 ];
@@ -24,6 +24,11 @@ class Bin extends React.Component {
     mutate: PropTypes.func.isRequired,
     removeAlbumFilter: PropTypes.func.isRequired,
     removePhotos: PropTypes.func.isRequired,
+    albumId: PropTypes.number,
+  };
+
+  static defaultProps = {
+    albumId: null,
   };
 
   state = {
@@ -35,7 +40,7 @@ class Bin extends React.Component {
     this.props.mutate({
       mutation: addToBinMutation,
       variables: { type, ids },
-      refetchQueries,
+      refetchQueries: refetchQueries(this.props.albumId),
     });
     if (type === 'photo') {
       this.props.removePhotos();
@@ -45,13 +50,13 @@ class Bin extends React.Component {
   restore = () =>
     this.props.mutate({
       mutation: restoreMutation,
-      refetchQueries,
+      refetchQueries: refetchQueries(this.props.albumId),
     });
 
   emptyBin = () =>
     this.props.mutate({
       mutation: emptyBinMutation,
-      refetchQueries,
+      refetchQueries: refetchQueries(this.props.albumId),
     });
 
   onDrop = e => {
@@ -138,7 +143,7 @@ class Bin extends React.Component {
 
 export default compose(
   graphql(allBinItemsQuery, {
-    options: props => ({ fetchPolicy: 'network-only' }),
+    options: () => ({ fetchPolicy: 'network-only' }),
   }),
   graphql(addToBinMutation)
 )(Bin);

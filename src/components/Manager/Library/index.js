@@ -43,6 +43,7 @@ class Library extends React.Component {
         </div>
 
         <Bin
+          albumId={albumId}
           removeAlbumFilter={this.removeAlbumFilter}
           removePhotos={deselectPhotos}
         />
