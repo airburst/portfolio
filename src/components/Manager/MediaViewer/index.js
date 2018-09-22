@@ -60,6 +60,7 @@ class MediaViewer extends React.Component {
       albumName,
     } = this.props;
     const { showUploads, uploadSizes } = this.state;
+    const photos = allPhotos ? allPhotos.data : [];
 
     return (
       <div className="media-section">
@@ -81,7 +82,7 @@ class MediaViewer extends React.Component {
             {uploadSizes &&
               uploadSizes.length && <Previews sizes={uploadSizes} />}
             <Thumbnails
-              photos={allPhotos}
+              photos={photos}
               selected={selected}
               clickHandler={thumbnailClickHandler}
               dragHandler={thumbnailDragHandler}

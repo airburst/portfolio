@@ -23,7 +23,11 @@ class FolderTree extends React.Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.data !== this.props.data) {
+    if (
+      nextProps.data &&
+      nextProps.data.allAlbums &&
+      nextProps.data !== this.props.data
+    ) {
       const { data } = nextProps.data.allAlbums;
       this.setState({ data });
     }

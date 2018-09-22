@@ -21,15 +21,13 @@ class Manager extends Component {
     albumName: null,
   };
 
-  thumbnailClickHandler = (e, keyCode) => {
+  thumbnailClickHandler = photoSet => (e, keyCode) => {
     const { selectedPhotos, albumId } = this.state;
-    const { photosData } = this.props;
-    const { allPhotos } = photosData;
     const newSelection = selectionState(
       e,
       keyCode,
       selectedPhotos,
-      allPhotos,
+      photoSet,
       albumId
     ); // Pass sort order and filter
     this.setState({ selectedPhotos: newSelection });
