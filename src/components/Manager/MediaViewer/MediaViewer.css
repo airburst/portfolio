@@ -36,10 +36,15 @@
 }
 
 .thumbnail.preview {
+  background-color: #222;
+  border: 3px solid #333;
+  border-radius: 5px;
+}
+/* .thumbnail.preview {
   background-color: #333;
   background: url('/../../assets/images/preview.png') no-repeat;
   background-size: contain;
-}
+} */
 
 .thumbnail>img {
   position: relative;

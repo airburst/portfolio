@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { graphql } from 'react-apollo';
 import { Label } from 'semantic-ui-react';
+import { uploadProgressSubscription } from '../../../queries';
 import './MediaViewer.css';
 
 const Count = ({ count }) => (
@@ -35,6 +37,7 @@ class Thumbnail extends React.Component {
   componentWillMount() {
     document.addEventListener('keydown', this.keyDownHandler);
     document.addEventListener('keyup', this.keyUpHandler);
+    // this.unsubscribe = this.subscribe(this.props.id);
   }
 
   componentWillUnmount() {

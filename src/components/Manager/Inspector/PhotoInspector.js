@@ -29,6 +29,15 @@ const getInspectorPhoto = urls => {
   return urls[5] ? urls[5] : urls[6];
 };
 
+const formatDate = datetime => {
+  const dateString = new Date(datetime).toISOString().split('T')[0];
+  const reversed = dateString
+    .split('-')
+    .reverse()
+    .join('/');
+  return reversed;
+};
+
 class PhotoInspector extends React.Component {
   static propTypes = {
     mutate: PropTypes.func.isRequired,
@@ -126,7 +135,7 @@ class PhotoInspector extends React.Component {
                 <div className="property">{`${width} x ${height}`}</div>
 
                 <div className="heading">Date Taken</div>
-                <div className="property">{dateTaken}</div>
+                <div className="property">{formatDate(+dateTaken)}</div>
 
                 <div className="heading">Public</div>
                 <div className="property">

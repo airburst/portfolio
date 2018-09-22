@@ -1,11 +1,13 @@
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { setContext } from 'apollo-link-context';
-import { ApolloLink } from 'apollo-link';
-// import { WebSocketLink } from 'apollo-link-ws';
+import { ApolloLink, split } from 'apollo-link';
+import { WebSocketLink } from 'apollo-link-ws';
+import { getMainDefinition } from 'apollo-utilities';
 import { createUploadLink } from 'apollo-upload-client';
 
-const uri = process.env.REACT_APP_SERVER_URL || 'http://localhost:3001/graphql';
+const uri = 'http://localhost:3001/graphql';
+const wsUri = 'ws://localhost:3001/graphql';
 
 const httpLink = createUploadLink({ uri });
 
@@ -39,7 +41,34 @@ const httpLinkWithMiddleware = afterwareLink.concat(
   middlewareLink.concat(httpLink)
 );
 
+// Subscriptions setup
+export const wsLink = new WebSocketLink({
+  uri: wsUri,
+  options: {
+    reconnect: true,
+    lazy: true,
+    connectionParams: () => ({
+      token: localStorage.getItem('token'),
+      refreshToken: localStorage.getItem('refreshToken'),
+    }),
+  },
+});
+
+const link = split(
+  ({ query }) => {
+    const { kind, operation } = getMainDefinition(query);
+    return kind === 'OperationDefinition' && operation === 'subscription';
+  },
+  wsLink,
+  httpLinkWithMiddleware
+);
+
 export default new ApolloClient({
-  link: httpLinkWithMiddleware,
+  link,
   cache: new InMemoryCache(),
 });
+
+// export default new ApolloClient({
+//   link: httpLinkWithMiddleware,
+//   cache: new InMemoryCache(),
+// });

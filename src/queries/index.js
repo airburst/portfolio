@@ -8,3 +8,4 @@ export { restoreMutation } from './restoreMutation';
 export { emptyBinMutation } from './emptyBinMutation';
 export { updatePhotoMutation } from './updatePhotoMutation';
 export { updateAlbumMutation } from './updateAlbumMutation';
+export { uploadProgressSubscription } from './uploadProgressSubscription';

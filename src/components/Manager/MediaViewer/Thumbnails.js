@@ -4,6 +4,7 @@ import { Loader } from 'semantic-ui-react';
 import Thumbnail from './Thumbnail';
 import './MediaViewer.css';
 
+// TODO: Include a progress bar on each preview
 export const Previews = ({ sizes }) =>
   sizes.map((k, i) => (
     <div className="thumbnail preview" key={i}>
