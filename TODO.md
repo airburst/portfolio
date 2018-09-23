@@ -57,6 +57,7 @@
 
 ## General
 * [ ] Performance testing in Chrome devtools
+* [ ] Handle validation error on uploading duplicate filename
 * [ ] Add a logout feature
 * [ ] Create short urls to share photo links (TBC)
 * [ ] Bubble up GQL errors to a toast handler
