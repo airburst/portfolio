@@ -12,6 +12,11 @@ const Header = () => (
         </Link>
       </li>
       <li className="photos">
+        <Link className="menu-item" to="/gallery" title="Test gallery">
+          Test Gallery
+        </Link>
+      </li>
+      <li className="photos">
         <Link className="menu-item" to="/" title="View photo galleries">
           View Site
         </Link>

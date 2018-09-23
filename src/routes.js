@@ -4,6 +4,7 @@ import decode from 'jwt-decode';
 
 import Home from './components/Home';
 import Login from './components/Login';
+import Gallery from './components/Gallery';
 import Header from './components/Header';
 import Manager from './components/Manager';
 import './index.css';
@@ -45,6 +46,7 @@ const Routes = () => (
   <Switch>
     <Route path="/" exact component={Home} />
     <Route path="/login" exact component={Login} />
+    <Route path="/gallery" exact component={Gallery} />
     <PrivateRoute path="/manager" exact component={Manager} />
   </Switch>
 );

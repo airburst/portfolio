@@ -36,12 +36,13 @@
 * [N] Add a progress bar for uploads
 * [ ] Implement search/sort
 
-## Galleries View
+## Galleries Route
+* [ ] Route and menu entry
 * [ ] Grid layout of gallery cards with cover photos
 * [ ] Increment view counter for albums
 * [ ] MUST be mobile-first
 
-## Gallery/Photos View
+## Gallery/n Route
 * [ ] Masonry layout of gallery cards with cover photos
 * [ ] MUST be mobile-first
 
@@ -50,6 +51,7 @@
 * [ ] Remove semantic ui to reduce bundle size
 * [ ] Static image or ken burns effect
 * [ ] Confirm Header actions and UI
+* [ ] Show signed-in name (with option to logout?)
 * [ ] MUST be mobile-first
 
 ## Portfolio View (TBC)
@@ -57,6 +59,7 @@
 
 ## General
 * [ ] Performance testing in Chrome devtools
+* [ ] Bundle splitting
 * [ ] Handle validation error on uploading duplicate filename
 * [ ] Add a logout feature
 * [ ] Create short urls to share photo links (TBC)

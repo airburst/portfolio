@@ -20,7 +20,7 @@ body.dark .page-header {
 
 body.dark .page-header > .nav {
   display: grid;
-  grid-template-columns: auto 100px 100px;
+  grid-template-columns: 1fr minmax(120px, auto) minmax(100px, auto) 100px;
   justify-items: center;
   align-items: center;
   height: 100%;
