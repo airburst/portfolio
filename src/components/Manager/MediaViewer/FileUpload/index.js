@@ -9,7 +9,13 @@ import batch from '../../../../services/batch';
 
 const FileUpload = props => {
   let dropzoneRef;
-  const { uploadResponseHandler, closeHandler, setUploadSizes, mutate } = props;
+  const {
+    uploadResponseHandler,
+    closeHandler,
+    setUploads,
+    setUploading,
+    mutate,
+  } = props;
 
   const buttonHandler = e => {
     e.preventDefault();
@@ -17,18 +23,23 @@ const FileUpload = props => {
     dropzoneRef.open();
   };
 
-  const doUpload = file =>
-    mutate({
+  const doUpload = file => {
+    // Change uploading state
+    const { name } = file;
+    console.log('TCL: name', name);
+    setUploading({ name, uploading: true });
+    // Do the upload
+    return mutate({
       variables: { file },
       refetchQueries: [{ query: allPhotosQuery }],
     })
       .then(response => uploadResponseHandler(response))
       .catch(err => console.log('Error', err.message));
+  };
 
   const onDrop = files => {
     if (files.length) {
-      const sizes = files.map(f => f.size);
-      setUploadSizes(sizes);
+      setUploads(files);
       batch()(files, doUpload);
     }
   };
@@ -54,7 +65,8 @@ const FileUpload = props => {
 FileUpload.propTypes = {
   mutate: PropTypes.func.isRequired,
   uploadResponseHandler: PropTypes.func.isRequired,
-  setUploadSizes: PropTypes.func.isRequired,
+  setUploading: PropTypes.func.isRequired,
+  setUploads: PropTypes.func.isRequired,
   closeHandler: PropTypes.func.isRequired,
 };
 

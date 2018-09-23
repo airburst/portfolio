@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 export const uploadPhotoMutation = gql`
   mutation uploadPhoto($file: Upload!) {
     uploadPhoto(file: $file) {
+      name
       success
       error
       thumbnail

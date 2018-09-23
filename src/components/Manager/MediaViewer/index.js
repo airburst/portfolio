@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import Toolbar from './Toolbar';
 import FileUpload from './FileUpload';
-import Thumbnails, { Previews } from './Thumbnails';
+import Thumbnails from './Thumbnails';
+import UploadPreviews from './UploadPreviews';
 import { allPhotosQuery } from '../../../queries';
 import './MediaViewer.css';
 
@@ -14,18 +15,18 @@ class MediaViewer extends React.Component {
     thumbnailDragHandler: PropTypes.func.isRequired,
     removeFilterHandler: PropTypes.func.isRequired,
     selected: PropTypes.array.isRequired,
-    albumId: PropTypes.number,
+    // albumId: PropTypes.number,
     albumName: PropTypes.string,
   };
 
   static defaultProps = {
-    albumId: null,
+    // albumId: null,
     albumName: null,
   };
 
   state = {
     showUploads: false,
-    uploadSizes: null,
+    uploads: null,
     height: 0,
     // search: '', // TODO: use search
   };
@@ -52,24 +53,35 @@ class MediaViewer extends React.Component {
 
   uploadResponseHandler = ({ data }) => {
     const { uploadPhoto } = data;
-
-    // TODO: set the relevant preview to display thumbnail and not loader
-
-    console.log('TCL: MediaViewer -> uploadPhoto', uploadPhoto);
-    // if (uploadPhoto && uploadPhotos.length) {
-    //   this.setState({ uploadSizes: null });
-    // }
-
-    // const { uploadPhotos } = data;
-    // if (uploadPhotos && uploadPhotos.length) {
-    //   this.setState({ uploadSizes: null });
-    // }
+    const { name, success, error, thumbnail } = uploadPhoto;
+    if (!success) {
+      // Handle error
+      console.log('FAIL: upload', error);
+      return false;
+    }
+    this.setUploading({ name, thumbnail, uploading: false });
   };
 
   hideUploads = () => this.setState({ showUploads: false });
 
-  setUploadSizes = sizes => {
-    this.setState({ uploadSizes: sizes });
+  setUploads = files => {
+    const uploads = files.map(f => ({
+      name: f.name,
+      uploading: false,
+      thumbnail: null,
+    }));
+    this.setState({ uploads });
+  };
+
+  setUploading = ({ name, uploading, thumbnail }) => {
+    const upload = this.state.uploads.find(u => u.name === name);
+    if (uploading !== undefined) {
+      upload.uploading = uploading;
+    }
+    if (thumbnail) {
+      upload.thumbnail = thumbnail;
+    }
+    this.setState(state => ({ uploads: { ...state.uploads, upload } }));
   };
 
   render() {
@@ -81,7 +93,7 @@ class MediaViewer extends React.Component {
       removeFilterHandler,
       albumName,
     } = this.props;
-    const { showUploads, uploadSizes } = this.state;
+    const { showUploads, uploads } = this.state;
     const photos = allPhotos ? allPhotos.data : [];
     const styles = { height: this.state.height };
 
@@ -96,14 +108,14 @@ class MediaViewer extends React.Component {
         {showUploads && (
           <FileUpload
             closeHandler={this.hideUploads}
-            setUploadSizes={this.setUploadSizes}
+            setUploads={this.setUploads}
+            setUploading={this.setUploading}
             uploadResponseHandler={this.uploadResponseHandler}
           />
         )}
         <div className="media-container">
           <div className="media">
-            {uploadSizes &&
-              uploadSizes.length && <Previews sizes={uploadSizes} />}
+            {uploads && uploads.length && <UploadPreviews uploads={uploads} />}
             <Thumbnails
               photos={photos}
               selected={selected}

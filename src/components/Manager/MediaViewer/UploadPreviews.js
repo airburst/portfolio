@@ -1,70 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { graphql } from 'react-apollo';
 import { Loader } from 'semantic-ui-react';
-import Thumbnail from './Thumbnail';
-import { uploadProgressSubscription } from '../../../queries';
 import './MediaViewer.css';
 
-/**
- * TODO:
- * This would be an experimental component to bind indivdual
- * Preview comps to their own uipload and progress subscription.
- * Each should continue if the user navigates away, storing
- * the subscriptions in state.
- */
+const UploadPreview = ({ name, uploading, thumbnail }) => (
+  <div className="thumbnail preview">
+    {name}
+    {uploading && <Loader active inverted inline />}
+    {thumbnail && <img src={thumbnail} alt={name} />}
+  </div>
+);
 
-// TODO: Include a progress bar on each preview
-export const Previews = ({ sizes }) =>
-  sizes.map((k, i) => (
-    <div className="thumbnail preview" key={i}>
-      <Loader active inverted inline />
-    </div>
+UploadPreview.propTypes = {
+  name: PropTypes.string.isRequired,
+  uploading: PropTypes.bool.isRequired,
+  thumbnail: PropTypes.string,
+};
+
+UploadPreview.defaultProps = {
+  thumbnail: null,
+};
+
+const UploadPreviews = ({ uploads }) =>
+  uploads &&
+  uploads.length &&
+  uploads.map(u => (
+    <UploadPreview
+      key={`upload-${u.name}`}
+      name={u.name}
+      uploading={u.uploading}
+    />
   ));
 
-class UploadPreviews extends React.Component {
-  static propTypes = {
-    uploads: PropTypes.object.isRequired,
-  };
-
-  // componentWillMount() {
-  //   this.unsubscribe = this.subscribe(this.props.channelId);
-  // }
-
-  // componentWillUnmount() {
-  //   if (this.unsubscribe) {
-  //     this.unsubscribe();
-  //   }
-  // }
-
-  // subscribe = channelId =>
-  // this.props.data.subscribeToMore({
-  //   document: newChannelMessageSubscription,
-  //   variables: {
-  //     channelId,
-  //   },
-  //   updateQuery: (prev, { subscriptionData }) => {
-  //     if (!subscriptionData) {
-  //       return prev;
-  //     }
-
-  //     return {
-  //       ...prev,
-  //       messages: [subscriptionData.newChannelMessage, ...prev.messages],
-  //     };
-  //   },
-  // });
-
-  render() {
-    const { uploads } = this.props; // [{ name, size }]
-    const photoSet = photos.map(d => d.id);
-
-    return <div />;
-  }
-}
-
 export default UploadPreviews;
-
-// export default graphql(uploadProgressSubscription, {
-//   options: props => { variables: { filename: props.filename }  },
-// })(Thumbnail);
