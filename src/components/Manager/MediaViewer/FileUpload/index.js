@@ -39,8 +39,7 @@ const FileUpload = props => {
 
   const onDrop = files => {
     if (files.length) {
-      setUploads(files);
-      batch()(files, doUpload);
+      setUploads(files, () => batch()(files, doUpload));
     }
   };
 

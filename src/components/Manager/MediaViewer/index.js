@@ -26,7 +26,7 @@ class MediaViewer extends React.Component {
 
   state = {
     showUploads: false,
-    uploads: null,
+    uploads: [],
     height: 0,
     // search: '', // TODO: use search
   };
@@ -64,24 +64,29 @@ class MediaViewer extends React.Component {
 
   hideUploads = () => this.setState({ showUploads: false });
 
-  setUploads = files => {
+  setUploads = (files, cb) => {
     const uploads = files.map(f => ({
       name: f.name,
       uploading: false,
       thumbnail: null,
     }));
-    this.setState({ uploads });
+    this.setState({ uploads }, () => {
+      if (cb) {
+        cb();
+      }
+    });
   };
 
-  setUploading = ({ name, uploading, thumbnail }) => {
-    const upload = this.state.uploads.find(u => u.name === name);
-    if (uploading !== undefined) {
-      upload.uploading = uploading;
+  setUploading = upload => {
+    const index = this.state.uploads.findIndex(u => u.name === upload.name);
+    const uploadState = [...this.state.uploads];
+    uploadState.splice(index, 1);
+    if (upload.thumbnail) {
+      // Remove item from state if done
+      this.setState({ uploads: uploadState });
+    } else {
+      this.setState({ uploads: [...uploadState, upload] });
     }
-    if (thumbnail) {
-      upload.thumbnail = thumbnail;
-    }
-    this.setState(state => ({ uploads: { ...state.uploads, upload } }));
   };
 
   render() {
@@ -115,7 +120,7 @@ class MediaViewer extends React.Component {
         )}
         <div className="media-container">
           <div className="media">
-            {uploads && uploads.length && <UploadPreviews uploads={uploads} />}
+            {uploads.length > 0 && <UploadPreviews uploads={uploads} />}
             <Thumbnails
               photos={photos}
               selected={selected}
