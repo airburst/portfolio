@@ -1,4 +1,5 @@
 .gallery-container {
-  margin-top: var(--topmargin);
+  padding-top: calc(var(--topmargin) - 2px);
   height: 100%;
+  overflow-y: auto;
 }
