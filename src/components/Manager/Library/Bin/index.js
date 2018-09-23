@@ -12,8 +12,9 @@ import {
 } from '../../../../queries';
 import './Bin.css';
 
+// Note: need to pass empty object as variable when no album selected
 const refetchQueries = albumId => [
-  { query: allPhotosQuery, variables: { albumId } },
+  { query: allPhotosQuery, variables: albumId ? { albumId } : {} },
   { query: allBinItemsQuery },
   { query: albumsQuery },
 ];
