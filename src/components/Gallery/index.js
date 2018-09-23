@@ -1,57 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Gallery from 'react-photo-gallery';
 import Lightbox from 'react-images';
+import { graphql } from 'react-apollo';
+import { publicPhotosQuery } from '../../queries';
+import photoSet from './photoSet';
 import './Gallery.css';
 
-const photos = [
-  {
-    src: 'https://source.unsplash.com/2ShvY8Lf6l0/800x599',
-    width: 4,
-    height: 3,
-  },
-  {
-    src: 'https://source.unsplash.com/Dm-qxdynoEc/800x799',
-    width: 1,
-    height: 1,
-  },
-  {
-    src: 'https://source.unsplash.com/qDkso9nvCg0/600x799',
-    width: 3,
-    height: 4,
-  },
-  {
-    src: 'https://source.unsplash.com/iecJiKe_RNg/600x799',
-    width: 3,
-    height: 4,
-  },
-  {
-    src: 'https://source.unsplash.com/epcsn8Ed8kY/600x799',
-    width: 3,
-    height: 4,
-  },
-  {
-    src: 'https://source.unsplash.com/NQSWvyVRIJk/800x599',
-    width: 4,
-    height: 3,
-  },
-  {
-    src: 'https://source.unsplash.com/zh7GEuORbUw/600x799',
-    width: 3,
-    height: 4,
-  },
-  {
-    src: 'https://source.unsplash.com/PpOHJezOalU/800x599',
-    width: 4,
-    height: 3,
-  },
-  {
-    src: 'https://source.unsplash.com/I1ASdgphUH4/800x599',
-    width: 4,
-    height: 3,
-  },
-];
-
 class GalleryView extends React.Component {
+  static propTypes = {
+    data: PropTypes.object.isRequired,
+  };
+
   constructor() {
     super();
     this.state = { currentImage: 0 };
@@ -84,20 +44,41 @@ class GalleryView extends React.Component {
   }
 
   render() {
+    const {
+      // loading,
+      data: { allPhotos },
+      // error,
+    } = this.props;
+    // Display loader while true
+    // Display something else on error
+    const photos = photoSet(allPhotos);
+    console.log('TCL: GalleryView -> render -> photos', photos);
+
     return (
       <div className="gallery-container">
-        <Gallery photos={photos} onClick={this.openLightbox} />
-        <Lightbox
-          images={photos}
-          onClose={this.closeLightbox}
-          onClickPrev={this.gotoPrevious}
-          onClickNext={this.gotoNext}
-          currentImage={this.state.currentImage}
-          isOpen={this.state.lightboxIsOpen}
-        />
+        {allPhotos && (
+          <React.Fragment>
+            <Gallery photos={photos} onClick={this.openLightbox} />
+            <Lightbox
+              images={photos}
+              onClose={this.closeLightbox}
+              onClickPrev={this.gotoPrevious}
+              onClickNext={this.gotoNext}
+              currentImage={this.state.currentImage}
+              isOpen={this.state.lightboxIsOpen}
+            />
+          </React.Fragment>
+        )}
       </div>
     );
   }
 }
 
-export default GalleryView;
+// export default GalleryView;
+
+// Apply filter for selected album
+export default graphql(publicPhotosQuery, {
+  options: () => ({ variables: { albumId: 1 } }),
+})(GalleryView);
+
+// fetchPolicy: 'network-only',
