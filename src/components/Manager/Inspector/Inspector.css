@@ -33,12 +33,12 @@
   grid-gap: var(--small-padding);
   align-items: center;
 }
-@media only screen and (min-width: 1900px) {
+/* @media only screen and (min-width: 1900px) {
   .properties {
     grid-template-columns: 120px 1fr;
     grid-gap: var(--padding);
   }
-}
+} */
 
 .heading {
   justify-self: flex-end;

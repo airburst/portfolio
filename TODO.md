@@ -9,8 +9,7 @@
 * [x] Delete a photo
 * [x] Delete uploaded file once photos created
 * [x] Handle captions from exif
-* [ ] Format date in Inspector
-* [ ] Use larger image in 500px mode
+* [x] Format date in Inspector
 
 ## Photo Galleries (Manager)
 * [x] Model for gallery object
@@ -32,9 +31,9 @@
 * [x] Update gallery name, etc. in Inspector when gallery is selected
 * [x] Assign cover photo
 * [x] Handle Cmd click / Shift click on Mac
-* [ ] Handle large batches of uploads
-* [ ] Add a progress bar for uploads
-* [ ] Style: show droppble style on Bin
+* [x] Handle large batches of uploads
+* [x] Style: show droppble style on Bin
+* [N] Add a progress bar for uploads
 * [ ] Implement search/sort
 
 ## Galleries View

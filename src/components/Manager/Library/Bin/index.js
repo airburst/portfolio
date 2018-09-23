@@ -15,8 +15,8 @@ import './Bin.css';
 // Note: need to pass empty object as variable when no album selected
 const refetchQueries = albumId => [
   { query: allPhotosQuery, variables: albumId ? { albumId } : {} },
-  { query: allBinItemsQuery },
   { query: albumsQuery },
+  { query: allBinItemsQuery },
 ];
 
 class Bin extends React.Component {
@@ -150,7 +150,7 @@ class Bin extends React.Component {
 
 export default compose(
   graphql(allBinItemsQuery, {
-    options: () => ({ fetchPolicy: 'network-only' }),
+    // options: () => ({ fetchPolicy: 'network-only' }),
   }),
   graphql(addToBinMutation)
 )(Bin);

@@ -21,11 +21,11 @@
   margin-top: var(--topmargin);
   font: var(--admin-font);
 }
-@media only screen and (min-width: 1900px) {
+/* @media only screen and (min-width: 1900px) {
   .admin-container {
     grid-template-columns: var(--panelwidth) 1fr var(--wide-panelwidth);
   }
-}
+} */
 
 .topbar {
   /* flex: 0 0 auto; */

@@ -26,7 +26,6 @@ const FileUpload = props => {
   const doUpload = file => {
     // Change uploading state
     const { name } = file;
-    console.log('TCL: name', name);
     setUploading({ name, uploading: true });
     // Do the upload
     return mutate({
