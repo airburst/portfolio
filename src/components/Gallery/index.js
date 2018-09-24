@@ -7,6 +7,16 @@ import { publicPhotosQuery } from '../../queries';
 import photoSet, { lightboxSet } from './photoSet';
 import './Gallery.css';
 
+const lightboxTheme = {
+  container: {
+    background: 'rgba(0, 0, 0, 0.95)',
+    gutter: {
+      horizontal: 1,
+      vertical: 1,
+    },
+  },
+};
+
 class GalleryView extends React.Component {
   static propTypes = {
     data: PropTypes.object.isRequired,
@@ -66,6 +76,9 @@ class GalleryView extends React.Component {
               onClickNext={this.gotoNext}
               currentImage={this.state.currentImage}
               isOpen={this.state.lightboxIsOpen}
+              backdropClosesModal
+              width={2560}
+              theme={lightboxTheme}
             />
           </div>
         )}
