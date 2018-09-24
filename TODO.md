@@ -37,14 +37,14 @@
 * [ ] Implement search/sort
 
 ## Galleries Route
-* [ ] Route and menu entry
+* [x] Route and menu entry
 * [ ] Grid layout of gallery cards with cover photos
 * [ ] Increment view counter for albums
 * [ ] MUST be mobile-first
 
 ## Gallery/n Route
-* [ ] Masonry layout of gallery cards with cover photos
-* [ ] MUST be mobile-first
+* [x] Masonry layout of gallery cards with cover photos
+* [ ] Set max width for lightbox and masonry images (2560px)  css var
 
 ## Home page
 * [ ] Animate login form into page
@@ -64,6 +64,3 @@
 * [ ] Add a logout feature
 * [ ] Create short urls to share photo links (TBC)
 * [ ] Bubble up GQL errors to a toast handler
-
-## Snagging / Bugs
-* [x] Don't scroll media section topbar off screen (CSS)
