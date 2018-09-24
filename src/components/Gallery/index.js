@@ -52,7 +52,6 @@ class GalleryView extends React.Component {
     // Display loader while true
     // Display something else on error
     const photos = photoSet(allPhotos);
-    console.log('TCL: GalleryView -> render -> photos', photos);
 
     return (
       <div className="gallery-container">
