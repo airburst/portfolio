@@ -1,16 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Loader } from 'semantic-ui-react';
 import Thumbnail from './Thumbnail';
 import './MediaViewer.css';
-
-// TODO: Include a progress bar on each preview
-export const Previews = ({ sizes }) =>
-  sizes.map((k, i) => (
-    <div className="thumbnail preview" key={i}>
-      <Loader active inverted inline />
-    </div>
-  ));
 
 const Thumbnails = ({ photos, selected, clickHandler, dragHandler }) => {
   const photoSet = photos.map(d => d.id);

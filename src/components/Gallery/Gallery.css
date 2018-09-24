@@ -3,3 +3,8 @@
   height: 100%;
   overflow-y: auto;
 }
+
+.gallery-photos {
+  max-width: 2560px;
+  margin: auto;
+}

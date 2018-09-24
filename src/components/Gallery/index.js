@@ -57,7 +57,7 @@ class GalleryView extends React.Component {
     return (
       <div className="gallery-container">
         {allPhotos && (
-          <React.Fragment>
+          <div className="gallery-photos">
             <Gallery photos={photos} onClick={this.openLightbox} />
             <Lightbox
               images={photos}
@@ -67,18 +67,14 @@ class GalleryView extends React.Component {
               currentImage={this.state.currentImage}
               isOpen={this.state.lightboxIsOpen}
             />
-          </React.Fragment>
+          </div>
         )}
       </div>
     );
   }
 }
 
-// export default GalleryView;
-
 // Apply filter for selected album
 export default graphql(publicPhotosQuery, {
-  options: () => ({ variables: { albumId: 1 } }),
+  options: () => ({ variables: { albumId: 1 } }), // TODO: Don't hard code albumId
 })(GalleryView);
-
-// fetchPolicy: 'network-only',
