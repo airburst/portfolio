@@ -57,7 +57,7 @@ class GalleryView extends React.Component {
       <div className="gallery-container">
         {allPhotos && (
           <div className="gallery-photos">
-            <Gallery photos={photos} onClick={this.openLightbox} />
+            <Gallery photos={photos} onClick={this.openLightbox} columns={2} />
             <Lightbox
               images={photos}
               onClose={this.closeLightbox}

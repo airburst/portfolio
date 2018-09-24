@@ -11,14 +11,12 @@ export const SIZES = [
 
 // Gallery breakpoints:
 // Not resizing below 658px on desktop
-// 2 columns below 909px: A pano picture could be 3/4 of this width
-// 3 columns below 910 - 1509px: A pano picture could be 1/2 of this
-// 4 columns above 1510px
+// 2 columns all the way up to 1500px;
 const MEDIA_QUERY_SIZES = [
   '(min-width: 480px) and (max-width: 657px) 360px',
-  '(min-width: 658px) and (max-width: 1509px) 700px',
-  '(min-width: 1510px) and (max-width: 2109px) 960px',
-  '(min-width: 2110px) 1440px',
+  '(min-width: 658px) and (max-width: 1023px) 700px',
+  '(min-width: 1024px) and (max-width: 1499px) 960px',
+  '(min-width: 1500px) 1440px',
   // '(min-width: 3800px) 2560px', // Not needed because of side margins
 ].join(',');
 
