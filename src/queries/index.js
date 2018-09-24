@@ -2,6 +2,7 @@ export { addPhotosToAlbumMutation } from './addPhotosToAlbumMutation';
 export { addToBinMutation } from './addToBinMutation';
 export { addAlbumMutation } from './addAlbumMutation';
 export { albumsQuery } from './albumsQuery';
+export { publicAlbumsQuery } from './publicAlbumsQuery';
 export { allPhotosQuery } from './allPhotosQuery';
 export { publicPhotosQuery } from './publicPhotosQuery';
 export { allBinItemsQuery } from './allBinItemsQuery';
