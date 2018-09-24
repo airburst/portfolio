@@ -9,7 +9,10 @@ import './Galleries.css';
 class GalleriesView extends React.Component {
   static propTypes = {
     data: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
   };
+
+  clickHandler = (e, id) => this.props.history.push(`/gallery/${id}`);
 
   render() {
     const {
@@ -27,6 +30,7 @@ class GalleriesView extends React.Component {
           name={a.name}
           description={a.description}
           cover={a.cover}
+          clickHandler={this.clickHandler}
         />
       ))
     ) : (

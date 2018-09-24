@@ -5,10 +5,10 @@ import { publicAlbumsQuery } from '../../queries';
 import './Galleries.css';
 
 const GalleryCard = props => {
-  const { id, name, description, cover } = props;
+  const { id, name, description, cover, clickHandler } = props;
 
   return (
-    <div className="gallery" onClick={() => console.log(id)}>
+    <div className="gallery" onClick={e => clickHandler(e, id)}>
       <div className="gallery__item">
         <img className="thumbnail" src={cover} alt={`View ${name} gallery`} />
         <div className="gallery__title">
@@ -23,6 +23,7 @@ const GalleryCard = props => {
 GalleryCard.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
+  clickHandler: PropTypes.func.isRequired,
   description: PropTypes.number,
   cover: PropTypes.string,
 };
