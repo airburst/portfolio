@@ -46,10 +46,10 @@ class GalleryView extends React.Component {
   render() {
     const {
       // loading,
-      data: { allPhotos },
       // error,
+      data: { allPhotos },
     } = this.props;
-    // Display loader while true
+    // TODO: Display loader while true
     // Display something else on error
     const photos = photoSet(allPhotos);
 
@@ -75,5 +75,7 @@ class GalleryView extends React.Component {
 
 // Apply filter for selected album
 export default graphql(publicPhotosQuery, {
-  options: () => ({ variables: { albumId: 1 } }), // TODO: Don't hard code albumId
+  options: props => ({
+    variables: { albumId: parseInt(props.match.params.id, 10) },
+  }),
 })(GalleryView);

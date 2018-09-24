@@ -21,7 +21,7 @@
 
 .nav {
   display: grid;
-  grid-template-columns: 1fr minmax(120px, auto) minmax(100px, auto) 100px;
+  grid-template-columns: 1fr 100px 100px;
   justify-items: center;
   align-items: center;
   height: 100%;
