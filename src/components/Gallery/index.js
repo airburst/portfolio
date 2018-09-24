@@ -4,7 +4,7 @@ import Gallery from 'react-photo-gallery';
 import Lightbox from 'react-images';
 import { graphql } from 'react-apollo';
 import { publicPhotosQuery } from '../../queries';
-import photoSet from './photoSet';
+import photoSet, { lightboxSet } from './photoSet';
 import './Gallery.css';
 
 class GalleryView extends React.Component {
@@ -52,6 +52,7 @@ class GalleryView extends React.Component {
     // TODO: Display loader while true
     // Display something else on error
     const photos = photoSet(allPhotos);
+    const lightboxPhotos = lightboxSet(allPhotos);
 
     return (
       <div className="gallery-container">
@@ -59,7 +60,7 @@ class GalleryView extends React.Component {
           <div className="gallery-photos">
             <Gallery photos={photos} onClick={this.openLightbox} columns={2} />
             <Lightbox
-              images={photos}
+              images={lightboxPhotos}
               onClose={this.closeLightbox}
               onClickPrev={this.gotoPrevious}
               onClickNext={this.gotoNext}

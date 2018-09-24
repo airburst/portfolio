@@ -47,6 +47,20 @@ const makeSrcSet = urls =>
     .reverse()
     .join(',');
 
+export const lightboxSet = allPhotos => {
+  if (!allPhotos || !allPhotos.data) {
+    return null;
+  }
+  return allPhotos.data.map(p => {
+    const i = indexOfLargestPicture(p.urls);
+    return {
+      caption: p.caption,
+      src: p.urls[i],
+      srcSet: makeSrcSet(p.urls),
+    };
+  });
+};
+
 export default allPhotos => {
   if (!allPhotos || !allPhotos.data) {
     return null;
