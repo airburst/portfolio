@@ -1,19 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { graphql } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 import Masonry from 'react-masonry-component';
 import Card from './Card';
-import { publicAlbumsQuery } from '../../queries';
+import { publicAlbumsQuery, addViewMutation } from '../../queries';
 import './Galleries.css';
+
+const masonryOptions = {
+  itemSelector: '.gallery',
+  gutter: 20,
+  isOriginLeft: true,
+};
 
 // eslint-disable-next-line react/prefer-stateless-function
 class GalleriesView extends React.Component {
   static propTypes = {
     data: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
+    mutate: PropTypes.func.isRequired,
   };
 
-  clickHandler = (e, id) => this.props.history.push(`/gallery/${id}`);
+  clickHandler = (e, id) => {
+    this.props.mutate({
+      variables: { albumId: id },
+      refetchQueries: [{ query: publicAlbumsQuery }],
+    });
+    this.props.history.push(`/gallery/${id}`);
+  };
 
   render() {
     const {
@@ -29,7 +42,7 @@ class GalleriesView extends React.Component {
           key={`card-${a.id}`}
           id={a.id}
           name={a.name}
-          description={a.description}
+          views={a.views}
           cover={a.cover}
           clickHandler={this.clickHandler}
         />
@@ -43,9 +56,8 @@ class GalleriesView extends React.Component {
         <div className="gallery-cards">
           <Masonry
             className="my-gallery-class"
-            gutter={20}
+            options={masonryOptions}
             // style={style}
-            // onClick={this.handleClick}
           >
             {Cards}
           </Masonry>
@@ -56,4 +68,7 @@ class GalleriesView extends React.Component {
 }
 
 // Apply filter for selected album
-export default graphql(publicAlbumsQuery)(GalleriesView);
+export default compose(
+  graphql(publicAlbumsQuery),
+  graphql(addViewMutation)
+)(GalleriesView);

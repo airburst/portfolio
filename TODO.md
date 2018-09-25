@@ -38,13 +38,17 @@
 
 ## Galleries Route
 * [x] Route and menu entry
-* [ ] Grid layout of gallery cards with cover photos
+* [x] Masonry layout of gallery cards with cover photos
 * [ ] Increment view counter for albums
-* [ ] MUST be mobile-first
+* [ ] PublicAlbums query
+* [ ] Loader / error handler for GQL
+* [ ] Verify mobile layout
+* [ ] Search
 
 ## Gallery/n Route
 * [x] Masonry layout of gallery cards with cover photos
-* [ ] Set max width for lightbox and masonry images (2560px)  css var
+* [x] Set max width for lightbox and masonry images (2560px)  css var
+* [ ] Loader / error handler for GQL
 
 ## Home page
 * [ ] Animate login form into page
@@ -52,10 +56,7 @@
 * [ ] Static image or ken burns effect
 * [ ] Confirm Header actions and UI
 * [ ] Show signed-in name (with option to logout?)
-* [ ] MUST be mobile-first
-
-## Portfolio View (TBC)
-* [ ] Smart layout for best pictures...
+* [ ] Verify mobile layout (header)
 
 ## General
 * [ ] Performance testing in Chrome devtools

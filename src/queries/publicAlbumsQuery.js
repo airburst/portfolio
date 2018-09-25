@@ -8,6 +8,7 @@ export const publicAlbumsQuery = gql`
         name
         description
         cover
+        views
       }
       errors {
         path

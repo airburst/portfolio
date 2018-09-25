@@ -1,6 +1,6 @@
 :root {
   --cover-padding: 8px 8px 0 8px;
-  --title-padding: 0 16px 8px 16px;
+  --title-padding: 0 8px 8px 8px;
 }
 
 .galleries-container {
@@ -11,27 +11,39 @@
 }
 
 .gallery-cards {
-  padding: var(--topmargin) 0;
-  max-width: 1564px; /* 376px * 4 + 3 x 20px gap */
+  padding: 0;
+  max-width: 376px;
   margin: auto;
 }
-/* @media only screen and (min-width: 770px) {
-  .galleries-container {
-    grid-template-columns: 60px 1fr 60px;
+@media only screen and (min-width: 380px) {
+  .gallery-cards {
+    padding: var(--topmargin) 0;
   }
 }
-@media only screen and (min-width: 1440px) {
-  .galleries-container {
-    grid-template-columns: 120px 1fr 120px;
+@media only screen and (min-width: 772px) {
+  .gallery-cards {
+    padding: var(--topmargin) 0;
+    max-width: 772px; /* 376px * 2 + 20px gap */
   }
-} */
+}
+@media only screen and (min-width: 1168px) {
+  .gallery-cards {
+    max-width: 1168px; /* 376px * 3 + 2 x 20px gap */
+  }
+}
+@media only screen and (min-width: 1564px) { /* 376px * 4 + 3 x 20px gap */
+  .gallery-cards {
+    max-width: 1564px; /* 376px * 4 + 3 x 20px gap */
+  }
+}
 
 .gallery {
   background-color: white;
-  /* box-shadow: 0 2px 5px rgba(39, 39, 39, 0.1); */
   cursor: pointer;
-  margin-right: 20px;
+  margin-bottom: 20px;
+  /* margin-right: 20px; */
 }
+
 
 .gallery-cover {
   width: 100%;
@@ -40,9 +52,19 @@
 
 .gallery-title {
   display: flex;
+  flex-direction: row;
   align-items: center;
   height: 60px;
   font-size: 0.8em;
   text-transform: uppercase;
   padding: var(--title-padding);
+}
+
+.gallery-views {
+  flex-grow: 1;
+  text-align: end;
+}
+
+.gallery-icon {
+  margin-right: 8px;
 }

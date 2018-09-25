@@ -1,4 +1,5 @@
 export { addPhotosToAlbumMutation } from './addPhotosToAlbumMutation';
+export { addViewMutation } from './addViewMutation';
 export { addToBinMutation } from './addToBinMutation';
 export { addAlbumMutation } from './addAlbumMutation';
 export { albumsQuery } from './albumsQuery';

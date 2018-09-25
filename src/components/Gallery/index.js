@@ -15,6 +15,10 @@ const lightboxTheme = {
       vertical: 1,
     },
   },
+  footerCaption: {
+    fontSize: '0.8em',
+    textTransform: 'uppercase',
+  },
 };
 
 class GalleryView extends React.Component {

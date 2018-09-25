@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye } from '@fortawesome/free-solid-svg-icons'
 import { publicAlbumsQuery } from '../../queries';
 import './Galleries.css';
 
 const GalleryCard = props => {
-  const { id, name, description, cover, clickHandler } = props;
+  const { id, name, cover, views, clickHandler } = props;
 
   return (
     <div className="gallery" onClick={e => clickHandler(e, id)}>
@@ -17,7 +19,10 @@ const GalleryCard = props => {
         />
         <div className="gallery-title">
           {name}
-          {description && <div className="">{description}</div>}
+          {views > 0 && <div className="gallery-views">
+              <FontAwesomeIcon icon={faEye} className="gallery-icon" />
+              {views}
+            </div>}
         </div>
       </div>
     </div>
@@ -27,13 +32,12 @@ const GalleryCard = props => {
 GalleryCard.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
+  views: PropTypes.number.isRequired,
   clickHandler: PropTypes.func.isRequired,
-  description: PropTypes.number,
   cover: PropTypes.string,
 };
 
 GalleryCard.defaultProps = {
-  description: null,
   cover: null,
 };
 
