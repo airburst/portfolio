@@ -5,6 +5,7 @@
 }
 
 .gallery-photos {
+  padding: var(--topmargin) 0;
   max-width: 1500px;
   margin: auto;
 }

@@ -9,9 +9,13 @@ const GalleryCard = props => {
 
   return (
     <div className="gallery" onClick={e => clickHandler(e, id)}>
-      <div className="gallery__item">
-        <img className="thumbnail" src={cover} alt={`View ${name} gallery`} />
-        <div className="gallery__title">
+      <div className="gallery-item">
+        <img
+          className="gallery-cover"
+          src={cover}
+          alt={`View ${name} gallery`}
+        />
+        <div className="gallery-title">
           {name}
           {description && <div className="">{description}</div>}
         </div>

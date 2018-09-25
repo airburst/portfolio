@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
+import Masonry from 'react-masonry-component';
 import Card from './Card';
 import { publicAlbumsQuery } from '../../queries';
 import './Galleries.css';
@@ -39,7 +40,16 @@ class GalleriesView extends React.Component {
 
     return (
       <div className="galleries-container">
-        <div className="gallery-cards">{Cards}</div>
+        <div className="gallery-cards">
+          <Masonry
+            className="my-gallery-class"
+            gutter={20}
+            // style={style}
+            // onClick={this.handleClick}
+          >
+            {Cards}
+          </Masonry>
+        </div>
       </div>
     );
   }
