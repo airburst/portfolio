@@ -40,9 +40,10 @@
 * [x] Route and menu entry
 * [x] Masonry layout of gallery cards with cover photos
 * [x] Increment view counter for albums
-* [ ] PublicAlbums query
+* [x] PublicAlbums query
+* [x] Verify mobile layout
+* [ ] Ensure that 360px images are served to mobile
 * [ ] Loader / error handler for GQL
-* [ ] Verify mobile layout
 * [ ] Search
 
 ## Gallery/n Route

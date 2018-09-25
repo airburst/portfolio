@@ -13,7 +13,7 @@ export const SIZES = [
 // Not resizing below 658px on desktop
 // 2 columns all the way up to 1500px;
 const MEDIA_QUERY_SIZES = [
-  '(min-width: 480px) and (max-width: 657px) 360px',
+  '(max-width: 657px) 360px',
   '(min-width: 658px) and (max-width: 1023px) 700px',
   '(min-width: 1024px) and (max-width: 1499px) 960px',
   '(min-width: 1500px) 1440px',
