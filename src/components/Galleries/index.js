@@ -32,12 +32,12 @@ class GalleriesView extends React.Component {
     const {
       // loading,
       // error,
-      data: { allAlbums },
+      data: { getPublicAlbums },
     } = this.props;
     // TODO: Display loader while true
     // Display something else on error
-    const Cards = allAlbums ? (
-      allAlbums.data.map(a => (
+    const Cards = getPublicAlbums ? (
+      getPublicAlbums.data.map(a => (
         <Card
           key={`card-${a.id}`}
           id={a.id}

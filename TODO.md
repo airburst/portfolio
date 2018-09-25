@@ -39,7 +39,7 @@
 ## Galleries Route
 * [x] Route and menu entry
 * [x] Masonry layout of gallery cards with cover photos
-* [ ] Increment view counter for albums
+* [x] Increment view counter for albums
 * [ ] PublicAlbums query
 * [ ] Loader / error handler for GQL
 * [ ] Verify mobile layout

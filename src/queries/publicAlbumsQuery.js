@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 
 export const publicAlbumsQuery = gql`
   {
-    allAlbums {
+    getPublicAlbums {
       data {
         id
         name
