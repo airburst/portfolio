@@ -5,7 +5,7 @@ import { ApolloProvider } from 'react-apollo';
 import client from './apollo';
 import Routes from './routes';
 import { version } from '../package.json';
-import 'semantic-ui-css/semantic.min.css';
+// import 'semantic-ui-css/semantic.min.css';
 import './index.css';
 // import registerServiceWorker from './registerServiceWorker';
 

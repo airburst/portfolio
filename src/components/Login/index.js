@@ -6,6 +6,7 @@ import { Form, Button } from 'semantic-ui-react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { TextInput } from './TextInput';
+import 'semantic-ui-css/semantic.min.css';
 import './Login.css';
 
 const trimFields = values => {

@@ -7,6 +7,7 @@ import MediaViewer from './MediaViewer';
 import Inspector from './Inspector';
 import { allPhotosQuery, albumsQuery } from '../../queries';
 import { selectionState } from './selectionState';
+import 'semantic-ui-css/semantic.min.css';
 import './Manager.css';
 
 class Manager extends Component {

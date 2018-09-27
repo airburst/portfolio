@@ -9,7 +9,9 @@ import './Galleries.css';
 const masonryOptions = {
   itemSelector: '.gallery',
   gutter: 20,
+  columnWidth: 376,
   isOriginLeft: true,
+  transitionDuration: 0.4,
 };
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -36,20 +38,18 @@ class GalleriesView extends React.Component {
     } = this.props;
     // TODO: Display loader while true
     // Display something else on error
-    const Cards = getPublicAlbums ? (
-      getPublicAlbums.data.map(a => (
-        <Card
-          key={`card-${a.id}`}
-          id={a.id}
-          name={a.name}
-          views={a.views}
-          cover={a.cover}
-          clickHandler={this.clickHandler}
-        />
-      ))
-    ) : (
-      <div />
-    );
+    const Cards = getPublicAlbums
+      ? getPublicAlbums.data.map(a => (
+          <Card
+            key={`card-${a.id}`}
+            id={a.id}
+            name={a.name}
+            views={a.views}
+            cover={a.cover}
+            clickHandler={this.clickHandler}
+          />
+        ))
+      : [<div key="card-null" />];
 
     return (
       <div className="galleries-container">

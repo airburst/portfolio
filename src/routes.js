@@ -1,13 +1,14 @@
 import React from 'react';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import decode from 'jwt-decode';
+import Loadable from 'react-loadable';
 
-import Home from './components/Home';
-import Login from './components/Login';
-import Galleries from './components/Galleries';
-import Gallery from './components/Gallery';
+// import Home from './components/Home';
+// import Login from './components/Login';
+// import Galleries from './components/Galleries';
+// import Gallery from './components/Gallery';
 import Header from './components/Header';
-import Manager from './components/Manager';
+// import Manager from './components/Manager';
 import './index.css';
 
 const isAuthenticated = () => {
@@ -43,13 +44,35 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   />
 );
 
+const Loading = () => <div>Loading...</div>;
+
+const LoadableGalleries = Loadable({
+  loader: () => import('./components/Galleries'),
+  loading: Loading,
+});
+
+const LoadableLogin = Loadable({
+  loader: () => import('./components/Login'),
+  loading: Loading,
+});
+
+const LoadableGallery = Loadable({
+  loader: () => import('./components/Gallery'),
+  loading: Loading,
+});
+
+const LoadableManager = Loadable({
+  loader: () => import('./components/Manager'),
+  loading: Loading,
+});
+
 const Routes = () => (
   <Switch>
-    <Route path="/" exact component={Home} />
-    <Route path="/login" exact component={Login} />
-    <Route path="/galleries" exact component={Galleries} />
-    <Route path="/gallery/:id" exact component={Gallery} />
-    <PrivateRoute path="/manager" exact component={Manager} />
+    <Route path="/" exact component={LoadableGalleries} />
+    <Route path="/login" exact component={LoadableLogin} />
+    <Route path="/galleries" exact component={LoadableGalleries} />
+    <Route path="/gallery/:id" exact component={LoadableGallery} />
+    <PrivateRoute path="/manager" exact component={LoadableManager} />
   </Switch>
 );
 

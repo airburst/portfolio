@@ -34,6 +34,7 @@
 * [x] Handle large batches of uploads
 * [x] Style: show droppble style on Bin
 * [N] Add a progress bar for uploads
+* [ ] BUG: Cover photo is replaced when more photos are added to album
 * [ ] Implement search/sort
 
 ## Galleries Route
@@ -42,7 +43,6 @@
 * [x] Increment view counter for albums
 * [x] PublicAlbums query
 * [x] Verify mobile layout
-* [ ] Ensure that 360px images are served to mobile
 * [ ] Loader / error handler for GQL
 * [ ] Search
 
