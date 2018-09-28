@@ -1,7 +1,12 @@
+:root {
+  --gutter: 2px; /* Same as each image margin */
+}
+
 .gallery-container {
   padding-top: calc(var(--topmargin) - 2px);
   height: 100%;
   overflow-y: auto;
+  margin: 0 var(--gutter);
 }
 
 .gallery-photos {

@@ -49,6 +49,7 @@
 ## Gallery/n Route
 * [x] Masonry layout of gallery cards with cover photos
 * [x] Set max width for lightbox and masonry images (2560px)  css var
+* [ ] Support named gallery routes
 * [ ] Loader / error handler for GQL
 
 ## Home page
@@ -60,8 +61,8 @@
 * [ ] Verify mobile layout (header)
 
 ## General
+* [x] Bundle splitting
 * [ ] Performance testing in Chrome devtools
-* [ ] Bundle splitting
 * [ ] Handle validation error on uploading duplicate filename
 * [ ] Add a logout feature
 * [ ] Create short urls to share photo links (TBC)

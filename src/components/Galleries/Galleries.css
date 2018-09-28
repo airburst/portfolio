@@ -1,6 +1,8 @@
 :root {
   --cover-padding: 8px 8px 0 8px;
   --title-padding: 0 8px 8px 8px;
+  --cover-width: 360px;
+  --gutter: 20px;
 }
 
 .galleries-container {
@@ -12,7 +14,7 @@
 
 .gallery-cards {
   padding: 0;
-  max-width: 376px;
+  max-width: calc(var(--cover-width) + 16px);
   margin: auto;
 }
 @media only screen and (min-width: 380px) {
@@ -40,13 +42,13 @@
 .gallery {
   background-color: white;
   cursor: pointer;
-  margin-bottom: 20px;
-  /* margin-right: 20px; */
+  margin-bottom: var(--gutter);
 }
 
 
 .gallery-cover {
   width: 100%;
+  max-width: var(--cover-width);
   padding: var(--cover-padding);
 }
 
