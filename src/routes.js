@@ -2,13 +2,7 @@ import React from 'react';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import decode from 'jwt-decode';
 import Loadable from 'react-loadable';
-
-// import Home from './components/Home';
-// import Login from './components/Login';
-// import Galleries from './components/Galleries';
-// import Gallery from './components/Gallery';
 import Header from './components/Header';
-// import Manager from './components/Manager';
 import './index.css';
 
 const isAuthenticated = () => {
@@ -45,6 +39,11 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 );
 
 const Loading = () => <div>Loading...</div>;
+
+// const LoadableHome = Loadable({
+//   loader: () => import('./components/Home'),
+//   loading: Loading,
+// });
 
 const LoadableGalleries = Loadable({
   loader: () => import('./components/Galleries'),
