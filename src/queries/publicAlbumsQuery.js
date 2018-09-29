@@ -6,6 +6,7 @@ export const publicAlbumsQuery = gql`
       data {
         id
         name
+        slug
         description
         cover
         views

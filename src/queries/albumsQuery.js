@@ -6,6 +6,7 @@ export const albumsQuery = gql`
       data {
         id
         name
+        slug
         description
         cover
         isPublic

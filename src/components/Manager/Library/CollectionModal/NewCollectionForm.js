@@ -7,6 +7,15 @@ import { graphql } from 'react-apollo';
 import { albumsQuery, addAlbumMutation } from '../../../../queries';
 import { TextInput } from '../../../Login/TextInput';
 
+const makeSlug = name => {
+  const slug = name
+    .toLowerCase()
+    .replace('  ', ' ')
+    .replace(/([^a-zA-Z0-9 ]+)/gm, '')
+    .replace(/[ ]/gm, '-');
+  return slug;
+};
+
 const enhance = withFormik({
   mapPropsToValues: () => ({
     name: '',
@@ -16,8 +25,10 @@ const enhance = withFormik({
   }),
   handleSubmit: async (values, { props, setSubmitting }) => {
     const { mutate, cancelHandler } = props;
+    const name = values.name.trim();
+    const slug = makeSlug(name);
     const response = await mutate({
-      variables: { album: { name: values.name.trim() } },
+      variables: { album: { name: values.name.trim(), slug } },
       refetchQueries: [
         {
           query: albumsQuery,

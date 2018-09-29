@@ -22,12 +22,13 @@ class GalleriesView extends React.Component {
     mutate: PropTypes.func.isRequired,
   };
 
-  clickHandler = (e, id) => {
+  clickHandler = (e, id, slug) => {
     this.props.mutate({
       variables: { albumId: id },
       refetchQueries: [{ query: publicAlbumsQuery }],
     });
-    this.props.history.push(`/gallery/${id}`);
+    const path = slug && slug.length > 0 ? slug : id;
+    this.props.history.push(`/gallery/${path}`);
   };
 
   render() {
@@ -44,6 +45,7 @@ class GalleriesView extends React.Component {
             key={`card-${a.id}`}
             id={a.id}
             name={a.name}
+            slug={a.slug}
             views={a.views}
             cover={a.cover}
             clickHandler={this.clickHandler}

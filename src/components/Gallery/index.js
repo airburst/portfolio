@@ -24,6 +24,11 @@ const lightboxTheme = {
 class GalleryView extends React.Component {
   static propTypes = {
     data: PropTypes.object.isRequired,
+    error: PropTypes.object,
+  };
+
+  static defaultProps = {
+    error: null,
   };
 
   constructor() {
@@ -60,16 +65,16 @@ class GalleryView extends React.Component {
   render() {
     const {
       // loading,
-      // error,
+      error,
       data: { publicPhotos },
     } = this.props;
-    // TODO: Display loader while true
-    // Display something else on error
     const photos = photoSet(publicPhotos);
     const lightboxPhotos = lightboxSet(publicPhotos);
 
     return (
       <div className="gallery-container">
+        {/* {loading && <div>Loading...</div>} */}
+        {error && <div>Oops.. There appears to be a problem</div>}
         {publicPhotos && (
           <div className="gallery-photos">
             <Gallery

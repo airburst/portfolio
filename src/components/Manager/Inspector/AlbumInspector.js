@@ -10,6 +10,7 @@ import './Inspector.css';
 const initialState = {
   id: null,
   name: null,
+  slug: null,
   description: null,
   cover: null,
   isPublic: null,
@@ -71,7 +72,7 @@ class AlbumInspector extends React.Component {
   }
 
   render() {
-    const { id, name, description, cover, isPublic } = this.state;
+    const { id, name, slug, description, cover, isPublic } = this.state;
 
     return (
       <React.Fragment>
@@ -100,6 +101,17 @@ class AlbumInspector extends React.Component {
                       type="text"
                       value={name || ''}
                       name="name"
+                      onChange={this.onChange}
+                    />
+                  </div>
+
+                  <div className="heading">Slug</div>
+                  <div className="property">
+                    <input
+                      className="dark"
+                      type="text"
+                      value={slug || ''}
+                      name="slug"
                       onChange={this.onChange}
                     />
                   </div>
