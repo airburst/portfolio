@@ -8,7 +8,7 @@ const Header = () => (
     <ul className="nav">
       <li className="logo">
         <Link className="logo-item" to="/" title="home">
-          Fairhurst Photos
+          F
         </Link>
       </li>
       <li className="photos">

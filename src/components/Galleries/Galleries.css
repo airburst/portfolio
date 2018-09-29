@@ -42,9 +42,13 @@
 .gallery {
   background-color: white;
   cursor: pointer;
-  margin-bottom: var(--gutter);
+  margin-bottom: 8px;
 }
-
+@media only screen and (min-width: 772px) {
+  .gallery {
+    margin-bottom: var(--gutter);
+  }
+}
 
 .gallery-cover {
   width: 100%;

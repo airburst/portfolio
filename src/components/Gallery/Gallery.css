@@ -10,7 +10,12 @@
 }
 
 .gallery-photos {
-  padding: var(--topmargin) 0;
+  padding: 0;
   max-width: 1500px;
   margin: auto;
+}
+@media only screen and (min-width: 772px) {
+  .gallery-photos {
+    padding: var(--topmargin) 0;
+  }
 }

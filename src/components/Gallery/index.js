@@ -61,16 +61,16 @@ class GalleryView extends React.Component {
     const {
       // loading,
       // error,
-      data: { allPhotos },
+      data: { publicPhotos },
     } = this.props;
     // TODO: Display loader while true
     // Display something else on error
-    const photos = photoSet(allPhotos);
-    const lightboxPhotos = lightboxSet(allPhotos);
+    const photos = photoSet(publicPhotos);
+    const lightboxPhotos = lightboxSet(publicPhotos);
 
     return (
       <div className="gallery-container">
-        {allPhotos && (
+        {publicPhotos && (
           <div className="gallery-photos">
             <Gallery
               photos={photos}
