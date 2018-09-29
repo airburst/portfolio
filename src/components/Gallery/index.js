@@ -104,6 +104,6 @@ class GalleryView extends React.Component {
 // Apply filter for selected album
 export default graphql(publicPhotosQuery, {
   options: props => ({
-    variables: { albumId: parseInt(props.match.params.id, 10) },
+    variables: { albumId: props.match.params.id },
   }),
 })(GalleryView);

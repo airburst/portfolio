@@ -7,8 +7,9 @@ const Header = () => (
   <div className="page-header">
     <ul className="nav">
       <li className="logo">
-        <Link className="logo-item" to="/" title="home">
-          F
+        <Link to="/" title="home">
+          <span className="logo-item">F</span>
+          <span className="tagline">airhursts</span>
         </Link>
       </li>
       <li className="photos">
