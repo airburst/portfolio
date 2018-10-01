@@ -1,5 +1,12 @@
 # Portfolio Website: TODOs
 
+## Bugs
+* [ ] API: remove hard-coded userId 1
+* [ ] Manager: Cover photo is replaced when more photos are added to album
+* [ ] API: catch error if upload is cancelled
+
+* [ ] TEST: binning an album removes all album-photos records and files?
+
 ## File Inspector (Manager)
 * [x] Clicking a thumbnail populates the Inspector panel
 * [x] Changing details updates the photo metadata
@@ -34,7 +41,6 @@
 * [x] Handle large batches of uploads
 * [x] Style: show droppble style on Bin
 * [N] Add a progress bar for uploads
-* [ ] BUG: Cover photo is replaced when more photos are added to album
 * [ ] Implement search/sort
 
 ## Galleries Route
@@ -49,21 +55,17 @@
 ## Gallery/n Route
 * [x] Masonry layout of gallery cards with cover photos
 * [x] Set max width for lightbox and masonry images (2560px)  css var
-* [ ] Support named gallery routes
+* [x] Support named gallery routes
 * [ ] Loader / error handler for GQL
 
 ## Home page
-* [ ] Animate login form into page
-* [ ] Remove semantic ui to reduce bundle size
 * [ ] Static image or ken burns effect
-* [ ] Confirm Header actions and UI
-* [ ] Show signed-in name (with option to logout?)
-* [ ] Verify mobile layout (header)
+* [ ] Show signed-in name
+* [ ] Add a logout feature
 
 ## General
 * [x] Bundle splitting
 * [ ] Performance testing in Chrome devtools
 * [ ] Handle validation error on uploading duplicate filename
-* [ ] Add a logout feature
 * [ ] Create short urls to share photo links (TBC)
 * [ ] Bubble up GQL errors to a toast handler

@@ -63,34 +63,36 @@ const LoginForm = props => {
 
   return (
     <div className="form-container">
-      <Form>
-        <TextInput
-          id="username"
-          type="text"
-          label="Username or Email"
-          error={touched.username && errors.username}
-          value={values.username}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-        <TextInput
-          id="password"
-          type="password"
-          label="Password"
-          error={touched.password && errors.password}
-          value={values.password}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-        <Button
-          positive
-          type="submit"
-          onClick={handleSubmit}
-          disabled={!dirty || isSubmitting}
-        >
-          Sign in
-        </Button>
-      </Form>
+      <div className="login-form">
+        <Form>
+          <TextInput
+            id="username"
+            type="text"
+            label="Username or Email"
+            error={touched.username && errors.username}
+            value={values.username}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <TextInput
+            id="password"
+            type="password"
+            label="Password"
+            error={touched.password && errors.password}
+            value={values.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <Button
+            positive
+            type="submit"
+            onClick={handleSubmit}
+            disabled={!dirty || isSubmitting}
+          >
+            Sign in
+          </Button>
+        </Form>
+      </div>
     </div>
   );
 };

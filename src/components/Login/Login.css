@@ -4,5 +4,15 @@
   flex-direction: column;
   margin: var(--small-padding);
   margin-top: var(--topmargin);
-  padding: 48px;
+  padding: 96px 16px;
+  height: 100%;
+  background-color: #f2f2f2;
+}
+
+@media only screen and (min-width: 758px) {
+  .login-form {
+    display: block;
+    width: 600px;
+    margin: auto;
+  }
 }

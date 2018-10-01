@@ -5,7 +5,7 @@ import Loadable from 'react-loadable';
 import Header from './components/Header';
 import './index.css';
 
-const isAuthenticated = () => {
+export const isAuthenticated = () => {
   const token = localStorage.getItem('token');
   const refreshToken = localStorage.getItem('refreshToken');
   try {
@@ -77,7 +77,7 @@ const Routes = () => (
 
 const App = () => (
   <div className="wrapper">
-    <Header />
+    <Header auth={isAuthenticated()} />
     <Routes />
   </div>
 );
