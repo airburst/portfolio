@@ -1,8 +1,7 @@
 # Portfolio Website: TODOs
 
 ## Bugs
-* [x] Manager: Cover photo is replaced when more photos are added to album
-* [ ] API: catch error if upload is cancelled
+
 
 ## File Inspector (Manager)
 * [x] Clicking a thumbnail populates the Inspector panel
@@ -38,6 +37,8 @@
 * [x] Handle large batches of uploads
 * [x] Style: show droppble style on Bin
 * [N] Add a progress bar for uploads
+* [x] BUG: Manager: Cover photo is replaced when more photos are added to album
+* [x] BUG: API: catch error if upload is cancelled
 * [ ] Implement search/sort
 
 ## Galleries Route
