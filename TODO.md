@@ -1,11 +1,8 @@
 # Portfolio Website: TODOs
 
 ## Bugs
-* [ ] API: remove hard-coded userId 1
-* [ ] Manager: Cover photo is replaced when more photos are added to album
+* [x] Manager: Cover photo is replaced when more photos are added to album
 * [ ] API: catch error if upload is cancelled
-
-* [ ] TEST: binning an album removes all album-photos records and files?
 
 ## File Inspector (Manager)
 * [x] Clicking a thumbnail populates the Inspector panel
@@ -67,5 +64,6 @@
 * [x] Bundle splitting
 * [ ] Performance testing in Chrome devtools
 * [ ] Handle validation error on uploading duplicate filename
+* [ ] API: remove hard-coded userId 1
 * [ ] Create short urls to share photo links (TBC)
 * [ ] Bubble up GQL errors to a toast handler
