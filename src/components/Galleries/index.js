@@ -4,6 +4,7 @@ import { graphql, compose } from 'react-apollo';
 import Masonry from 'react-masonry-component';
 import Card from './Card';
 import { publicAlbumsQuery, addViewMutation } from '../../queries';
+import ServerContext from '../../ServerContext';
 import './Galleries.css';
 
 const masonryOptions = {
@@ -39,32 +40,38 @@ class GalleriesView extends React.Component {
     } = this.props;
     // TODO: Display loader while true
     // Display something else on error
-    const Cards = getPublicAlbums
-      ? getPublicAlbums.data.map(a => (
-          <Card
-            key={`card-${a.id}`}
-            id={a.id}
-            name={a.name}
-            slug={a.slug}
-            views={a.views}
-            cover={a.cover}
-            clickHandler={this.clickHandler}
-          />
-        ))
-      : [<div key="card-null" />];
+    const Cards = ({ serverUrl }) =>
+      getPublicAlbums
+        ? getPublicAlbums.data.map(a => (
+            <Card
+              key={`card-${a.id}`}
+              id={a.id}
+              name={a.name}
+              slug={a.slug}
+              views={a.views}
+              cover={a.cover}
+              clickHandler={this.clickHandler}
+              serverUrl={serverUrl}
+            />
+          ))
+        : [<div key="card-null" />];
 
     return (
-      <div className="galleries-container">
-        <div className="gallery-cards">
-          <Masonry
-            className="my-gallery-class"
-            options={masonryOptions}
-            // style={style}
-          >
-            {Cards}
-          </Masonry>
-        </div>
-      </div>
+      <ServerContext.Consumer>
+        {serverUrl => (
+          <div className="galleries-container">
+            <div className="gallery-cards">
+              <Masonry
+                className="my-gallery-class"
+                options={masonryOptions}
+                // style={style}
+              >
+                <Cards serverUrl={serverUrl} />
+              </Masonry>
+            </div>
+          </div>
+        )}
+      </ServerContext.Consumer>
     );
   }
 }

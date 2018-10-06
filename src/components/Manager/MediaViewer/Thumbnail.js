@@ -17,6 +17,7 @@ class Thumbnail extends React.Component {
   static propTypes = {
     id: PropTypes.number.isRequired,
     src: PropTypes.string.isRequired,
+    serverUrl: PropTypes.string.isRequired,
     clickHandler: PropTypes.func.isRequired,
     dragHandler: PropTypes.func.isRequired,
     preview: PropTypes.bool,
@@ -54,20 +55,20 @@ class Thumbnail extends React.Component {
   clickHandler = e => this.props.clickHandler(e, this.state.keyCode);
 
   render() {
-    const { id, src, preview, selected, dragHandler } = this.props;
+    const { id, src, preview, selected, dragHandler, serverUrl } = this.props;
     const thumbClass = `thumbnail${preview ? ' preview' : ''}${
       selected ? ' selected' : ''
     }`;
+    const url = `${serverUrl}${src}`;
 
     return (
-      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
       <div
         className={thumbClass}
         onClick={this.clickHandler}
         onDragStart={dragHandler}
       >
         {!preview && (
-          <img draggable={selected} id={id} src={src} alt="Placeholder" />
+          <img draggable={selected} id={id} src={url} alt="Placeholder" />
         )}
         {/* <Count count={2} /> */}
       </div>

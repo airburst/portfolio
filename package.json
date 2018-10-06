@@ -1,6 +1,6 @@
 {
   "name": "portfolio",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.4",
@@ -37,7 +37,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start-production": "REACT_APP_SERVER_URL=http://fairhursts.net:3001 REACT_APP_SERVER_API=http://fairhursts.net:3001/graphql REACT_APP_SERVER_WS=ws://fairhursts.net:3001/graphql react-scripts start",
+    "start-production": "REACT_APP_SERVER_URL=https://api.fairhursts.net REACT_APP_SERVER_API=https://api.fairhursts.net/graphql REACT_APP_SERVER_WS=wss://api.fairhursts.net/graphql react-scripts start",
     "build": "GENERATE_SOURCEMAP=false react-scripts build --production",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",

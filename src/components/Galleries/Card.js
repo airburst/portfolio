@@ -7,14 +7,15 @@ import { publicAlbumsQuery } from '../../queries';
 import './Galleries.css';
 
 const GalleryCard = props => {
-  const { id, name, slug, cover, views, clickHandler } = props;
+  const { id, name, slug, cover, views, clickHandler, serverUrl } = props;
+  const coverUrl = `${serverUrl}${cover}`;
 
   return (
     <div className="gallery" onClick={e => clickHandler(e, id, slug)}>
       <div className="gallery-item">
         <img
           className="gallery-cover"
-          src={cover}
+          src={coverUrl}
           alt={`View ${name} gallery`}
         />
         <div className="gallery-title">
@@ -34,6 +35,7 @@ const GalleryCard = props => {
 GalleryCard.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
+  serverUrl: PropTypes.string.isRequired,
   slug: PropTypes.string,
   views: PropTypes.number.isRequired,
   clickHandler: PropTypes.func.isRequired,

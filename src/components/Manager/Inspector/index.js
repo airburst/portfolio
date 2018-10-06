@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PhotoInspector from './PhotoInspector';
 import AlbumInspector from './AlbumInspector';
+import ServerContext from '../../../ServerContext';
 import './Inspector.css';
 
 class Inspector extends React.Component {
@@ -35,13 +36,19 @@ class Inspector extends React.Component {
     const styles = { height: this.state.height };
 
     return (
-      <div className="inspector-section" style={styles}>
-        <div className="topbar">Inspector</div>
-        <div className="properties-content">
-          <AlbumInspector album={album} />
-          {!displayAlbum && <PhotoInspector selected={selected} />}
-        </div>
-      </div>
+      <ServerContext.Consumer>
+        {serverUrl => (
+          <div className="inspector-section" style={styles}>
+            <div className="topbar">Inspector</div>
+            <div className="properties-content">
+              <AlbumInspector album={album} serverUrl={serverUrl} />
+              {!displayAlbum && (
+                <PhotoInspector selected={selected} serverUrl={serverUrl} />
+              )}
+            </div>
+          </div>
+        )}
+      </ServerContext.Consumer>
     );
   }
 }

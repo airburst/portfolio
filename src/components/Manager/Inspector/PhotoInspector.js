@@ -22,13 +22,6 @@ const initialState = {
   // iso
 };
 
-const getInspectorPhoto = urls => {
-  if (!urls) {
-    return null;
-  }
-  return urls[5] ? urls[5] : urls[6];
-};
-
 const formatDate = datetime => {
   const dateString = new Date(datetime).toISOString().split('T')[0];
   const reversed = dateString
@@ -41,6 +34,7 @@ const formatDate = datetime => {
 class PhotoInspector extends React.Component {
   static propTypes = {
     mutate: PropTypes.func.isRequired,
+    serverUrl: PropTypes.string.isRequired,
     selected: PropTypes.object,
   };
 
@@ -73,6 +67,16 @@ class PhotoInspector extends React.Component {
     this.emitValue(photo);
   };
 
+  getInspectorPhoto(urls) {
+    const { serverUrl } = this.props;
+    if (!urls) {
+      return null;
+    }
+    const url = urls[5] ? urls[5] : urls[6];
+
+    return `${serverUrl}${url}`;
+  }
+
   emitValue(photo) {
     this.props.mutate({
       variables: { photo },
@@ -101,7 +105,10 @@ class PhotoInspector extends React.Component {
         {name && (
           <React.Fragment>
             <div className="selected-photo">
-              <img src={getInspectorPhoto(urls)} alt="Selected Placeholder" />
+              <img
+                src={this.getInspectorPhoto(urls)}
+                alt="Selected Placeholder"
+              />
             </div>
             <div className="inspector-content">
               <div className="title">Properties</div>

@@ -20,6 +20,7 @@ const COVER_URL_INDEX = 5; // urls[5]
 class AlbumInspector extends React.Component {
   static propTypes = {
     mutate: PropTypes.func.isRequired,
+    serverUrl: PropTypes.string.isRequired,
     album: PropTypes.object,
   };
 
@@ -72,7 +73,9 @@ class AlbumInspector extends React.Component {
   }
 
   render() {
+    const { serverUrl } = this.props;
     const { id, name, slug, description, cover, isPublic } = this.state;
+    const coverUrl = `${serverUrl}${cover}`;
 
     return (
       <React.Fragment>
@@ -83,7 +86,7 @@ class AlbumInspector extends React.Component {
                 <div className="title">Cover Photo</div>
                 <CoverPhoto
                   onDropCoverPhoto={this.onDropCoverPhoto}
-                  cover={cover}
+                  cover={coverUrl}
                 />
                 <div className="inspector-divider" />
               </section>

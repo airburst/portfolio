@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import client from './apollo';
 import Routes from './routes';
+import ServerContext, { serverUrl } from './ServerContext';
 import { version } from '../package.json';
 import './index.css';
 // import registerServiceWorker from './registerServiceWorker';
@@ -11,7 +12,9 @@ import './index.css';
 ReactDOM.render(
   <BrowserRouter>
     <ApolloProvider client={client}>
-      <Routes />
+      <ServerContext.Provider value={serverUrl}>
+        <Routes />
+      </ServerContext.Provider>
     </ApolloProvider>
   </BrowserRouter>,
   document.getElementById('app')
