@@ -23,7 +23,10 @@ class CollectionModal extends Component {
         >
           <Modal.Header>Create New Collection</Modal.Header>
           <Modal.Content>
-            <NewCollectionForm cancelHandler={closeHandler} />
+            <NewCollectionForm
+              cancelHandler={closeHandler}
+              validateOnChange={false}
+            />
           </Modal.Content>
         </Modal>
       </div>

@@ -48,55 +48,61 @@ const enhance = withFormik({
 });
 
 // The form component
-const NewCollectionForm = props => {
-  const {
-    values,
-    touched,
-    errors,
-    dirty,
-    handleChange,
-    handleBlur,
-    handleSubmit,
-    isSubmitting,
-    cancelHandler,
-  } = props;
+class NewCollectionForm extends React.Component {
+  static propTypes = {
+    values: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired,
+    touched: PropTypes.object.isRequired,
+    dirty: PropTypes.bool.isRequired,
+    isSubmitting: PropTypes.bool.isRequired,
+    handleChange: PropTypes.func.isRequired,
+    handleBlur: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
+    cancelHandler: PropTypes.func.isRequired,
+  };
 
-  return (
-    <Form>
-      <TextInput
-        id="name"
-        type="text"
-        label="Name"
-        error={touched.name && errors.name}
-        value={values.name}
-        onChange={handleChange}
-        onBlur={handleBlur}
-      />
-      <Button
-        color="red"
-        type="submit"
-        onClick={handleSubmit}
-        disabled={!dirty || isSubmitting}
-      >
-        Create
-      </Button>
-      <Button secondary onClick={cancelHandler}>
-        Cancel
-      </Button>
-    </Form>
-  );
-};
+  shouldComponentUpdate(nextProps) {
+    return nextProps.values.name !== this.props.values.name;
+  }
 
-NewCollectionForm.propTypes = {
-  values: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
-  touched: PropTypes.object.isRequired,
-  dirty: PropTypes.bool.isRequired,
-  isSubmitting: PropTypes.bool.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  handleBlur: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  cancelHandler: PropTypes.func.isRequired,
-};
+  render() {
+    const {
+      values,
+      touched,
+      errors,
+      dirty,
+      handleChange,
+      handleBlur,
+      handleSubmit,
+      isSubmitting,
+      cancelHandler,
+    } = this.props;
+
+    return (
+      <Form>
+        <TextInput
+          id="name"
+          type="text"
+          label="Name"
+          error={touched.name && errors.name}
+          value={values.name}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        <Button
+          color="red"
+          type="submit"
+          onClick={handleSubmit}
+          disabled={!dirty || isSubmitting}
+        >
+          Create
+        </Button>
+        <Button secondary onClick={cancelHandler}>
+          Cancel
+        </Button>
+      </Form>
+    );
+  }
+}
 
 export default graphql(addAlbumMutation)(enhance(NewCollectionForm));

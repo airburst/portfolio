@@ -1,6 +1,7 @@
 # Portfolio Website: TODOs
 
 ## Bugs
+* [ ] Formik is slow when typing a new album name
 
 
 ## File Inspector (Manager)
@@ -54,6 +55,7 @@
 * [x] Masonry layout of gallery cards with cover photos
 * [x] Set max width for lightbox and masonry images (2560px)  css var
 * [x] Support named gallery routes
+* [ ] Investigate faster masonry with lazy loading
 * [ ] Loader / error handler for GQL
 
 ## Home page
