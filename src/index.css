@@ -2,7 +2,8 @@
   --black: #272727;
   --bgcolor: #F7F7F7;
   --dark-bgcolor: #222;
-  --gallery-bg: #f6f4f4;
+  --gallery-bg: #F1F4F9;
+  /* --gallery-bg: #f6f4f4; */
   --padding: 16px;
   --topmargin: 48px; /* 48px header */
 }
