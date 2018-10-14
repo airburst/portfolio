@@ -55,11 +55,24 @@
   flex-direction: row;
   align-items: center;
   justify-content: start;
+  background: url(/favicon-32x32.png);
+  background-position: 8px 8px;
+  background-repeat: no-repeat;
   padding-left: 2px;
 }
 @media only screen and (min-width: 772px) {
   .logo {
     padding-left: 30px;
+    background: transparent;
+  }
+}
+
+.logo > a {
+  display: none;
+}
+@media only screen and (min-width: 772px) {
+  .logo > a {
+    display: inline;
   }
 }
 
@@ -68,6 +81,7 @@
   text-decoration: none;
   font-weight: 100;
   font-size: 2em;
+  margin-right: -3px;
 }
 
 .tagline {

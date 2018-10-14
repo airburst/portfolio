@@ -29,25 +29,6 @@ body.dark .page-header > .nav {
   list-style-type: none;
 }
 
-/*
-.nav .photos {
-  grid-column: 2;
-}
-
-.nav li {
-  display: flex;
-  width: 100%;
-  height: 100%;
-}
-
-.logo {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: start;
-  padding-left: 30px;
-} */
-
 body.dark .page-header > .nav a.logo-item {
   justify-content: flex-start;
 }
