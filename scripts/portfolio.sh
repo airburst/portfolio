@@ -6,5 +6,6 @@ docker run -d \
   -e REACT_APP_SERVER_WS=wss://api.fairhursts.net/graphql \
   -p 80:80 \
   -p 443:443 \
-  -v ~/portfolio/html:/usr/share/nginx/html \
+  -v ~/portfolio/html:/var/www \
+  -v ~/portfolio/nginx-app:/etc/nginx \
   portfolio:latest
