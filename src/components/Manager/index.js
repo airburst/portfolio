@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { graphql, compose } from 'react-apollo';
+import { graphql } from 'react-apollo';
+import compose from 'lodash.flowright';
 import Body from '../Body';
 import Library from './Library';
 import MediaViewer from './MediaViewer';
@@ -22,7 +23,7 @@ class Manager extends Component {
     albumName: null,
   };
 
-  thumbnailClickHandler = photoSet => (e, keyCode) => {
+  thumbnailClickHandler = (photoSet) => (e, keyCode) => {
     const { selectedPhotos, albumId } = this.state;
     const newSelection = selectionState(
       e,
@@ -38,7 +39,7 @@ class Manager extends Component {
     this.setState({ selectedPhotos: [] });
   };
 
-  thumbnailDragStart = e => {
+  thumbnailDragStart = (e) => {
     e.dataTransfer.setData('photos', this.state.selectedPhotos);
   };
 
@@ -65,13 +66,13 @@ class Manager extends Component {
     // Find photos and album details by id
     const photos =
       allPhotos && allPhotos.data
-        ? Object.values(allPhotos.data).filter(c =>
+        ? Object.values(allPhotos.data).filter((c) =>
             selectedPhotos.includes(c.id)
           )
         : [];
     const album =
       allAlbums && allAlbums.data
-        ? Object.values(allAlbums.data).filter(a => albumId === a.id)[0]
+        ? Object.values(allAlbums.data).filter((a) => albumId === a.id)[0]
         : null;
 
     const photo = photos.length ? photos[0] : null;

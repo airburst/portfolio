@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { graphql, compose } from 'react-apollo';
+import { graphql } from 'react-apollo';
+import compose from 'lodash.flowright';
 import Masonry from 'react-masonry-component';
 import Card from './Card';
 import { publicAlbumsQuery, addViewMutation } from '../../queries';
@@ -42,7 +43,7 @@ class GalleriesView extends React.Component {
     // Display something else on error
     const Cards = ({ serverUrl }) =>
       getPublicAlbums
-        ? getPublicAlbums.data.map(a => (
+        ? getPublicAlbums.data.map((a) => (
             <Card
               key={`card-${a.id}`}
               id={a.id}
@@ -58,7 +59,7 @@ class GalleriesView extends React.Component {
 
     return (
       <ServerContext.Consumer>
-        {serverUrl => (
+        {(serverUrl) => (
           <div className="galleries-container">
             <div className="gallery-cards">
               <Masonry

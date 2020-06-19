@@ -33,6 +33,7 @@ class Thumbnail extends React.Component {
     keyCode: null,
   };
 
+  // FIXME:
   componentWillMount() {
     document.addEventListener('keydown', this.keyDownHandler);
     document.addEventListener('keyup', this.keyUpHandler);
@@ -44,15 +45,15 @@ class Thumbnail extends React.Component {
     document.removeEventListener('keyup', this.keyUpHandler);
   }
 
-  keyDownHandler = e => {
+  keyDownHandler = (e) => {
     this.setState({ keyCode: e.keyCode });
   };
 
-  keyUpHandler = e => {
+  keyUpHandler = (e) => {
     this.setState({ keyCode: null });
   };
 
-  clickHandler = e => this.props.clickHandler(e, this.state.keyCode);
+  clickHandler = (e) => this.props.clickHandler(e, this.state.keyCode);
 
   render() {
     const { id, src, preview, selected, dragHandler, serverUrl } = this.props;

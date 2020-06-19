@@ -54,7 +54,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   background: url(/favicon-32x32.png);
   background-position: 8px 8px;
   background-repeat: no-repeat;
@@ -82,10 +82,6 @@
   font-weight: 100;
   font-size: 2em;
   margin-right: -3px;
-}
-
-.tagline {
-  /* font-size: 1.2em; */
 }
 
 .nav a.menu-item {

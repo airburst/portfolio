@@ -1,5 +1,6 @@
 import React from 'react';
-import { graphql, compose } from 'react-apollo';
+import { graphql } from 'react-apollo';
+import compose from 'lodash.flowright';
 import PropTypes from 'prop-types';
 import { Icon, Label, Menu } from 'semantic-ui-react';
 import {
@@ -13,7 +14,7 @@ import {
 import './Bin.css';
 
 // Note: need to pass empty object as variable when no album selected
-const refetchQueries = albumId => [
+const refetchQueries = (albumId) => [
   { query: allPhotosQuery, variables: albumId ? { albumId } : {} },
   { query: albumsQuery },
   { query: allBinItemsQuery },
@@ -60,7 +61,7 @@ class Bin extends React.Component {
       refetchQueries: refetchQueries(this.props.albumId),
     });
 
-  onDrop = e => {
+  onDrop = (e) => {
     const photos = e.dataTransfer.getData('photos');
     const album = e.dataTransfer.getData('album');
     this.setState({ hovering: false });
@@ -69,14 +70,14 @@ class Bin extends React.Component {
       this.props.removeAlbumFilter();
     }
     if (photos) {
-      const photoIds = photos.split(',').map(p => parseInt(p, 10));
+      const photoIds = photos.split(',').map((p) => parseInt(p, 10));
       this.addToBin('photo', photoIds, this.props.albumId);
     }
   };
 
   onDragEnter = () => this.setState({ hovering: true });
 
-  onDragOver = e => e.preventDefault();
+  onDragOver = (e) => e.preventDefault();
 
   onDragLeave = () => this.setState({ hovering: false });
 
@@ -87,7 +88,7 @@ class Bin extends React.Component {
     const photos = (allBinItems && allBinItems.photos) || [];
     const albums = (allBinItems && allBinItems.albums) || [];
     if (photos.length > 0 || albums.length > 0) {
-      this.setState(state => ({ showMenu: !state.showMenu }));
+      this.setState((state) => ({ showMenu: !state.showMenu }));
     }
   };
 
@@ -107,7 +108,7 @@ class Bin extends React.Component {
     }`;
 
     return (
-      <React.Fragment>
+      <>
         <div
           className="bin-dropzone"
           droppable="true"
@@ -143,7 +144,7 @@ class Bin extends React.Component {
             </div>
           </div>
         )}
-      </React.Fragment>
+      </>
     );
   }
 }
